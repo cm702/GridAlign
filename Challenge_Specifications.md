@@ -1,5 +1,13 @@
 # Sperry Tech — Shell Hacks 2026 Challenge
 
+Power grid companies (“utilities”) each plan future construction projects years in advance. The problem: neighboring utilities in different states often plan this work without much visibility into what the other one is doing nearby.
+
+The challenge: Build a tool that compares at least two utilities' public future construction plans and flags where their planned work overlaps — either because the projects are physically close to each other, or because they're scheduled around the same time.
+
+Why it matters: when utilities coordinate on nearby projects, they can potentially share labor, equipment and other critical resources.
+
+This is a real, current problem — federal regulators (FERC) issued a rule in 2024 because utilities have historically planned in isolation, leading to waste and delays in building a reliable power grid.
+
 ## 1. What This Challenge Is
 
 Power grid companies (“utilities”) each plan their own future construction projects — new power lines, upgraded substations, etc. — years in advance.
