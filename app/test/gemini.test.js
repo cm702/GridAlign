@@ -5,7 +5,7 @@ import { handleGeminiChat } from '../server/gemini.js'
 
 const opportunity = {
   id: 'OVL_2',
-  distanceMi: 5.65,
+  distanceKm: 5.65,
   timeGapDays: 152,
   screeningScore: 88,
   coordinationIdeas: [
@@ -124,10 +124,54 @@ test('sends selected context to Gemini and returns only assistant text', async (
   assert.equal(providerRequest.options.headers['x-goog-api-key'], 'server-only-key')
   const providerBody = JSON.parse(providerRequest.options.body)
   assert.match(providerBody.systemInstruction.parts[0].text, /5\.65/)
+  assert.match(providerBody.systemInstruction.parts[0].text, /kilometers/)
   assert.match(providerBody.systemInstruction.parts[0].text, /screeningScore/)
   assert.match(providerBody.systemInstruction.parts[0].text, /Coordinate commissioning/)
   assert.match(providerBody.systemInstruction.parts[0].text, /not verified resources/)
   assert.equal(providerBody.contents[0].parts[0].text, 'What should we check first?')
+})
+
+test('accepts missing schedule and cost fields without inventing coordination savings', async () => {
+  let providerRequest
+  const incompleteOpportunity = {
+    ...opportunity,
+    timeGapDays: null,
+    projectA: {
+      ...opportunity.projectA,
+      estimatedCostUsd: 19_280_474,
+      costSource: 'SCRTP filing, p. 12',
+      costDisclosure: null,
+    },
+    projectB: {
+      ...opportunity.projectB,
+      estimatedCostUsd: null,
+      costSource: null,
+      costDisclosure: 'No public project-level cost supplied',
+    },
+  }
+  const { response } = await makeExchange({
+    apiKey: 'server-only-key',
+    body: {
+      messages: [{ role: 'user', text: 'Which project costs are documented?' }],
+      opportunity: incompleteOpportunity,
+    },
+    fetchImpl: async (url, options) => {
+      providerRequest = { url, options }
+      return {
+        ok: true,
+        json: async () => ({
+          candidates: [{ content: { parts: [{ text: 'Only the reported cost.' }] } }],
+        }),
+      }
+    },
+  })
+
+  assert.equal(response.statusCode, 200)
+  const requestContext = JSON.parse(providerRequest.options.body).systemInstruction.parts[0].text
+  assert.match(requestContext, /"timeGapDays":null/)
+  assert.match(requestContext, /"estimatedCostUsd":19280474/)
+  assert.match(requestContext, /Do not calculate or invent avoided costs/)
+  assert.doesNotMatch(requestContext, /"costScenario"/)
 })
 
 test('reads the supplied lowercase .env names and calls the configured model', async () => {

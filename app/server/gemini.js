@@ -98,6 +98,27 @@ function cleanProject(project) {
     cleaned[field] = value
   }
 
+  for (const field of ['description', 'status', 'sourceReference', 'costSource', 'costDisclosure']) {
+    if (project[field] === undefined) continue
+    if (
+      project[field] !== null &&
+      (typeof project[field] !== 'string' || project[field].length > 1_000)
+    ) {
+      return null
+    }
+    cleaned[field] = project[field]
+  }
+  if (
+    project.estimatedCostUsd !== undefined &&
+    project.estimatedCostUsd !== null &&
+    (!Number.isFinite(project.estimatedCostUsd) || project.estimatedCostUsd < 0)
+  ) {
+    return null
+  }
+  if (project.estimatedCostUsd !== undefined) {
+    cleaned.estimatedCostUsd = project.estimatedCostUsd
+  }
+
   return cleaned
 }
 
@@ -108,6 +129,13 @@ function cleanOpportunity(opportunity) {
   const screeningScore = opportunity.screeningScore
   const coordinationIdeas = opportunity.coordinationIdeas
 
+  if (
+    opportunity.scoreExplanation !== undefined &&
+    (typeof opportunity.scoreExplanation !== 'string' ||
+      opportunity.scoreExplanation.length > 1_000)
+  ) {
+    return null
+  }
   if (
     screeningScore !== undefined &&
     (!Number.isInteger(screeningScore) || screeningScore < 0 || screeningScore > 100)
@@ -126,7 +154,12 @@ function cleanOpportunity(opportunity) {
           typeof idea.type !== 'string' ||
           idea.type.length > 120 ||
           typeof idea.descriptor !== 'string' ||
-          idea.descriptor.length > 800,
+          idea.descriptor.length > 800 ||
+          (idea.share !== undefined &&
+            (typeof idea.share !== 'string' || idea.share.length > 300)) ||
+          (idea.confidence !== undefined &&
+            (typeof idea.confidence !== 'string' || idea.confidence.length > 160)) ||
+          (idea.applicable !== undefined && typeof idea.applicable !== 'boolean'),
       ))
   ) {
     return null
@@ -137,21 +170,25 @@ function cleanOpportunity(opportunity) {
     !projectB ||
     typeof opportunity.id !== 'string' ||
     !/^OVL_\d+$/.test(opportunity.id) ||
-    typeof opportunity.distanceMi !== 'number' ||
-    !Number.isFinite(opportunity.distanceMi) ||
-    opportunity.distanceMi < 0 ||
-    typeof opportunity.timeGapDays !== 'number' ||
-    !Number.isFinite(opportunity.timeGapDays) ||
-    opportunity.timeGapDays < 0
+    typeof opportunity.distanceKm !== 'number' ||
+    !Number.isFinite(opportunity.distanceKm) ||
+    opportunity.distanceKm < 0 ||
+    (opportunity.timeGapDays !== null &&
+      (typeof opportunity.timeGapDays !== 'number' ||
+        !Number.isFinite(opportunity.timeGapDays) ||
+        opportunity.timeGapDays < 0))
   ) {
     return null
   }
 
   return {
     id: opportunity.id,
-    distanceMi: opportunity.distanceMi,
+    distanceKm: opportunity.distanceKm,
     timeGapDays: opportunity.timeGapDays,
     ...(screeningScore === undefined ? {} : { screeningScore }),
+    ...(opportunity.scoreExplanation === undefined
+      ? {}
+      : { scoreExplanation: opportunity.scoreExplanation }),
     ...(coordinationIdeas === undefined ? {} : { coordinationIdeas }),
     projectA,
     projectB,
@@ -164,8 +201,10 @@ function makeSystemInstruction(opportunity) {
     'Help users interpret the selected public-planning screening result and suggest practical next steps.',
     'Treat all shared crews, outage windows, procurement, staging, access, and right-of-way ideas as hypotheses to validate—not verified resources or promised savings.',
     'Do not invent project details, route geometry, costs, savings, approvals, or utility commitments.',
-    'The supplied straight-line distance is a screening estimate; proximity does not prove projects share a corridor.',
-    'Answer questions about what the user sees in the map and dashboard using only the selected match context below. Explain that the screening score ranks proximity and date alignment; it is not a probability, savings estimate, or engineering assessment.',
+    'The supplied distance is in kilometers and is the minimum separation between listed coordinate points, not a measured route distance; proximity does not prove projects share a corridor.',
+    'Apply the challenge distance tiers precisely: under 0.1 km is only a near-coincident point prompt to verify crossing/outage timing; under 1.6 km suggests investigating right-of-way/access roads/permits; under 8 km suggests site logistics/laydown/deliveries; under 40 km suggests crews/cranes/contractors/equipment. At 40 km or farther, the challenge says not to flag a geographic overlap. These are hypotheses, never verified opportunities.',
+    'Answer questions about what the user sees in the map and dashboard using only the selected match context below. The score is a ranking aid: inside 40 km it weights proximity 70% and schedule alignment 30% when schedule data exists, or uses proximity alone when it does not. It is not a probability, savings estimate, or engineering assessment.',
+    'Project source dates and statuses are a saved snapshot and may be outdated. Cost estimates can be absent or redacted. Project budget estimates are not estimates of savings from coordination. Do not calculate or invent avoided costs without documented resource quantities, rates, and applicable costs; state which data is missing.',
     'Clearly distinguish source facts from recommendations, be concise, and recommend confirmation with both utilities and public filings.',
     `Selected opportunity context: ${JSON.stringify(opportunity)}`,
   ].join(' ')

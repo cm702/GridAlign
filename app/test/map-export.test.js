@@ -4,7 +4,7 @@ import { createOpportunityCsv } from '../src/mapExport.js'
 
 const opportunity = {
   id: 'OVL_2',
-  distanceMi: 5.65,
+  distanceKm: 9.09,
   timeGapDays: 152,
   score: 85,
   projectA: {
@@ -35,10 +35,18 @@ test('exports both selected projects with screening and provenance caveats', () 
   const csv = createOpportunityCsv(opportunity)
   const [header, projectA, projectB] = csv.split('\r\n')
 
-  assert.match(header, /screening_rank_not_probability/)
+  assert.match(header, /screening_score_not_probability/)
+  assert.match(header, /reported_point_distance_km/)
+  assert.match(header, /geographic_overlap_under_40_km/)
+  assert.match(header, /potential_sharing_at_this_distance/)
+  assert.match(header, /screening_score_explanation/)
+  assert.match(header, /known_project_cost_total_usd/)
+  assert.match(header, /coordination_savings_status/)
+  assert.doesNotMatch(header, /illustrative|avoided_cost/)
   assert.match(header, /location_source_url/)
   assert.match(header, /coordinate_basis/)
-  assert.match(projectA, /^"OVL_2","5\.65","152","85","Dominion Energy South Carolina","DESC_3"/)
+  assert.match(projectA, /^"OVL_2","9\.09","true","Regional resources"/)
+  assert.match(projectA, /Score = 70% proximity/)
   assert.match(projectB, /"Georgia Power","GPC_2"/)
   assert.match(projectA, /"Jasper - Okatie, 230 kV #2"/)
   assert.match(csv, /coordinate-level source citation is not attached/)
@@ -56,4 +64,14 @@ test('escapes embedded quote characters in CSV fields', () => {
   })
 
   assert.match(csv, /"North ""Station"" rebuild"/)
+})
+
+test('does not export a pair at 40 km as a challenge geographic overlap', () => {
+  const csv = createOpportunityCsv({
+    ...opportunity,
+    distanceKm: 40,
+  })
+
+  const [, projectA] = csv.split('\r\n')
+  assert.match(projectA, /^"OVL_2","40","false","Outside the 40 km geographic screen"/)
 })
