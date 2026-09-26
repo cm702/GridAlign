@@ -1,6 +1,8 @@
 import os
 from pathlib import Path
 
+from report_generator import generate_reports
+
 from dotenv import load_dotenv
 
 from gemini_client import GeminiClient
@@ -127,10 +129,7 @@ def main():
 
     elif option == "2":
 
-        print(
-            "Report generation "
-            "will be implemented next."
-        )
+         generate_reports()
 
     else:
 

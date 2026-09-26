@@ -313,3 +313,36 @@ Return the COMPLETE UPDATED MASTER DATASET.
         )
 
         return master_dataset
+        
+    def generate_report(
+        self,
+        prompt: str
+    ) -> str:
+        """
+        Generate one GridAlign coordination report
+        from one project match.
+        """
+
+        print(
+            "Sending match to Gemini "
+            "for coordination analysis..."
+        )
+
+        response = (
+            self.client.models.generate_content(
+                model=MODEL,
+                contents=prompt,
+                config=types.GenerateContentConfig(
+                    temperature=0.2,
+                ),
+            )
+        )
+
+        if not response.text:
+            raise RuntimeError(
+                "Gemini returned an empty report."
+            )
+
+        return response.text.strip()
+
+    

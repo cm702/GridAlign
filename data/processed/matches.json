@@ -1,0 +1,1250 @@
+{
+  "match_count" : 22,
+  "max_distance_km" : 40.0,
+  "matches" : [ {
+    "company_a" : "Georgia Power",
+    "company_b" : "Dominion Energy South Carolina",
+    "distance_km" : 24.74,
+    "project_a" : {
+      "project_name" : "Plant McIntosh Upgrades",
+      "aliases" : [ "Plant McIntosh Natural Gas Capacity Addition", "Plant McIntosh Expansion" ],
+      "project_type" : "Natural Gas Power Plant Upgrade",
+      "description" : "Upgrades at Plant McIntosh near Savannah to add an additional 268 MW of natural gas capacity.",
+      "status" : "Approved",
+      "location" : "Plant McIntosh near Savannah",
+      "city" : "Rincon",
+      "county" : "Effingham County",
+      "state" : "Georgia",
+      "coordinates" : [ {
+        "latitude" : 32.3533,
+        "longitude" : -81.1834
+      } ],
+      "start_date" : null,
+      "end_date" : null,
+      "estimated_cost" : null,
+      "sources" : [ {
+        "file_name" : "georgia-public-service-commission-approves-plan-to-meet-the-energy-needs-of-a-growing-georgia.html",
+        "page" : null
+      }, {
+        "file_name" : "georgia-power-files-2025-irp-plan-to-meet-energy-needs.html",
+        "page" : null
+      } ]
+    },
+    "project_b" : {
+      "project_name" : "Okatie 230-115kV Substation, Jasper – Yemassee 230kV #1 Fold-in",
+      "aliases" : [ "0139 M,N" ],
+      "project_type" : "Substation Expansion and Line Fold-in",
+      "description" : "Expand existing Okatie Transmission sub, add a 230-115 autobank and fold the Jasper – Yemassee 230 kV #1 line into the 230 kV side. Construct two additional 115 kV bus tie lines.",
+      "status" : "In Progress",
+      "location" : "Okatie",
+      "city" : "Okatie",
+      "county" : "Beaufort County",
+      "state" : "SC",
+      "coordinates" : [ {
+        "latitude" : 32.3163,
+        "longitude" : -80.9237
+      }, {
+        "latitude" : 32.6885,
+        "longitude" : -80.8504
+      } ],
+      "start_date" : null,
+      "end_date" : "12/31/2026",
+      "estimated_cost" : "$11,630,257",
+      "sources" : [ {
+        "file_name" : "2026-2030-2million-and-above-project-descriptions.pdf",
+        "page" : 11
+      } ]
+    }
+  }, {
+    "company_a" : "Georgia Power",
+    "company_b" : "Dominion Energy South Carolina",
+    "distance_km" : 12.58,
+    "project_a" : {
+      "project_name" : "Plant McIntosh Upgrades",
+      "aliases" : [ "Plant McIntosh Natural Gas Capacity Addition", "Plant McIntosh Expansion" ],
+      "project_type" : "Natural Gas Power Plant Upgrade",
+      "description" : "Upgrades at Plant McIntosh near Savannah to add an additional 268 MW of natural gas capacity.",
+      "status" : "Approved",
+      "location" : "Plant McIntosh near Savannah",
+      "city" : "Rincon",
+      "county" : "Effingham County",
+      "state" : "Georgia",
+      "coordinates" : [ {
+        "latitude" : 32.3533,
+        "longitude" : -81.1834
+      } ],
+      "start_date" : null,
+      "end_date" : null,
+      "estimated_cost" : null,
+      "sources" : [ {
+        "file_name" : "georgia-public-service-commission-approves-plan-to-meet-the-energy-needs-of-a-growing-georgia.html",
+        "page" : null
+      }, {
+        "file_name" : "georgia-power-files-2025-irp-plan-to-meet-energy-needs.html",
+        "page" : null
+      } ]
+    },
+    "project_b" : {
+      "project_name" : "Jasper – Okatie 230 kV #2: Construct",
+      "aliases" : [ "06367 D - G" ],
+      "project_type" : "Transmission Line Construction",
+      "description" : "Construct a 230 kV line with B1272 ACSR from Jasper to Okatie 230/115kV Substation. The line is estimated to be 6.5 miles long. This makes Jasper a Medium Impact substation and will require a new CIP Hut.",
+      "status" : "In Progress",
+      "location" : "Jasper to Okatie",
+      "city" : "Hardeeville",
+      "county" : "Jasper County",
+      "state" : "SC",
+      "coordinates" : [ {
+        "latitude" : 32.2813,
+        "longitude" : -81.0801
+      }, {
+        "latitude" : 32.3163,
+        "longitude" : -80.9237
+      } ],
+      "start_date" : null,
+      "end_date" : "12/01/2026",
+      "estimated_cost" : "$19,280,474",
+      "sources" : [ {
+        "file_name" : "2026-2030-2million-and-above-project-descriptions.pdf",
+        "page" : 12
+      } ]
+    }
+  }, {
+    "company_a" : "Georgia Power",
+    "company_b" : "Dominion Energy South Carolina",
+    "distance_km" : 12.58,
+    "project_a" : {
+      "project_name" : "Plant McIntosh Upgrades",
+      "aliases" : [ "Plant McIntosh Natural Gas Capacity Addition", "Plant McIntosh Expansion" ],
+      "project_type" : "Natural Gas Power Plant Upgrade",
+      "description" : "Upgrades at Plant McIntosh near Savannah to add an additional 268 MW of natural gas capacity.",
+      "status" : "Approved",
+      "location" : "Plant McIntosh near Savannah",
+      "city" : "Rincon",
+      "county" : "Effingham County",
+      "state" : "Georgia",
+      "coordinates" : [ {
+        "latitude" : 32.3533,
+        "longitude" : -81.1834
+      } ],
+      "start_date" : null,
+      "end_date" : null,
+      "estimated_cost" : null,
+      "sources" : [ {
+        "file_name" : "georgia-public-service-commission-approves-plan-to-meet-the-energy-needs-of-a-growing-georgia.html",
+        "page" : null
+      }, {
+        "file_name" : "georgia-power-files-2025-irp-plan-to-meet-energy-needs.html",
+        "page" : null
+      } ]
+    },
+    "project_b" : {
+      "project_name" : "Riverport 115kV Tap: Construct Tap",
+      "aliases" : [ "6367 D" ],
+      "project_type" : "Transmission Tap Construction",
+      "description" : "Constructing a 230 kV Tap from Okatie to Riverport",
+      "status" : "In Progress",
+      "location" : "Okatie to Riverport",
+      "city" : "Hardeeville",
+      "county" : "Jasper County",
+      "state" : "SC",
+      "coordinates" : [ {
+        "latitude" : 32.3163,
+        "longitude" : -80.9237
+      }, {
+        "latitude" : 32.2813,
+        "longitude" : -81.0801
+      } ],
+      "start_date" : null,
+      "end_date" : "12/01/26",
+      "estimated_cost" : "$41,389,047",
+      "sources" : [ {
+        "file_name" : "2026-2030-2million-and-above-project-descriptions.pdf",
+        "page" : 13
+      } ]
+    }
+  }, {
+    "company_a" : "Georgia Power",
+    "company_b" : "Dominion Energy South Carolina",
+    "distance_km" : 24.74,
+    "project_a" : {
+      "project_name" : "Plant McIntosh Upgrades",
+      "aliases" : [ "Plant McIntosh Natural Gas Capacity Addition", "Plant McIntosh Expansion" ],
+      "project_type" : "Natural Gas Power Plant Upgrade",
+      "description" : "Upgrades at Plant McIntosh near Savannah to add an additional 268 MW of natural gas capacity.",
+      "status" : "Approved",
+      "location" : "Plant McIntosh near Savannah",
+      "city" : "Rincon",
+      "county" : "Effingham County",
+      "state" : "Georgia",
+      "coordinates" : [ {
+        "latitude" : 32.3533,
+        "longitude" : -81.1834
+      } ],
+      "start_date" : null,
+      "end_date" : null,
+      "estimated_cost" : null,
+      "sources" : [ {
+        "file_name" : "georgia-public-service-commission-approves-plan-to-meet-the-energy-needs-of-a-growing-georgia.html",
+        "page" : null
+      }, {
+        "file_name" : "georgia-power-files-2025-irp-plan-to-meet-energy-needs.html",
+        "page" : null
+      } ]
+    },
+    "project_b" : {
+      "project_name" : "Okatie – McIntosh 115kV Tie: Add Series Reactor",
+      "aliases" : [ "6888" ],
+      "project_type" : "Substation Construction / Equipment Addition",
+      "description" : "Construct Deerfield Switching Station and Install a 9% series reactor on the Okatie – McIntosh 115kV Tie Line.",
+      "status" : "Planned",
+      "location" : "Okatie",
+      "city" : "Okatie",
+      "county" : "Beaufort County",
+      "state" : "SC",
+      "coordinates" : [ {
+        "latitude" : 32.3163,
+        "longitude" : -80.9237
+      } ],
+      "start_date" : null,
+      "end_date" : "12/31/2028",
+      "estimated_cost" : "$5,376,418",
+      "sources" : [ {
+        "file_name" : "2026-2030-2million-and-above-project-descriptions.pdf",
+        "page" : 41
+      } ]
+    }
+  }, {
+    "company_a" : "Georgia Power",
+    "company_b" : "Dominion Energy South Carolina",
+    "distance_km" : 32.82,
+    "project_a" : {
+      "project_name" : "Plant Vogtle Units 1 & 2 Extended Power Uprates",
+      "aliases" : [ "Vogtle Units 1 & 2 Upgrades", "Plant Vogtle Units 1 & 2 Upgrades" ],
+      "project_type" : "Nuclear Power Plant Upgrade",
+      "description" : "Extended power uprates and upgrades at Vogtle Units 1 & 2 to enable the units to deliver an additional 54 MW of carbon-free energy.",
+      "status" : "Approved",
+      "location" : "Plant Vogtle",
+      "city" : "Waynesboro",
+      "county" : "Burke County",
+      "state" : "Georgia",
+      "coordinates" : [ {
+        "latitude" : 33.1419,
+        "longitude" : -81.7644
+      } ],
+      "start_date" : null,
+      "end_date" : null,
+      "estimated_cost" : null,
+      "sources" : [ {
+        "file_name" : "georgia-public-service-commission-approves-plan-to-meet-the-energy-needs-of-a-growing-georgia.html",
+        "page" : null
+      }, {
+        "file_name" : "georgia-power-files-2025-irp-plan-to-meet-energy-needs.html",
+        "page" : null
+      } ]
+    },
+    "project_b" : {
+      "project_name" : "Urquhart – Toolebeck 115kV line: Rebuild",
+      "aliases" : [ "6852" ],
+      "project_type" : "Transmission Line Rebuild",
+      "description" : "Upgrade the 477 ACSR portions of the Urquhart – Toolebeck 115 kV line to 1272 ACSR. Replace existing structures with Single Pole Double Circuit Structures. Approximately 12.5 miles.",
+      "status" : "In Progress",
+      "location" : "Beech Island to Toolebeck",
+      "city" : "Beech Island",
+      "county" : "Aiken County",
+      "state" : "SC",
+      "coordinates" : [ {
+        "latitude" : 33.4118,
+        "longitude" : -81.9073
+      } ],
+      "start_date" : null,
+      "end_date" : "8/12/2026",
+      "estimated_cost" : "$15,948,620",
+      "sources" : [ {
+        "file_name" : "2026-2030-2million-and-above-project-descriptions.pdf",
+        "page" : 7
+      } ]
+    }
+  }, {
+    "company_a" : "Georgia Power",
+    "company_b" : "Dominion Energy South Carolina",
+    "distance_km" : 34.26,
+    "project_a" : {
+      "project_name" : "Plant Vogtle Units 1 & 2 Extended Power Uprates",
+      "aliases" : [ "Vogtle Units 1 & 2 Upgrades", "Plant Vogtle Units 1 & 2 Upgrades" ],
+      "project_type" : "Nuclear Power Plant Upgrade",
+      "description" : "Extended power uprates and upgrades at Vogtle Units 1 & 2 to enable the units to deliver an additional 54 MW of carbon-free energy.",
+      "status" : "Approved",
+      "location" : "Plant Vogtle",
+      "city" : "Waynesboro",
+      "county" : "Burke County",
+      "state" : "Georgia",
+      "coordinates" : [ {
+        "latitude" : 33.1419,
+        "longitude" : -81.7644
+      } ],
+      "start_date" : null,
+      "end_date" : null,
+      "estimated_cost" : null,
+      "sources" : [ {
+        "file_name" : "georgia-public-service-commission-approves-plan-to-meet-the-energy-needs-of-a-growing-georgia.html",
+        "page" : null
+      }, {
+        "file_name" : "georgia-power-files-2025-irp-plan-to-meet-energy-needs.html",
+        "page" : null
+      } ]
+    },
+    "project_b" : {
+      "project_name" : "Atomic Road 115/12kV Sub: Construct",
+      "aliases" : [ "7956B" ],
+      "project_type" : "Substation Construction",
+      "description" : "New 115-12kV Sub Construction. Transformer will be 28 MVA. Will construct 4 bays with 3 breakers put in service.",
+      "status" : "Planned",
+      "location" : "Atomic Road",
+      "city" : "North Augusta",
+      "county" : "Aiken County",
+      "state" : "SC",
+      "coordinates" : [ {
+        "latitude" : 33.4357,
+        "longitude" : -81.8754
+      } ],
+      "start_date" : null,
+      "end_date" : "12/31/2028",
+      "estimated_cost" : "$3,646,027",
+      "sources" : [ {
+        "file_name" : "2026-2030-2million-and-above-project-descriptions.pdf",
+        "page" : 24
+      } ]
+    }
+  }, {
+    "company_a" : "Georgia Power",
+    "company_b" : "Dominion Energy South Carolina",
+    "distance_km" : 32.82,
+    "project_a" : {
+      "project_name" : "Plant Vogtle Units 1 & 2 Extended Power Uprates",
+      "aliases" : [ "Vogtle Units 1 & 2 Upgrades", "Plant Vogtle Units 1 & 2 Upgrades" ],
+      "project_type" : "Nuclear Power Plant Upgrade",
+      "description" : "Extended power uprates and upgrades at Vogtle Units 1 & 2 to enable the units to deliver an additional 54 MW of carbon-free energy.",
+      "status" : "Approved",
+      "location" : "Plant Vogtle",
+      "city" : "Waynesboro",
+      "county" : "Burke County",
+      "state" : "Georgia",
+      "coordinates" : [ {
+        "latitude" : 33.1419,
+        "longitude" : -81.7644
+      } ],
+      "start_date" : null,
+      "end_date" : null,
+      "estimated_cost" : null,
+      "sources" : [ {
+        "file_name" : "georgia-public-service-commission-approves-plan-to-meet-the-energy-needs-of-a-growing-georgia.html",
+        "page" : null
+      }, {
+        "file_name" : "georgia-power-files-2025-irp-plan-to-meet-energy-needs.html",
+        "page" : null
+      } ]
+    },
+    "project_b" : {
+      "project_name" : "Urquhart – Aiken PSA 46 kV: Rebuild",
+      "aliases" : [ "6810 O" ],
+      "project_type" : "Transmission Line Rebuild",
+      "description" : "Rebuilding the section of 46 kV line from Urquhart to the Aiken PSA tap point. TBD if the scope of this project includes rebuilding the actual tap Aiken PSA. 4.5 miles.",
+      "status" : "Planned",
+      "location" : "Beech Island to Aiken",
+      "city" : "Aiken",
+      "county" : "Aiken County",
+      "state" : "SC",
+      "coordinates" : [ {
+        "latitude" : 33.4118,
+        "longitude" : -81.9073
+      }, {
+        "latitude" : 33.5604,
+        "longitude" : -81.7196
+      } ],
+      "start_date" : null,
+      "end_date" : "12/31/2027",
+      "estimated_cost" : "$3,000,000",
+      "sources" : [ {
+        "file_name" : "2026-2030-2million-and-above-project-descriptions.pdf",
+        "page" : 26
+      } ]
+    }
+  }, {
+    "company_a" : "Georgia Power",
+    "company_b" : "Dominion Energy South Carolina",
+    "distance_km" : 20.83,
+    "project_a" : {
+      "project_name" : "Plant Vogtle Units 1 & 2 Extended Power Uprates",
+      "aliases" : [ "Vogtle Units 1 & 2 Upgrades", "Plant Vogtle Units 1 & 2 Upgrades" ],
+      "project_type" : "Nuclear Power Plant Upgrade",
+      "description" : "Extended power uprates and upgrades at Vogtle Units 1 & 2 to enable the units to deliver an additional 54 MW of carbon-free energy.",
+      "status" : "Approved",
+      "location" : "Plant Vogtle",
+      "city" : "Waynesboro",
+      "county" : "Burke County",
+      "state" : "Georgia",
+      "coordinates" : [ {
+        "latitude" : 33.1419,
+        "longitude" : -81.7644
+      } ],
+      "start_date" : null,
+      "end_date" : null,
+      "estimated_cost" : null,
+      "sources" : [ {
+        "file_name" : "georgia-public-service-commission-approves-plan-to-meet-the-energy-needs-of-a-growing-georgia.html",
+        "page" : null
+      }, {
+        "file_name" : "georgia-power-files-2025-irp-plan-to-meet-energy-needs.html",
+        "page" : null
+      } ]
+    },
+    "project_b" : {
+      "project_name" : "Jackson 115kV: Construct 115 – 12kV Distribution Substation",
+      "aliases" : [ "6854 C" ],
+      "project_type" : "Substation Construction",
+      "description" : "Construct 115 – 12kV distribution substation to replace Jackson 46kV Substation. Jackson 46kV has reverse power modifications for Aiken Schools #3936. Verify that Jackson 115-12kV will inherit this reverse power requirement.",
+      "status" : "Planned",
+      "location" : "Jackson",
+      "city" : "Jackson",
+      "county" : "Aiken County",
+      "state" : "SC",
+      "coordinates" : [ {
+        "latitude" : 33.3282,
+        "longitude" : -81.7876
+      } ],
+      "start_date" : null,
+      "end_date" : "12/31/2028",
+      "estimated_cost" : "$3,003,760",
+      "sources" : [ {
+        "file_name" : "2026-2030-2million-and-above-project-descriptions.pdf",
+        "page" : 33
+      } ]
+    }
+  }, {
+    "company_a" : "Georgia Power",
+    "company_b" : "Dominion Energy South Carolina",
+    "distance_km" : 32.82,
+    "project_a" : {
+      "project_name" : "Plant Vogtle Units 3 & 4",
+      "aliases" : [ "Vogtle 3 & 4", "Plant Vogtle Units 3 and 4" ],
+      "project_type" : "Nuclear Power Plant",
+      "description" : "Plant Vogtle units 3 and 4 will be the first new nuclear units built in the United States in the last three decades and Georgia Power remains focused on safety and quality as top priorities.",
+      "status" : null,
+      "location" : "Plant Vogtle",
+      "city" : "Waynesboro",
+      "county" : "Burke County",
+      "state" : "Georgia",
+      "coordinates" : [ {
+        "latitude" : 33.1419,
+        "longitude" : -81.7644
+      } ],
+      "start_date" : null,
+      "end_date" : null,
+      "estimated_cost" : null,
+      "sources" : [ {
+        "file_name" : "georgia-psc-finalizes-and-approves-georgia-powers-2023-irp-update.html",
+        "page" : null
+      }, {
+        "file_name" : "georgia-power-2023-integrated-resource-plan-update-supports-georgia-extraeconomic-growth.html",
+        "page" : null
+      }, {
+        "file_name" : "georgia-power-strengthens-reliability-for-customers,-marks-high-performance-in-2023.html",
+        "page" : null
+      }, {
+        "file_name" : "georgia-public-service-commission-approves-2023-irp-update.html",
+        "page" : null
+      }, {
+        "file_name" : "georgia-power-files-plan-preparing-for-future-energy-landscape.html",
+        "page" : null
+      } ]
+    },
+    "project_b" : {
+      "project_name" : "Urquhart – Toolebeck 115kV line: Rebuild",
+      "aliases" : [ "6852" ],
+      "project_type" : "Transmission Line Rebuild",
+      "description" : "Upgrade the 477 ACSR portions of the Urquhart – Toolebeck 115 kV line to 1272 ACSR. Replace existing structures with Single Pole Double Circuit Structures. Approximately 12.5 miles.",
+      "status" : "In Progress",
+      "location" : "Beech Island to Toolebeck",
+      "city" : "Beech Island",
+      "county" : "Aiken County",
+      "state" : "SC",
+      "coordinates" : [ {
+        "latitude" : 33.4118,
+        "longitude" : -81.9073
+      } ],
+      "start_date" : null,
+      "end_date" : "8/12/2026",
+      "estimated_cost" : "$15,948,620",
+      "sources" : [ {
+        "file_name" : "2026-2030-2million-and-above-project-descriptions.pdf",
+        "page" : 7
+      } ]
+    }
+  }, {
+    "company_a" : "Georgia Power",
+    "company_b" : "Dominion Energy South Carolina",
+    "distance_km" : 34.26,
+    "project_a" : {
+      "project_name" : "Plant Vogtle Units 3 & 4",
+      "aliases" : [ "Vogtle 3 & 4", "Plant Vogtle Units 3 and 4" ],
+      "project_type" : "Nuclear Power Plant",
+      "description" : "Plant Vogtle units 3 and 4 will be the first new nuclear units built in the United States in the last three decades and Georgia Power remains focused on safety and quality as top priorities.",
+      "status" : null,
+      "location" : "Plant Vogtle",
+      "city" : "Waynesboro",
+      "county" : "Burke County",
+      "state" : "Georgia",
+      "coordinates" : [ {
+        "latitude" : 33.1419,
+        "longitude" : -81.7644
+      } ],
+      "start_date" : null,
+      "end_date" : null,
+      "estimated_cost" : null,
+      "sources" : [ {
+        "file_name" : "georgia-psc-finalizes-and-approves-georgia-powers-2023-irp-update.html",
+        "page" : null
+      }, {
+        "file_name" : "georgia-power-2023-integrated-resource-plan-update-supports-georgia-extraeconomic-growth.html",
+        "page" : null
+      }, {
+        "file_name" : "georgia-power-strengthens-reliability-for-customers,-marks-high-performance-in-2023.html",
+        "page" : null
+      }, {
+        "file_name" : "georgia-public-service-commission-approves-2023-irp-update.html",
+        "page" : null
+      }, {
+        "file_name" : "georgia-power-files-plan-preparing-for-future-energy-landscape.html",
+        "page" : null
+      } ]
+    },
+    "project_b" : {
+      "project_name" : "Atomic Road 115/12kV Sub: Construct",
+      "aliases" : [ "7956B" ],
+      "project_type" : "Substation Construction",
+      "description" : "New 115-12kV Sub Construction. Transformer will be 28 MVA. Will construct 4 bays with 3 breakers put in service.",
+      "status" : "Planned",
+      "location" : "Atomic Road",
+      "city" : "North Augusta",
+      "county" : "Aiken County",
+      "state" : "SC",
+      "coordinates" : [ {
+        "latitude" : 33.4357,
+        "longitude" : -81.8754
+      } ],
+      "start_date" : null,
+      "end_date" : "12/31/2028",
+      "estimated_cost" : "$3,646,027",
+      "sources" : [ {
+        "file_name" : "2026-2030-2million-and-above-project-descriptions.pdf",
+        "page" : 24
+      } ]
+    }
+  }, {
+    "company_a" : "Georgia Power",
+    "company_b" : "Dominion Energy South Carolina",
+    "distance_km" : 32.82,
+    "project_a" : {
+      "project_name" : "Plant Vogtle Units 3 & 4",
+      "aliases" : [ "Vogtle 3 & 4", "Plant Vogtle Units 3 and 4" ],
+      "project_type" : "Nuclear Power Plant",
+      "description" : "Plant Vogtle units 3 and 4 will be the first new nuclear units built in the United States in the last three decades and Georgia Power remains focused on safety and quality as top priorities.",
+      "status" : null,
+      "location" : "Plant Vogtle",
+      "city" : "Waynesboro",
+      "county" : "Burke County",
+      "state" : "Georgia",
+      "coordinates" : [ {
+        "latitude" : 33.1419,
+        "longitude" : -81.7644
+      } ],
+      "start_date" : null,
+      "end_date" : null,
+      "estimated_cost" : null,
+      "sources" : [ {
+        "file_name" : "georgia-psc-finalizes-and-approves-georgia-powers-2023-irp-update.html",
+        "page" : null
+      }, {
+        "file_name" : "georgia-power-2023-integrated-resource-plan-update-supports-georgia-extraeconomic-growth.html",
+        "page" : null
+      }, {
+        "file_name" : "georgia-power-strengthens-reliability-for-customers,-marks-high-performance-in-2023.html",
+        "page" : null
+      }, {
+        "file_name" : "georgia-public-service-commission-approves-2023-irp-update.html",
+        "page" : null
+      }, {
+        "file_name" : "georgia-power-files-plan-preparing-for-future-energy-landscape.html",
+        "page" : null
+      } ]
+    },
+    "project_b" : {
+      "project_name" : "Urquhart – Aiken PSA 46 kV: Rebuild",
+      "aliases" : [ "6810 O" ],
+      "project_type" : "Transmission Line Rebuild",
+      "description" : "Rebuilding the section of 46 kV line from Urquhart to the Aiken PSA tap point. TBD if the scope of this project includes rebuilding the actual tap Aiken PSA. 4.5 miles.",
+      "status" : "Planned",
+      "location" : "Beech Island to Aiken",
+      "city" : "Aiken",
+      "county" : "Aiken County",
+      "state" : "SC",
+      "coordinates" : [ {
+        "latitude" : 33.4118,
+        "longitude" : -81.9073
+      }, {
+        "latitude" : 33.5604,
+        "longitude" : -81.7196
+      } ],
+      "start_date" : null,
+      "end_date" : "12/31/2027",
+      "estimated_cost" : "$3,000,000",
+      "sources" : [ {
+        "file_name" : "2026-2030-2million-and-above-project-descriptions.pdf",
+        "page" : 26
+      } ]
+    }
+  }, {
+    "company_a" : "Georgia Power",
+    "company_b" : "Dominion Energy South Carolina",
+    "distance_km" : 20.83,
+    "project_a" : {
+      "project_name" : "Plant Vogtle Units 3 & 4",
+      "aliases" : [ "Vogtle 3 & 4", "Plant Vogtle Units 3 and 4" ],
+      "project_type" : "Nuclear Power Plant",
+      "description" : "Plant Vogtle units 3 and 4 will be the first new nuclear units built in the United States in the last three decades and Georgia Power remains focused on safety and quality as top priorities.",
+      "status" : null,
+      "location" : "Plant Vogtle",
+      "city" : "Waynesboro",
+      "county" : "Burke County",
+      "state" : "Georgia",
+      "coordinates" : [ {
+        "latitude" : 33.1419,
+        "longitude" : -81.7644
+      } ],
+      "start_date" : null,
+      "end_date" : null,
+      "estimated_cost" : null,
+      "sources" : [ {
+        "file_name" : "georgia-psc-finalizes-and-approves-georgia-powers-2023-irp-update.html",
+        "page" : null
+      }, {
+        "file_name" : "georgia-power-2023-integrated-resource-plan-update-supports-georgia-extraeconomic-growth.html",
+        "page" : null
+      }, {
+        "file_name" : "georgia-power-strengthens-reliability-for-customers,-marks-high-performance-in-2023.html",
+        "page" : null
+      }, {
+        "file_name" : "georgia-public-service-commission-approves-2023-irp-update.html",
+        "page" : null
+      }, {
+        "file_name" : "georgia-power-files-plan-preparing-for-future-energy-landscape.html",
+        "page" : null
+      } ]
+    },
+    "project_b" : {
+      "project_name" : "Jackson 115kV: Construct 115 – 12kV Distribution Substation",
+      "aliases" : [ "6854 C" ],
+      "project_type" : "Substation Construction",
+      "description" : "Construct 115 – 12kV distribution substation to replace Jackson 46kV Substation. Jackson 46kV has reverse power modifications for Aiken Schools #3936. Verify that Jackson 115-12kV will inherit this reverse power requirement.",
+      "status" : "Planned",
+      "location" : "Jackson",
+      "city" : "Jackson",
+      "county" : "Aiken County",
+      "state" : "SC",
+      "coordinates" : [ {
+        "latitude" : 33.3282,
+        "longitude" : -81.7876
+      } ],
+      "start_date" : null,
+      "end_date" : "12/31/2028",
+      "estimated_cost" : "$3,003,760",
+      "sources" : [ {
+        "file_name" : "2026-2030-2million-and-above-project-descriptions.pdf",
+        "page" : 33
+      } ]
+    }
+  }, {
+    "company_a" : "Georgia Power",
+    "company_b" : "Dominion Energy South Carolina",
+    "distance_km" : 35.68,
+    "project_a" : {
+      "project_name" : "Callaway Road - Thomson Primary 500 kV",
+      "aliases" : [ "Callaway Road – Thomson Primary 500 kV", "Callaway Road - Thomson Primary 500 kV Project", "Callaway Road – Thomson Primary 500 kV Area Transmission Project", "Callaway Road – Thomson 500kv Transmission Project", "Callaway Road – Thomson Transmission Area Project", "Callaway Road - Thomson Primary" ],
+      "project_type" : "Transmission Line",
+      "description" : "A 500 kV area transmission project in Columbia and McDuffie counties to support the electric needs of a large-load customer and strengthen the local transmission system. The project includes construction of the new 500/230 kV Callaway Road Substation in Columbia County, approximately 17 miles of new 500 kV transmission infrastructure (Callaway Road–Thomson #1 approx. 10 miles and Callaway Road–Thomson #2 approx. 7 miles), and associated facilities.",
+      "status" : "Planning",
+      "location" : "Between Thomson Primary Substation and Callaway Road Substation",
+      "city" : "Thomson",
+      "county" : null,
+      "state" : "Georgia",
+      "coordinates" : [ {
+        "latitude" : 33.54,
+        "longitude" : -82.26
+      }, {
+        "latitude" : 33.4707,
+        "longitude" : -82.5046
+      }, {
+        "latitude" : 33.45646,
+        "longitude" : -82.41269
+      }, {
+        "latitude" : 33.51092,
+        "longitude" : -82.37583
+      } ],
+      "start_date" : "Spring 2027",
+      "end_date" : null,
+      "estimated_cost" : null,
+      "sources" : [ {
+        "file_name" : "transmission-projects.html",
+        "page" : null
+      }, {
+        "file_name" : "callaway-thomson.html",
+        "page" : null
+      } ]
+    },
+    "project_b" : {
+      "project_name" : "Urquhart – Toolebeck 115kV line: Rebuild",
+      "aliases" : [ "6852" ],
+      "project_type" : "Transmission Line Rebuild",
+      "description" : "Upgrade the 477 ACSR portions of the Urquhart – Toolebeck 115 kV line to 1272 ACSR. Replace existing structures with Single Pole Double Circuit Structures. Approximately 12.5 miles.",
+      "status" : "In Progress",
+      "location" : "Beech Island to Toolebeck",
+      "city" : "Beech Island",
+      "county" : "Aiken County",
+      "state" : "SC",
+      "coordinates" : [ {
+        "latitude" : 33.4118,
+        "longitude" : -81.9073
+      } ],
+      "start_date" : null,
+      "end_date" : "8/12/2026",
+      "estimated_cost" : "$15,948,620",
+      "sources" : [ {
+        "file_name" : "2026-2030-2million-and-above-project-descriptions.pdf",
+        "page" : 7
+      } ]
+    }
+  }, {
+    "company_a" : "Georgia Power",
+    "company_b" : "Dominion Energy South Carolina",
+    "distance_km" : 20.05,
+    "project_a" : {
+      "project_name" : "Callaway Road - Thomson Primary 500 kV",
+      "aliases" : [ "Callaway Road – Thomson Primary 500 kV", "Callaway Road - Thomson Primary 500 kV Project", "Callaway Road – Thomson Primary 500 kV Area Transmission Project", "Callaway Road – Thomson 500kv Transmission Project", "Callaway Road – Thomson Transmission Area Project", "Callaway Road - Thomson Primary" ],
+      "project_type" : "Transmission Line",
+      "description" : "A 500 kV area transmission project in Columbia and McDuffie counties to support the electric needs of a large-load customer and strengthen the local transmission system. The project includes construction of the new 500/230 kV Callaway Road Substation in Columbia County, approximately 17 miles of new 500 kV transmission infrastructure (Callaway Road–Thomson #1 approx. 10 miles and Callaway Road–Thomson #2 approx. 7 miles), and associated facilities.",
+      "status" : "Planning",
+      "location" : "Between Thomson Primary Substation and Callaway Road Substation",
+      "city" : "Thomson",
+      "county" : null,
+      "state" : "Georgia",
+      "coordinates" : [ {
+        "latitude" : 33.54,
+        "longitude" : -82.26
+      }, {
+        "latitude" : 33.4707,
+        "longitude" : -82.5046
+      }, {
+        "latitude" : 33.45646,
+        "longitude" : -82.41269
+      }, {
+        "latitude" : 33.51092,
+        "longitude" : -82.37583
+      } ],
+      "start_date" : "Spring 2027",
+      "end_date" : null,
+      "estimated_cost" : null,
+      "sources" : [ {
+        "file_name" : "transmission-projects.html",
+        "page" : null
+      }, {
+        "file_name" : "callaway-thomson.html",
+        "page" : null
+      } ]
+    },
+    "project_b" : {
+      "project_name" : "Hooks - Modoc 115/46 kV Rebuild",
+      "aliases" : [ "6809 G" ],
+      "project_type" : "Transmission Line Rebuild",
+      "description" : "Upgrade 6.5 miles of aging conductor with 1272 ACSR and rebuild with SPDC.",
+      "status" : "Planned",
+      "location" : "Modoc",
+      "city" : "Modoc",
+      "county" : "McCormick County",
+      "state" : "SC",
+      "coordinates" : [ {
+        "latitude" : 33.7143,
+        "longitude" : -82.2046
+      } ],
+      "start_date" : null,
+      "end_date" : "12/31/27",
+      "estimated_cost" : "$10,534,285",
+      "sources" : [ {
+        "file_name" : "2026-2030-2million-and-above-project-descriptions.pdf",
+        "page" : 20
+      } ]
+    }
+  }, {
+    "company_a" : "Georgia Power",
+    "company_b" : "Dominion Energy South Carolina",
+    "distance_km" : 37.5,
+    "project_a" : {
+      "project_name" : "Callaway Road - Thomson Primary 500 kV",
+      "aliases" : [ "Callaway Road – Thomson Primary 500 kV", "Callaway Road - Thomson Primary 500 kV Project", "Callaway Road – Thomson Primary 500 kV Area Transmission Project", "Callaway Road – Thomson 500kv Transmission Project", "Callaway Road – Thomson Transmission Area Project", "Callaway Road - Thomson Primary" ],
+      "project_type" : "Transmission Line",
+      "description" : "A 500 kV area transmission project in Columbia and McDuffie counties to support the electric needs of a large-load customer and strengthen the local transmission system. The project includes construction of the new 500/230 kV Callaway Road Substation in Columbia County, approximately 17 miles of new 500 kV transmission infrastructure (Callaway Road–Thomson #1 approx. 10 miles and Callaway Road–Thomson #2 approx. 7 miles), and associated facilities.",
+      "status" : "Planning",
+      "location" : "Between Thomson Primary Substation and Callaway Road Substation",
+      "city" : "Thomson",
+      "county" : null,
+      "state" : "Georgia",
+      "coordinates" : [ {
+        "latitude" : 33.54,
+        "longitude" : -82.26
+      }, {
+        "latitude" : 33.4707,
+        "longitude" : -82.5046
+      }, {
+        "latitude" : 33.45646,
+        "longitude" : -82.41269
+      }, {
+        "latitude" : 33.51092,
+        "longitude" : -82.37583
+      } ],
+      "start_date" : "Spring 2027",
+      "end_date" : null,
+      "estimated_cost" : null,
+      "sources" : [ {
+        "file_name" : "transmission-projects.html",
+        "page" : null
+      }, {
+        "file_name" : "callaway-thomson.html",
+        "page" : null
+      } ]
+    },
+    "project_b" : {
+      "project_name" : "Atomic Road 115/12kV Sub: Construct",
+      "aliases" : [ "7956B" ],
+      "project_type" : "Substation Construction",
+      "description" : "New 115-12kV Sub Construction. Transformer will be 28 MVA. Will construct 4 bays with 3 breakers put in service.",
+      "status" : "Planned",
+      "location" : "Atomic Road",
+      "city" : "North Augusta",
+      "county" : "Aiken County",
+      "state" : "SC",
+      "coordinates" : [ {
+        "latitude" : 33.4357,
+        "longitude" : -81.8754
+      } ],
+      "start_date" : null,
+      "end_date" : "12/31/2028",
+      "estimated_cost" : "$3,646,027",
+      "sources" : [ {
+        "file_name" : "2026-2030-2million-and-above-project-descriptions.pdf",
+        "page" : 24
+      } ]
+    }
+  }, {
+    "company_a" : "Georgia Power",
+    "company_b" : "Dominion Energy South Carolina",
+    "distance_km" : 35.68,
+    "project_a" : {
+      "project_name" : "Callaway Road - Thomson Primary 500 kV",
+      "aliases" : [ "Callaway Road – Thomson Primary 500 kV", "Callaway Road - Thomson Primary 500 kV Project", "Callaway Road – Thomson Primary 500 kV Area Transmission Project", "Callaway Road – Thomson 500kv Transmission Project", "Callaway Road – Thomson Transmission Area Project", "Callaway Road - Thomson Primary" ],
+      "project_type" : "Transmission Line",
+      "description" : "A 500 kV area transmission project in Columbia and McDuffie counties to support the electric needs of a large-load customer and strengthen the local transmission system. The project includes construction of the new 500/230 kV Callaway Road Substation in Columbia County, approximately 17 miles of new 500 kV transmission infrastructure (Callaway Road–Thomson #1 approx. 10 miles and Callaway Road–Thomson #2 approx. 7 miles), and associated facilities.",
+      "status" : "Planning",
+      "location" : "Between Thomson Primary Substation and Callaway Road Substation",
+      "city" : "Thomson",
+      "county" : null,
+      "state" : "Georgia",
+      "coordinates" : [ {
+        "latitude" : 33.54,
+        "longitude" : -82.26
+      }, {
+        "latitude" : 33.4707,
+        "longitude" : -82.5046
+      }, {
+        "latitude" : 33.45646,
+        "longitude" : -82.41269
+      }, {
+        "latitude" : 33.51092,
+        "longitude" : -82.37583
+      } ],
+      "start_date" : "Spring 2027",
+      "end_date" : null,
+      "estimated_cost" : null,
+      "sources" : [ {
+        "file_name" : "transmission-projects.html",
+        "page" : null
+      }, {
+        "file_name" : "callaway-thomson.html",
+        "page" : null
+      } ]
+    },
+    "project_b" : {
+      "project_name" : "Urquhart – Aiken PSA 46 kV: Rebuild",
+      "aliases" : [ "6810 O" ],
+      "project_type" : "Transmission Line Rebuild",
+      "description" : "Rebuilding the section of 46 kV line from Urquhart to the Aiken PSA tap point. TBD if the scope of this project includes rebuilding the actual tap Aiken PSA. 4.5 miles.",
+      "status" : "Planned",
+      "location" : "Beech Island to Aiken",
+      "city" : "Aiken",
+      "county" : "Aiken County",
+      "state" : "SC",
+      "coordinates" : [ {
+        "latitude" : 33.4118,
+        "longitude" : -81.9073
+      }, {
+        "latitude" : 33.5604,
+        "longitude" : -81.7196
+      } ],
+      "start_date" : null,
+      "end_date" : "12/31/2027",
+      "estimated_cost" : "$3,000,000",
+      "sources" : [ {
+        "file_name" : "2026-2030-2million-and-above-project-descriptions.pdf",
+        "page" : 26
+      } ]
+    }
+  }, {
+    "company_a" : "Georgia Power",
+    "company_b" : "Dominion Energy South Carolina",
+    "distance_km" : 20.05,
+    "project_a" : {
+      "project_name" : "Callaway Road - Thomson Primary 500 kV",
+      "aliases" : [ "Callaway Road – Thomson Primary 500 kV", "Callaway Road - Thomson Primary 500 kV Project", "Callaway Road – Thomson Primary 500 kV Area Transmission Project", "Callaway Road – Thomson 500kv Transmission Project", "Callaway Road – Thomson Transmission Area Project", "Callaway Road - Thomson Primary" ],
+      "project_type" : "Transmission Line",
+      "description" : "A 500 kV area transmission project in Columbia and McDuffie counties to support the electric needs of a large-load customer and strengthen the local transmission system. The project includes construction of the new 500/230 kV Callaway Road Substation in Columbia County, approximately 17 miles of new 500 kV transmission infrastructure (Callaway Road–Thomson #1 approx. 10 miles and Callaway Road–Thomson #2 approx. 7 miles), and associated facilities.",
+      "status" : "Planning",
+      "location" : "Between Thomson Primary Substation and Callaway Road Substation",
+      "city" : "Thomson",
+      "county" : null,
+      "state" : "Georgia",
+      "coordinates" : [ {
+        "latitude" : 33.54,
+        "longitude" : -82.26
+      }, {
+        "latitude" : 33.4707,
+        "longitude" : -82.5046
+      }, {
+        "latitude" : 33.45646,
+        "longitude" : -82.41269
+      }, {
+        "latitude" : 33.51092,
+        "longitude" : -82.37583
+      } ],
+      "start_date" : "Spring 2027",
+      "end_date" : null,
+      "estimated_cost" : null,
+      "sources" : [ {
+        "file_name" : "transmission-projects.html",
+        "page" : null
+      }, {
+        "file_name" : "callaway-thomson.html",
+        "page" : null
+      } ]
+    },
+    "project_b" : {
+      "project_name" : "Modoc – McCormick 115/46 kV Rebuild",
+      "aliases" : [ "6809 M" ],
+      "project_type" : "Transmission Line Rebuild",
+      "description" : "Rebuilding the section of 115/46kV line between Modoc and McCormick. Lines will be SPDC with 115 kV insulation on both sides.",
+      "status" : "Planned",
+      "location" : "Modoc to McCormick",
+      "city" : "McCormick",
+      "county" : "McCormick County",
+      "state" : "SC",
+      "coordinates" : [ {
+        "latitude" : 33.7143,
+        "longitude" : -82.2046
+      }, {
+        "latitude" : 33.9135,
+        "longitude" : -82.2935
+      } ],
+      "start_date" : null,
+      "end_date" : "12/31/29",
+      "estimated_cost" : "$19,800,000",
+      "sources" : [ {
+        "file_name" : "2026-2030-2million-and-above-project-descriptions.pdf",
+        "page" : 48
+      } ]
+    }
+  }, {
+    "company_a" : "Georgia Power",
+    "company_b" : "Dominion Energy South Carolina",
+    "distance_km" : 20.29,
+    "project_a" : {
+      "project_name" : "Callaway Road - Thomson Primary 500 kV",
+      "aliases" : [ "Callaway Road – Thomson Primary 500 kV", "Callaway Road - Thomson Primary 500 kV Project", "Callaway Road – Thomson Primary 500 kV Area Transmission Project", "Callaway Road – Thomson 500kv Transmission Project", "Callaway Road – Thomson Transmission Area Project", "Callaway Road - Thomson Primary" ],
+      "project_type" : "Transmission Line",
+      "description" : "A 500 kV area transmission project in Columbia and McDuffie counties to support the electric needs of a large-load customer and strengthen the local transmission system. The project includes construction of the new 500/230 kV Callaway Road Substation in Columbia County, approximately 17 miles of new 500 kV transmission infrastructure (Callaway Road–Thomson #1 approx. 10 miles and Callaway Road–Thomson #2 approx. 7 miles), and associated facilities.",
+      "status" : "Planning",
+      "location" : "Between Thomson Primary Substation and Callaway Road Substation",
+      "city" : "Thomson",
+      "county" : null,
+      "state" : "Georgia",
+      "coordinates" : [ {
+        "latitude" : 33.54,
+        "longitude" : -82.26
+      }, {
+        "latitude" : 33.4707,
+        "longitude" : -82.5046
+      }, {
+        "latitude" : 33.45646,
+        "longitude" : -82.41269
+      }, {
+        "latitude" : 33.51092,
+        "longitude" : -82.37583
+      } ],
+      "start_date" : "Spring 2027",
+      "end_date" : null,
+      "estimated_cost" : null,
+      "sources" : [ {
+        "file_name" : "transmission-projects.html",
+        "page" : null
+      }, {
+        "file_name" : "callaway-thomson.html",
+        "page" : null
+      } ]
+    },
+    "project_b" : {
+      "project_name" : "Stevens Creek - Graniteville 115 kV: Rebuild",
+      "aliases" : [ "6809 T" ],
+      "project_type" : "Transmission Line Rebuild",
+      "description" : "Rebuilding the 15 mile section of 115 kv line between Stevens Creek and Graniteville. This line was built in the early 1960s, has small wire, and is in rough shape, as noted by the extensive damage during the hurricane.",
+      "status" : "Planned",
+      "location" : "Stevens Creek to Graniteville",
+      "city" : "Graniteville",
+      "county" : "Aiken County",
+      "state" : "SC",
+      "coordinates" : [ {
+        "latitude" : 33.6368,
+        "longitude" : -82.0743
+      }, {
+        "latitude" : 33.5651,
+        "longitude" : -81.8079
+      } ],
+      "start_date" : null,
+      "end_date" : "12/31/29",
+      "estimated_cost" : "$18,200,000",
+      "sources" : [ {
+        "file_name" : "2026-2030-2million-and-above-project-descriptions.pdf",
+        "page" : 49
+      } ]
+    }
+  }, {
+    "company_a" : "Georgia Power",
+    "company_b" : "Dominion Energy South Carolina",
+    "distance_km" : 39.56,
+    "project_a" : {
+      "project_name" : "Effingham County 500 kV",
+      "aliases" : [ "Effingham County 500 kV Project", "Effingham County 500 kV Area Transmission Project", "Effingham County Transmission Project" ],
+      "project_type" : "Transmission Line",
+      "description" : "A 500 kV area transmission project in Effingham County to support the electrical needs of a large-load customer while strengthening the local transmission system. The project is expected to include a new 500/230 kV Effingham County Substation, new 500 kV transmission infrastructure, and associated facilities.",
+      "status" : "Planning",
+      "location" : "Effingham County",
+      "city" : null,
+      "county" : "Effingham County",
+      "state" : "Georgia",
+      "coordinates" : [ {
+        "latitude" : 32.37,
+        "longitude" : -81.34
+      } ],
+      "start_date" : "Fall 2027",
+      "end_date" : null,
+      "estimated_cost" : null,
+      "sources" : [ {
+        "file_name" : "transmission-projects.html",
+        "page" : null
+      }, {
+        "file_name" : "effingham-county.html",
+        "page" : null
+      } ]
+    },
+    "project_b" : {
+      "project_name" : "Okatie 230-115kV Substation, Jasper – Yemassee 230kV #1 Fold-in",
+      "aliases" : [ "0139 M,N" ],
+      "project_type" : "Substation Expansion and Line Fold-in",
+      "description" : "Expand existing Okatie Transmission sub, add a 230-115 autobank and fold the Jasper – Yemassee 230 kV #1 line into the 230 kV side. Construct two additional 115 kV bus tie lines.",
+      "status" : "In Progress",
+      "location" : "Okatie",
+      "city" : "Okatie",
+      "county" : "Beaufort County",
+      "state" : "SC",
+      "coordinates" : [ {
+        "latitude" : 32.3163,
+        "longitude" : -80.9237
+      }, {
+        "latitude" : 32.6885,
+        "longitude" : -80.8504
+      } ],
+      "start_date" : null,
+      "end_date" : "12/31/2026",
+      "estimated_cost" : "$11,630,257",
+      "sources" : [ {
+        "file_name" : "2026-2030-2million-and-above-project-descriptions.pdf",
+        "page" : 11
+      } ]
+    }
+  }, {
+    "company_a" : "Georgia Power",
+    "company_b" : "Dominion Energy South Carolina",
+    "distance_km" : 26.34,
+    "project_a" : {
+      "project_name" : "Effingham County 500 kV",
+      "aliases" : [ "Effingham County 500 kV Project", "Effingham County 500 kV Area Transmission Project", "Effingham County Transmission Project" ],
+      "project_type" : "Transmission Line",
+      "description" : "A 500 kV area transmission project in Effingham County to support the electrical needs of a large-load customer while strengthening the local transmission system. The project is expected to include a new 500/230 kV Effingham County Substation, new 500 kV transmission infrastructure, and associated facilities.",
+      "status" : "Planning",
+      "location" : "Effingham County",
+      "city" : null,
+      "county" : "Effingham County",
+      "state" : "Georgia",
+      "coordinates" : [ {
+        "latitude" : 32.37,
+        "longitude" : -81.34
+      } ],
+      "start_date" : "Fall 2027",
+      "end_date" : null,
+      "estimated_cost" : null,
+      "sources" : [ {
+        "file_name" : "transmission-projects.html",
+        "page" : null
+      }, {
+        "file_name" : "effingham-county.html",
+        "page" : null
+      } ]
+    },
+    "project_b" : {
+      "project_name" : "Jasper – Okatie 230 kV #2: Construct",
+      "aliases" : [ "06367 D - G" ],
+      "project_type" : "Transmission Line Construction",
+      "description" : "Construct a 230 kV line with B1272 ACSR from Jasper to Okatie 230/115kV Substation. The line is estimated to be 6.5 miles long. This makes Jasper a Medium Impact substation and will require a new CIP Hut.",
+      "status" : "In Progress",
+      "location" : "Jasper to Okatie",
+      "city" : "Hardeeville",
+      "county" : "Jasper County",
+      "state" : "SC",
+      "coordinates" : [ {
+        "latitude" : 32.2813,
+        "longitude" : -81.0801
+      }, {
+        "latitude" : 32.3163,
+        "longitude" : -80.9237
+      } ],
+      "start_date" : null,
+      "end_date" : "12/01/2026",
+      "estimated_cost" : "$19,280,474",
+      "sources" : [ {
+        "file_name" : "2026-2030-2million-and-above-project-descriptions.pdf",
+        "page" : 12
+      } ]
+    }
+  }, {
+    "company_a" : "Georgia Power",
+    "company_b" : "Dominion Energy South Carolina",
+    "distance_km" : 26.34,
+    "project_a" : {
+      "project_name" : "Effingham County 500 kV",
+      "aliases" : [ "Effingham County 500 kV Project", "Effingham County 500 kV Area Transmission Project", "Effingham County Transmission Project" ],
+      "project_type" : "Transmission Line",
+      "description" : "A 500 kV area transmission project in Effingham County to support the electrical needs of a large-load customer while strengthening the local transmission system. The project is expected to include a new 500/230 kV Effingham County Substation, new 500 kV transmission infrastructure, and associated facilities.",
+      "status" : "Planning",
+      "location" : "Effingham County",
+      "city" : null,
+      "county" : "Effingham County",
+      "state" : "Georgia",
+      "coordinates" : [ {
+        "latitude" : 32.37,
+        "longitude" : -81.34
+      } ],
+      "start_date" : "Fall 2027",
+      "end_date" : null,
+      "estimated_cost" : null,
+      "sources" : [ {
+        "file_name" : "transmission-projects.html",
+        "page" : null
+      }, {
+        "file_name" : "effingham-county.html",
+        "page" : null
+      } ]
+    },
+    "project_b" : {
+      "project_name" : "Riverport 115kV Tap: Construct Tap",
+      "aliases" : [ "6367 D" ],
+      "project_type" : "Transmission Tap Construction",
+      "description" : "Constructing a 230 kV Tap from Okatie to Riverport",
+      "status" : "In Progress",
+      "location" : "Okatie to Riverport",
+      "city" : "Hardeeville",
+      "county" : "Jasper County",
+      "state" : "SC",
+      "coordinates" : [ {
+        "latitude" : 32.3163,
+        "longitude" : -80.9237
+      }, {
+        "latitude" : 32.2813,
+        "longitude" : -81.0801
+      } ],
+      "start_date" : null,
+      "end_date" : "12/01/26",
+      "estimated_cost" : "$41,389,047",
+      "sources" : [ {
+        "file_name" : "2026-2030-2million-and-above-project-descriptions.pdf",
+        "page" : 13
+      } ]
+    }
+  }, {
+    "company_a" : "Georgia Power",
+    "company_b" : "Dominion Energy South Carolina",
+    "distance_km" : 39.56,
+    "project_a" : {
+      "project_name" : "Effingham County 500 kV",
+      "aliases" : [ "Effingham County 500 kV Project", "Effingham County 500 kV Area Transmission Project", "Effingham County Transmission Project" ],
+      "project_type" : "Transmission Line",
+      "description" : "A 500 kV area transmission project in Effingham County to support the electrical needs of a large-load customer while strengthening the local transmission system. The project is expected to include a new 500/230 kV Effingham County Substation, new 500 kV transmission infrastructure, and associated facilities.",
+      "status" : "Planning",
+      "location" : "Effingham County",
+      "city" : null,
+      "county" : "Effingham County",
+      "state" : "Georgia",
+      "coordinates" : [ {
+        "latitude" : 32.37,
+        "longitude" : -81.34
+      } ],
+      "start_date" : "Fall 2027",
+      "end_date" : null,
+      "estimated_cost" : null,
+      "sources" : [ {
+        "file_name" : "transmission-projects.html",
+        "page" : null
+      }, {
+        "file_name" : "effingham-county.html",
+        "page" : null
+      } ]
+    },
+    "project_b" : {
+      "project_name" : "Okatie – McIntosh 115kV Tie: Add Series Reactor",
+      "aliases" : [ "6888" ],
+      "project_type" : "Substation Construction / Equipment Addition",
+      "description" : "Construct Deerfield Switching Station and Install a 9% series reactor on the Okatie – McIntosh 115kV Tie Line.",
+      "status" : "Planned",
+      "location" : "Okatie",
+      "city" : "Okatie",
+      "county" : "Beaufort County",
+      "state" : "SC",
+      "coordinates" : [ {
+        "latitude" : 32.3163,
+        "longitude" : -80.9237
+      } ],
+      "start_date" : null,
+      "end_date" : "12/31/2028",
+      "estimated_cost" : "$5,376,418",
+      "sources" : [ {
+        "file_name" : "2026-2030-2million-and-above-project-descriptions.pdf",
+        "page" : 41
+      } ]
+    }
+  } ]
+}
