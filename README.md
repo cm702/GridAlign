@@ -1,6 +1,10 @@
 # GridAlign
 AI-powered platform for detecting coordination opportunities between utility infrastructure projects.
 
+## Current app
+
+The interactive React dashboard, source-backed coordination suggestions, and server-side Gemini assistant are in [app/](./app/). For local setup, `.env` configuration, production build/start commands, and GoDaddy domain deployment notes, see [app/README.md](./app/README.md).
+
 # Project Name
 
 An AI-powered platform that finds coordination opportunities between future electric utility projects.

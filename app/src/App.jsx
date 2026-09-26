@@ -1,0 +1,957 @@
+import { useEffect, useMemo, useRef, useState } from 'react'
+import {
+  CircleMarker,
+  MapContainer,
+  Polyline,
+  Popup,
+  TileLayer,
+  Tooltip,
+  useMap,
+} from 'react-leaflet'
+import 'leaflet/dist/leaflet.css'
+import './App.css'
+
+const projectData = [
+  {
+    id: 'DESC_1',
+    utility: 'Dominion Energy South Carolina',
+    state: 'SC',
+    projectName: 'Stevens Creek - Hooks 115 kV / LR Plumb Branch 46 kV Rebuilds',
+    projectType: 'Transmission line rebuild',
+    lat: 33.562599,
+    lon: -82.051362,
+    sites: [{ name: 'Stevens Creek Substation', lat: 33.562599, lon: -82.051362 }],
+    inServiceDate: '2024-12-31',
+    region: 'Stevens Creek / Augusta area',
+  },
+  {
+    id: 'DESC_2',
+    utility: 'Dominion Energy South Carolina',
+    state: 'SC',
+    projectName: 'Hooks - Thurmond 115 kV Tie: Rebuild',
+    projectType: 'Transmission line tie rebuild',
+    lat: 33.660127,
+    lon: -82.195931,
+    sites: [{ name: 'Thurmond Substation', lat: 33.660127, lon: -82.195931 }],
+    inServiceDate: '2024-12-31',
+    region: 'Thurmond / Augusta area',
+  },
+  {
+    id: 'DESC_3',
+    utility: 'Dominion Energy South Carolina',
+    state: 'SC',
+    projectName: 'Jasper - Okatie 230 kV #2: Construct',
+    projectType: 'New 230 kV transmission line',
+    lat: 32.346439,
+    lon: -81.0785475,
+    sites: [
+      { name: 'Jasper Substation', lat: 32.35912, lon: -81.1246 },
+      { name: 'Okatie Substation', lat: 32.333758, lon: -81.032495 },
+    ],
+    inServiceDate: '2025-12-31',
+    region: 'Jasper to Okatie corridor',
+  },
+  {
+    id: 'DESC_4',
+    utility: 'Dominion Energy South Carolina',
+    state: 'SC',
+    projectName: 'Queensboro - Ft Johnson 115 kV & Queensboro-Bayfront 115 kV',
+    projectType: 'Multiple 115 kV transmission line projects',
+    lat: 32.722793,
+    lon: -79.967332,
+    sites: [{ name: 'Queensboro Substation', lat: 32.722793, lon: -79.967332 }],
+    inServiceDate: '2023-12-31',
+    region: 'Charleston / James Island',
+  },
+  {
+    id: 'DESC_5',
+    utility: 'Dominion Energy South Carolina',
+    state: 'SC',
+    projectName: 'Okatie-Bluffton 115 kV: Rebuild',
+    projectType: '115 kV transmission line rebuild',
+    lat: 32.2843925,
+    lon: -80.9429395,
+    sites: [
+      { name: 'Okatie Substation', lat: 32.333758, lon: -81.032495 },
+      { name: 'Bluffton Substation', lat: 32.235027, lon: -80.853384 },
+    ],
+    inServiceDate: '2025-06-01',
+    region: 'Okatie / Bluffton',
+  },
+  {
+    id: 'GPC_1',
+    utility: 'Georgia Power',
+    state: 'GA',
+    projectName: 'EVANS PRIMARY - THURMOND DAM (USA) #5 115KV REBUILD',
+    projectType: '115 kV transmission line rebuild',
+    lat: 33.6020605,
+    lon: -82.1822895,
+    sites: [
+      { name: 'Evans Primary', lat: 33.543994, lon: -82.168648 },
+      { name: 'Thurmond Dam #5', lat: 33.660127, lon: -82.195931 },
+    ],
+    inServiceDate: '2033-06-01',
+    region: 'Evans / Thurmond Dam corridor',
+  },
+  {
+    id: 'GPC_2',
+    utility: 'Georgia Power',
+    state: 'GA',
+    projectName: 'SAV: MCINTOSH - PURRYSBURG 230KV REACTORS',
+    projectType: '230 kV reactor / substation equipment',
+    lat: 32.352116,
+    lon: -81.175112,
+    sites: [{ name: 'McIntosh', lat: 32.352116, lon: -81.175112 }],
+    inServiceDate: '2026-06-01',
+    region: 'Savannah / Purrysburg',
+  },
+  {
+    id: 'GPC_3',
+    utility: 'Georgia Power',
+    state: 'GA',
+    projectName: 'SAV: GOSHEN (SAV) - MCINTOSH 115KV LINE REBUILD',
+    projectType: '115 kV transmission line rebuild',
+    lat: 32.3004085,
+    lon: -81.1957885,
+    sites: [
+      { name: 'Goshen', lat: 32.248701, lon: -81.209472 },
+      { name: 'McIntosh', lat: 32.352116, lon: -81.182105 },
+    ],
+    inServiceDate: '2027-06-01',
+    region: 'Savannah / McIntosh',
+  },
+  {
+    id: 'GPC_4',
+    utility: 'Georgia Power',
+    state: 'GA',
+    projectName: 'MITCHELL - NORTH TIFTON 230KV RECONDUCTOR',
+    projectType: '230 kV line reconductor',
+    lat: 31.462605,
+    lon: -83.8414865,
+    sites: [
+      { name: 'Mitchell Substation', lat: 31.447121, lon: -84.133843 },
+      { name: 'North Tifton Substation', lat: 31.478089, lon: -83.54913 },
+    ],
+    inServiceDate: '2025-05-01',
+    region: 'Mitchell / Tifton',
+  },
+  {
+    id: 'GPC_5',
+    utility: 'Georgia Power',
+    state: 'GA',
+    projectName: 'JESUP - LUDOWICI PRIMARY 115KV REBUILD',
+    projectType: '115 kV transmission line rebuild',
+    lat: 31.6623515,
+    lon: -81.834325,
+    sites: [
+      { name: 'Jesup', lat: 31.603106, lon: -81.924947 },
+      { name: 'Ludowici Primary', lat: 31.721597, lon: -81.743703 },
+    ],
+    inServiceDate: '2025-06-01',
+    region: 'Jesup / Ludowici',
+  },
+]
+
+const overlapData = [
+  {
+    id: 'OVL_1',
+    distanceMi: 4.09,
+    timeGapDays: 3074,
+    utilityA: 'Dominion Energy South Carolina',
+    projectIdA: 'DESC_2',
+    projectNameA: 'Hooks - Thurmond 115 kV Tie: Rebuild',
+    utilityB: 'Georgia Power',
+    projectIdB: 'GPC_1',
+    projectNameB: 'EVANS PRIMARY - THURMOND DAM (USA) #5 115KV REBUILD',
+  },
+  {
+    id: 'OVL_2',
+    distanceMi: 5.65,
+    timeGapDays: 152,
+    utilityA: 'Dominion Energy South Carolina',
+    projectIdA: 'DESC_3',
+    projectNameA: 'Jasper - Okatie 230 kV #2: Construct',
+    utilityB: 'Georgia Power',
+    projectIdB: 'GPC_2',
+    projectNameB: 'SAV: MCINTOSH - PURRYSBURG 230KV REACTORS',
+  },
+  {
+    id: 'OVL_3',
+    distanceMi: 7.55,
+    timeGapDays: 517,
+    utilityA: 'Dominion Energy South Carolina',
+    projectIdA: 'DESC_3',
+    projectNameA: 'Jasper - Okatie 230 kV #2: Construct',
+    utilityB: 'Georgia Power',
+    projectIdB: 'GPC_3',
+    projectNameB: 'SAV: GOSHEN (SAV) - MCINTOSH 115KV LINE REBUILD',
+  },
+  {
+    id: 'OVL_4',
+    distanceMi: 8.01,
+    timeGapDays: 3074,
+    utilityA: 'Dominion Energy South Carolina',
+    projectIdA: 'DESC_1',
+    projectNameA: 'Stevens Creek - Hooks 115 kV / LR Plumb Branch 46 kV Rebuilds',
+    utilityB: 'Georgia Power',
+    projectIdB: 'GPC_1',
+    projectNameB: 'EVANS PRIMARY - THURMOND DAM (USA) #5 115KV REBUILD',
+  },
+  {
+    id: 'OVL_5',
+    distanceMi: 14.34,
+    timeGapDays: 365,
+    utilityA: 'Dominion Energy South Carolina',
+    projectIdA: 'DESC_5',
+    projectNameA: 'Okatie-Bluffton 115 kV: Rebuild',
+    utilityB: 'Georgia Power',
+    projectIdB: 'GPC_2',
+    projectNameB: 'SAV: MCINTOSH - PURRYSBURG 230KV REACTORS',
+  },
+  {
+    id: 'OVL_6',
+    distanceMi: 14.81,
+    timeGapDays: 730,
+    utilityA: 'Dominion Energy South Carolina',
+    projectIdA: 'DESC_5',
+    projectNameA: 'Okatie-Bluffton 115 kV: Rebuild',
+    utilityB: 'Georgia Power',
+    projectIdB: 'GPC_3',
+    projectNameB: 'SAV: GOSHEN (SAV) - MCINTOSH 115KV LINE REBUILD',
+  },
+]
+
+const projectMap = Object.fromEntries(projectData.map((project) => [project.id, project]))
+const utilityStyles = {
+  'Dominion Energy South Carolina': { color: '#087ea4', label: 'Dominion Energy SC' },
+  'Georgia Power': { color: '#c65314', label: 'Georgia Power' },
+}
+
+const coordinationOptions = {
+  OVL_1: [
+    {
+      title: 'Compare outage and switching windows',
+      descriptor: 'Both plans describe 115 kV line rebuild work near Thurmond. Compare planned outages, switching constraints, and restoration sequencing before schedules are locked.',
+      type: 'Operations coordination',
+      confidence: 'Worth checking',
+    },
+    {
+      title: 'Check compatible rebuild materials',
+      descriptor: 'Compare conductor, insulator, and hardware specifications to see whether procurement timing or spare-parts standards can be aligned. Compatibility is not established by the project list.',
+      type: 'Procurement review',
+      confidence: 'Needs engineering review',
+    },
+  ],
+  OVL_2: [
+    {
+      title: 'Coordinate transmission planning assumptions',
+      descriptor: 'A new 230 kV line and a 230 kV reactor project are listed about 5.65 miles apart. Compare load-flow assumptions, commissioning dependencies, and planned outage windows.',
+      type: 'Planning & commissioning',
+      confidence: 'Strong review candidate',
+    },
+    {
+      title: 'Review contractor access and mobilization',
+      descriptor: 'Ask whether civil or electrical contractors could coordinate mobilization or staging. The projects are nearby, but shared sites, access, and contractors are not confirmed.',
+      type: 'Construction logistics',
+      confidence: 'Possible — verify locally',
+    },
+  ],
+  OVL_3: [
+    {
+      title: 'Align line-work outage windows',
+      descriptor: 'Both projects include transmission line work in the wider Savannah/Jasper–Okatie area. Compare outage requests, switching plans, and commissioning sequences.',
+      type: 'Operations coordination',
+      confidence: 'Strong review candidate',
+    },
+    {
+      title: 'Compare construction mobilization plans',
+      descriptor: 'Review whether crew scheduling, contractor mobilization, or material deliveries can be sequenced together. The 7.55-mile screening distance does not establish a shared route.',
+      type: 'Construction logistics',
+      confidence: 'Possible — verify locally',
+    },
+  ],
+  OVL_4: [
+    {
+      title: 'Review long-range outage and asset plans',
+      descriptor: 'The listed projects are both line rebuilds in the Augusta/Thurmond area, but their planned in-service dates are about 8.4 years apart. Check for updated schedules before assuming coordination is practical.',
+      type: 'Long-range planning',
+      confidence: 'Low until schedules are refreshed',
+    },
+    {
+      title: 'Compare standards and spare parts',
+      descriptor: 'A standards review may identify compatible components or maintenance practices. Any shared inventory or specifications require engineering confirmation.',
+      type: 'Engineering & procurement',
+      confidence: 'Needs engineering review',
+    },
+  ],
+  OVL_5: [
+    {
+      title: 'Compare construction and outage calendars',
+      descriptor: 'A 115 kV line rebuild and 230 kV reactor work are scheduled about a year apart in the broader Okatie/Savannah area. Check whether outage planning or commissioning dependencies can be coordinated.',
+      type: 'Operations coordination',
+      confidence: 'Worth checking',
+    },
+    {
+      title: 'Check regional contractor sequencing',
+      descriptor: 'Compare procurement lead times and contractor mobilization plans. Shared crews, access, and staging are only possibilities until each utility confirms them.',
+      type: 'Construction logistics',
+      confidence: 'Possible — verify locally',
+    },
+  ],
+  OVL_6: [
+    {
+      title: 'Coordinate line outage and commissioning plans',
+      descriptor: 'Both projects describe 115 kV line rebuild work in the wider coastal Georgia/Lowcountry region. Compare outage windows and commissioning constraints.',
+      type: 'Operations coordination',
+      confidence: 'Worth checking',
+    },
+    {
+      title: 'Compare conductor and hardware standards',
+      descriptor: 'Check whether line materials or specifications are compatible before considering joint procurement or spare-parts planning. The project descriptions alone do not confirm compatibility.',
+      type: 'Engineering & procurement',
+      confidence: 'Needs engineering review',
+    },
+  ],
+}
+
+const starterQuestions = [
+  'What could these projects coordinate?',
+  'What should the utilities verify first?',
+]
+
+const welcomeMessage = {
+  role: 'model',
+  text: 'Ask about coordination ideas, schedule gaps, or what evidence to verify next.',
+  intro: true,
+}
+
+function getOpportunityScore(opportunity) {
+  const distanceScore = Math.max(0, 100 - opportunity.distanceMi * 3.5)
+  const timeScore = Math.max(0, 100 - Math.min(opportunity.timeGapDays / 50, 100))
+  return Math.round(distanceScore * 0.7 + timeScore * 0.3)
+}
+
+function describeScheduleGap(days) {
+  if (days <= 180) return 'Close planned-date window'
+  if (days <= 548) return 'Dates about 6–18 months apart'
+  if (days <= 1_096) return 'Dates about 1.5–3 years apart'
+  return 'Dates more than 3 years apart'
+}
+
+function OpportunityMapFocus({ opportunity }) {
+  const map = useMap()
+
+  useEffect(() => {
+    if (!opportunity) return
+
+    map.fitBounds(
+      [
+        [opportunity.projectA.lat, opportunity.projectA.lon],
+        [opportunity.projectB.lat, opportunity.projectB.lon],
+      ],
+      { padding: [56, 56], maxZoom: 11, animate: true },
+    )
+  }, [map, opportunity])
+
+  return null
+}
+
+function App() {
+  const [maxDistance, setMaxDistance] = useState(25)
+  const [selectedUtility, setSelectedUtility] = useState('all')
+  const [selectedOverlapId, setSelectedOverlapId] = useState('OVL_2')
+  const [searchTerm, setSearchTerm] = useState('')
+  const [scheduleWindow, setScheduleWindow] = useState('any')
+  const [sortBy, setSortBy] = useState('score')
+  const [showProjectPaths, setShowProjectPaths] = useState(true)
+  const [showPairLinks, setShowPairLinks] = useState(true)
+  const [showNamedEndpoints, setShowNamedEndpoints] = useState(true)
+  const [chatState, setChatState] = useState({
+    opportunityId: 'OVL_2',
+    messages: [welcomeMessage],
+    error: '',
+  })
+  const [chatInput, setChatInput] = useState('')
+  const [chatLoadingFor, setChatLoadingFor] = useState(null)
+  const chatTranscriptRef = useRef(null)
+
+  const visibleOverlaps = useMemo(
+    () => overlapData.filter((overlap) => overlap.distanceMi <= maxDistance),
+    [maxDistance],
+  )
+
+  const opportunityRows = useMemo(
+    () =>
+      visibleOverlaps
+        .map((opportunity) => ({
+          ...opportunity,
+          projectA: projectMap[opportunity.projectIdA],
+          projectB: projectMap[opportunity.projectIdB],
+          score: getOpportunityScore(opportunity),
+        }))
+        .sort((a, b) => b.score - a.score),
+    [visibleOverlaps],
+  )
+
+  const filteredOpportunities = useMemo(() => {
+    const query = searchTerm.trim().toLowerCase()
+    const matches = opportunityRows.filter((opportunity) => {
+      const searchableText = [
+        opportunity.id,
+        opportunity.projectA.utility,
+        opportunity.projectA.projectName,
+        opportunity.projectA.projectType,
+        opportunity.projectA.region,
+        opportunity.projectB.utility,
+        opportunity.projectB.projectName,
+        opportunity.projectB.projectType,
+        opportunity.projectB.region,
+      ].join(' ').toLowerCase()
+      const matchesQuery = !query || searchableText.includes(query)
+      const matchesSchedule =
+        scheduleWindow === 'any' ||
+        (scheduleWindow === 'within-year' && opportunity.timeGapDays <= 365) ||
+        (scheduleWindow === 'within-three-years' && opportunity.timeGapDays <= 1_096) ||
+        (scheduleWindow === 'long-range' && opportunity.timeGapDays > 1_096)
+      return matchesQuery && matchesSchedule
+    })
+
+    return matches.sort((a, b) => {
+      if (sortBy === 'distance') return a.distanceMi - b.distanceMi
+      if (sortBy === 'schedule') return a.timeGapDays - b.timeGapDays
+      return b.score - a.score
+    })
+  }, [opportunityRows, scheduleWindow, searchTerm, sortBy])
+
+  const selectedOverlap =
+    filteredOpportunities.find((opportunity) => opportunity.id === selectedOverlapId) ??
+    filteredOpportunities[0]
+
+  const displayProjects = useMemo(() => {
+    if (selectedUtility === 'all') return projectData
+
+    const highlightedMatchIds = selectedOverlap
+      ? [selectedOverlap.projectIdA, selectedOverlap.projectIdB]
+      : []
+    const visibleProjectIds = new Set([
+      ...projectData
+        .filter((project) => project.utility === selectedUtility)
+        .map((project) => project.id),
+      ...highlightedMatchIds,
+    ])
+
+    return projectData.filter((project) => visibleProjectIds.has(project.id))
+  }, [selectedOverlap, selectedUtility])
+  const mapOpportunities =
+    selectedUtility === 'all' ? filteredOpportunities : selectedOverlap ? [selectedOverlap] : []
+  const activeChat =
+    chatState.opportunityId === selectedOverlap?.id
+      ? chatState
+      : { opportunityId: selectedOverlap?.id, messages: [welcomeMessage], error: '' }
+  const chatMessages = activeChat.messages
+  const chatError = activeChat.error
+  const chatLoading = chatLoadingFor === selectedOverlap?.id
+  const closestDistance = filteredOpportunities.length
+    ? Math.min(...filteredOpportunities.map((pair) => pair.distanceMi)).toFixed(1)
+    : '—'
+
+  function resetScreening() {
+    setMaxDistance(25)
+    setSelectedUtility('all')
+    setSearchTerm('')
+    setScheduleWindow('any')
+    setSortBy('score')
+  }
+
+  function clearConversation() {
+    if (!selectedOverlap) return
+    setChatState({ opportunityId: selectedOverlap.id, messages: [welcomeMessage], error: '' })
+  }
+
+  useEffect(() => {
+    const transcript = chatTranscriptRef.current
+    transcript?.scrollTo({ top: transcript.scrollHeight, behavior: 'smooth' })
+  }, [chatMessages, chatLoading])
+
+  async function submitChat(event) {
+    event.preventDefault()
+    const text = chatInput.trim()
+    if (!text || !selectedOverlap || chatLoading) return
+
+    const opportunityId = selectedOverlap.id
+    const userMessage = { role: 'user', text }
+    const conversation = chatMessages.filter((message) => !message.intro)
+    const previousMessages =
+      conversation.at(-1)?.role === 'user' ? conversation.slice(0, -1) : conversation
+    const boundedHistory = previousMessages.slice(-11)
+    if (boundedHistory[0]?.role === 'model') boundedHistory.shift()
+    const requestMessages = [...boundedHistory, userMessage]
+
+    setChatState((current) => ({
+      opportunityId,
+      messages: [
+        ...(current.opportunityId === opportunityId ? current.messages : [welcomeMessage]),
+        userMessage,
+      ],
+      error: '',
+    }))
+    setChatInput('')
+    setChatLoadingFor(opportunityId)
+
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          messages: requestMessages,
+          opportunity: {
+            id: selectedOverlap.id,
+            distanceMi: selectedOverlap.distanceMi,
+            timeGapDays: selectedOverlap.timeGapDays,
+            screeningScore: selectedOverlap.score,
+            coordinationIdeas: coordinationOptions[selectedOverlap.id].map((option) => ({
+              title: option.title,
+              type: option.type,
+              descriptor: option.descriptor,
+            })),
+            projectA: selectedOverlap.projectA,
+            projectB: selectedOverlap.projectB,
+          },
+        }),
+      })
+      const result = await response.json()
+      if (!response.ok) {
+        throw new Error(result.error || 'The assistant request failed.')
+      }
+      if (typeof result.text !== 'string' || !result.text.trim()) {
+        throw new Error('The assistant returned an empty response. Try again.')
+      }
+      setChatState((current) =>
+        current.opportunityId === opportunityId
+          ? { ...current, messages: [...current.messages, { role: 'model', text: result.text }] }
+          : current,
+      )
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Chat failed. Please try again.'
+      setChatState((current) =>
+        current.opportunityId === opportunityId ? { ...current, error: message } : current,
+      )
+    } finally {
+      setChatLoadingFor((current) => (current === opportunityId ? null : current))
+    }
+  }
+  return (
+    <div className="page-shell">
+      <header className="topbar">
+        <div className="brand-lockup">
+          <span className="brand-mark" aria-hidden="true">G</span>
+          <div>
+          <p className="eyebrow">GridAlign</p>
+          <h1>Project coordination explorer</h1>
+          </div>
+        </div>
+        <div className="header-meta">
+          <span className="live-indicator"><i /> Screening workspace</span>
+          <span>South Carolina · Georgia</span>
+        </div>
+      </header>
+
+      <section className="hero-row">
+        <div>
+          <p className="eyebrow">Transmission planning · cross-utility view</p>
+          <h2>Spot nearby work. Find what’s worth a closer look.</h2>
+          <p>Explore project locations and schedule signals, then ask Gemini about the match in front of you.</p>
+        </div>
+        <div className="hero-aside">
+          <span className="source-badge"><i /> Public planning data</span>
+          <span>Screening leads, not confirmed coordination</span>
+        </div>
+      </section>
+
+      <section className="stats-grid" aria-label="Screening summary">
+        <div className="stat-card highlight">
+          <span>Matches in view</span>
+          <strong>{filteredOpportunities.length}<small> / {visibleOverlaps.length}</small></strong>
+          <small>After your filters</small>
+        </div>
+        <div className="stat-card">
+          <span>Projects on map</span>
+          <strong>{displayProjects.length}</strong>
+          <small>Locations and named endpoints</small>
+        </div>
+        <div className="stat-card">
+          <span>Closest match</span>
+          <strong>{closestDistance}<small>{closestDistance === '—' ? '' : ' mi'}</small></strong>
+          <small>Reported point-to-point distance</small>
+        </div>
+        <div className="stat-card">
+          <span>Distance screen</span>
+          <strong>{maxDistance}<small> mi</small></strong>
+          <small>Maximum for the candidate list</small>
+        </div>
+      </section>
+
+      <section className="filter-bar" aria-label="Screening filters">
+        <label className="search-field">
+          <span className="visually-hidden">Search projects, regions, or utilities</span>
+          <span className="search-icon" aria-hidden="true">⌕</span>
+          <input
+            type="search"
+            value={searchTerm}
+            onChange={(event) => setSearchTerm(event.target.value)}
+            placeholder="Search project, region, utility…"
+          />
+        </label>
+        <label className="select-field">
+          <span>Schedule gap</span>
+          <select value={scheduleWindow} onChange={(event) => setScheduleWindow(event.target.value)}>
+            <option value="any">Any date gap</option>
+            <option value="within-year">Within 1 year</option>
+            <option value="within-three-years">Within 3 years</option>
+            <option value="long-range">Over 3 years</option>
+          </select>
+        </label>
+        <label className="select-field">
+          <span>Rank by</span>
+          <select value={sortBy} onChange={(event) => setSortBy(event.target.value)}>
+            <option value="score">Screening score</option>
+            <option value="distance">Closest first</option>
+            <option value="schedule">Closest dates</option>
+          </select>
+        </label>
+        <button type="button" className="reset-button" onClick={resetScreening}>Reset filters</button>
+      </section>
+
+      <section className="content-grid">
+        <div className="panel map-panel">
+          <div className="panel-header">
+            <div>
+              <p className="label">01 · Explore geography</p>
+              <h2>Project map</h2>
+              <p className="panel-subtitle">Select a match from the list to focus the map and details.</p>
+            </div>
+          </div>
+
+          <div className="map-controls">
+            <div className="utility-pills" role="group" aria-label="Map project filter">
+              {['all', 'Dominion Energy South Carolina', 'Georgia Power'].map((utility) => (
+                <button
+                  key={utility}
+                  type="button"
+                  className={selectedUtility === utility ? 'pill active' : 'pill'}
+                  onClick={() => setSelectedUtility(utility)}
+                  aria-pressed={selectedUtility === utility}
+                >
+                  {utility === 'all'
+                    ? 'All projects'
+                    : utility === 'Dominion Energy South Carolina'
+                      ? 'Dominion SC'
+                      : utility}
+                </button>
+              ))}
+            </div>
+            <label className="slider-wrap" htmlFor="distance-slider">
+              <span>Within</span>
+              <input
+                id="distance-slider"
+                type="range"
+                min="5"
+                max="25"
+                step="1"
+                value={maxDistance}
+                onChange={(event) => setMaxDistance(Number(event.target.value))}
+              />
+              <strong>{maxDistance} mi</strong>
+            </label>
+          </div>
+
+          <div className="map-layer-controls" aria-label="Map layers">
+            <span>Map layers</span>
+            <label><input type="checkbox" checked={showProjectPaths} onChange={(event) => setShowProjectPaths(event.target.checked)} /> Endpoint lines</label>
+            <label><input type="checkbox" checked={showPairLinks} onChange={(event) => setShowPairLinks(event.target.checked)} /> Match links</label>
+            <label><input type="checkbox" checked={showNamedEndpoints} onChange={(event) => setShowNamedEndpoints(event.target.checked)} /> Named endpoints</label>
+          </div>
+
+          <MapContainer className="map" center={[32.8, -81.5]} zoom={7} scrollWheelZoom>
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+
+            {showProjectPaths && displayProjects.map((project) =>
+              project.sites.length > 1 ? (
+                <Polyline
+                  key={`${project.id}-endpoints`}
+                  positions={project.sites.map((site) => [site.lat, site.lon])}
+                  pathOptions={{
+                    color: utilityStyles[project.utility].color,
+                    weight: 4,
+                    opacity: 0.85,
+                  }}
+                >
+                  <Tooltip sticky>
+                    {project.id} · straight-line endpoint approximation, not surveyed route geometry
+                  </Tooltip>
+                </Polyline>
+              ) : null,
+            )}
+
+            {showPairLinks && mapOpportunities.map((opportunity) => (
+              <Polyline
+                key={opportunity.id}
+                positions={[
+                  [opportunity.projectA.lat, opportunity.projectA.lon],
+                  [opportunity.projectB.lat, opportunity.projectB.lon],
+                ]}
+                pathOptions={{
+                  color: opportunity.id === selectedOverlap?.id ? '#b42318' : '#6d28d9',
+                  weight: opportunity.id === selectedOverlap?.id ? 5 : 3,
+                  opacity: opportunity.id === selectedOverlap?.id ? 1 : 0.72,
+                  dashArray: '7 8',
+                }}
+              >
+                <Tooltip sticky>
+                  {opportunity.id} · {opportunity.distanceMi.toFixed(2)} mi cross-utility proximity
+                </Tooltip>
+              </Polyline>
+            ))}
+
+            {displayProjects.map((project) => (
+              <CircleMarker
+                key={project.id}
+                center={[project.lat, project.lon]}
+                radius={
+                  project.id === selectedOverlap?.projectIdA ||
+                  project.id === selectedOverlap?.projectIdB
+                    ? 11
+                    : 8
+                }
+                pathOptions={{
+                  color:
+                    project.id === selectedOverlap?.projectIdA ||
+                    project.id === selectedOverlap?.projectIdB
+                      ? '#b42318'
+                      : '#ffffff',
+                  weight: 3,
+                  fillColor: utilityStyles[project.utility].color,
+                  fillOpacity: 1,
+                }}
+              >
+                <Tooltip direction="top" offset={[0, -8]}>
+                  {project.id} · {project.region}
+                </Tooltip>
+                <Popup>
+                  <div className="popup-card">
+                    <small className="popup-id">{project.id} · {utilityStyles[project.utility].label}</small>
+                    <strong>{project.projectName}</strong>
+                    <small>{project.region}</small>
+                    <small>Planned in service: {project.inServiceDate}</small>
+                    <small>
+                      {project.sites.length > 1
+                        ? `${project.sites.length} named endpoints shown`
+                        : 'Only one location confirmed in source data'}
+                    </small>
+                  </div>
+                </Popup>
+              </CircleMarker>
+            ))}
+
+            {showNamedEndpoints && displayProjects.flatMap((project) =>
+              project.sites.length > 1
+                ? project.sites.map((site) => (
+                    <CircleMarker
+                      key={`${project.id}-${site.name}`}
+                      center={[site.lat, site.lon]}
+                      radius={5}
+                      pathOptions={{
+                        color: '#ffffff',
+                        weight: 1.5,
+                        fillColor: utilityStyles[project.utility].color,
+                        fillOpacity: 0.6,
+                      }}
+                    >
+                      <Tooltip>{project.id} · {site.name}</Tooltip>
+                    </CircleMarker>
+                  ))
+                : [],
+            )}
+
+            <OpportunityMapFocus opportunity={selectedOverlap} />
+          </MapContainer>
+          <div className="map-legend" aria-label="Map legend">
+            <span><i className="legend-dot desc" /> Dominion Energy SC</span>
+            <span><i className="legend-dot gpc" /> Georgia Power</span>
+            <span><i className="legend-dot endpoint" /> Named endpoint</span>
+            <span><i className="legend-line overlap" /> Cross-utility match</span>
+          </div>
+          <p className="map-note">
+            Straight lines connect listed locations only; they are not surveyed routes. Dashed
+            links are screening matches, not proof of a shared corridor.
+          </p>
+        </div>
+
+        <aside className="panel results-panel">
+          <div className="panel-header results-heading">
+            <div>
+              <p className="label">02 · Review candidates</p>
+              <h2>Potential matches</h2>
+              <p className="panel-subtitle">Rank is a screening aid—not predicted savings.</p>
+            </div>
+            <span className="result-count">{filteredOpportunities.length} found</span>
+          </div>
+          <div className="opportunity-list">
+            {filteredOpportunities.map((opportunity, index) => (
+              <button
+                key={opportunity.id}
+                type="button"
+                className={selectedOverlap?.id === opportunity.id ? 'opportunity-card selected' : 'opportunity-card'}
+                onClick={() => setSelectedOverlapId(opportunity.id)}
+                aria-pressed={selectedOverlap?.id === opportunity.id}
+              >
+                <span className="rank">0{index + 1}</span>
+                <span className="card-copy">
+                  <span className="card-header">
+                    <strong>{opportunity.projectA.projectName}</strong>
+                    <span className="versus">×</span>
+                    <strong>{opportunity.projectB.projectName}</strong>
+                  </span>
+                  <span className="meta-row">
+                    <span>{opportunity.distanceMi.toFixed(2)} mi apart</span>
+                    <span>{opportunity.timeGapDays.toLocaleString()} day date gap</span>
+                  </span>
+                </span>
+                <span className="score-pill"><strong>{opportunity.score}</strong><small>rank</small></span>
+              </button>
+            ))}
+            {filteredOpportunities.length === 0 && (
+              <div className="empty-state">
+                <strong>No matches for these filters</strong>
+                <span>Try a wider distance, a different schedule gap, or a broader search.</span>
+                <button type="button" onClick={resetScreening}>Clear filters</button>
+              </div>
+            )}
+          </div>
+        </aside>
+      </section>
+
+      {selectedOverlap ? (
+        <section className="detail-section" aria-labelledby="detail-title">
+          <div className="detail-section-heading">
+            <div>
+              <p className="label">03 · Understand the selected pair</p>
+              <h2 id="detail-title">Match details &amp; next steps</h2>
+            </div>
+            <span className="selected-id">{selectedOverlap.id} · selected</span>
+          </div>
+          <div className="detail-layout">
+            <div className="detail-main">
+              <div className="detail-summary">
+                <div className="score-display">
+                  <span>Screening rank</span>
+                  <strong>{selectedOverlap.score}<small> / 100</small></strong>
+                </div>
+                <div className="detail-grid">
+                  <div><label>Reported point distance</label><strong>{selectedOverlap.distanceMi.toFixed(2)} mi</strong></div>
+                  <div><label>Planned-date gap</label><strong>{selectedOverlap.timeGapDays.toLocaleString()} days</strong><small>{describeScheduleGap(selectedOverlap.timeGapDays)}</small></div>
+                </div>
+              </div>
+              <div className="project-comparison">
+                {[selectedOverlap.projectA, selectedOverlap.projectB].map((project) => (
+                  <article className={`project-box ${project.utility === 'Georgia Power' ? 'georgia' : 'dominion'}`} key={project.id}>
+                    <span className="project-utility"><i />{utilityStyles[project.utility].label}</span>
+                    <span className="project-type">{project.projectType}</span>
+                    <h3>{project.projectName}</h3>
+                    <div className="project-facts">
+                      <span>{project.region}</span>
+                      <span>Planned in service <strong>{project.inServiceDate}</strong></span>
+                    </div>
+                  </article>
+                ))}
+              </div>
+              <section className="coordination-playbook" aria-labelledby="coordination-title">
+                <div className="section-heading">
+                  <div>
+                    <p className="label">Potential areas to explore</p>
+                    <h3 id="coordination-title">What could be coordinated?</h3>
+                  </div>
+                  <span className="hypothesis-tag">Ideas to verify</span>
+                </div>
+                <div className="coordination-grid">
+                  {coordinationOptions[selectedOverlap.id].map((option, index) => (
+                    <article className="coordination-option" key={option.title}>
+                      <span className="idea-number">0{index + 1}</span>
+                      <div className="option-heading"><h4>{option.title}</h4><span>{option.confidence}</span></div>
+                      <p>{option.descriptor}</p>
+                      <small>{option.type}</small>
+                    </article>
+                  ))}
+                </div>
+                <p className="data-note">Shared crews, materials, access, outage windows, and savings are not confirmed. Validate with both utilities before acting.</p>
+              </section>
+            </div>
+            <section className="assistant-panel" aria-labelledby="assistant-title">
+              <div className="section-heading assistant-heading">
+                <div>
+                  <p className="label">04 · Ask about this data</p>
+                  <h3 id="assistant-title">Gemini project guide</h3>
+                </div>
+                <button type="button" className="clear-chat-button" onClick={clearConversation} disabled={chatLoading}>New chat</button>
+              </div>
+              <p className="assistant-intro">
+                Ask about the selected projects, map, distance, date gap, screening rank, or possible next checks. Match context is attached automatically.
+              </p>
+              <div className="context-chip"><i /> Context: {selectedOverlap.id} · {selectedOverlap.distanceMi.toFixed(2)} mi · rank {selectedOverlap.score}</div>
+              <div className="starter-questions" aria-label="Suggested questions">
+                {starterQuestions.map((question) => (
+                  <button key={question} type="button" onClick={() => setChatInput(question)} disabled={chatLoading}>
+                    {question}<span aria-hidden="true">↗</span>
+                  </button>
+                ))}
+              </div>
+              <div className="chat-transcript" aria-live="polite" aria-label="Assistant conversation" ref={chatTranscriptRef}>
+                {chatMessages.map((message, index) => (
+                  <div className={`chat-message ${message.role === 'user' ? 'from-user' : 'from-assistant'}`} key={`${message.role}-${index}`}>
+                    <span>{message.role === 'user' ? 'You' : 'Gemini · GridAlign'}</span>
+                    <p>{message.text}</p>
+                  </div>
+                ))}
+                {chatLoading && <div className="chat-message from-assistant" role="status"><span>Gemini · GridAlign</span><p>Checking the selected data…</p></div>}
+              </div>
+              {chatError && <p className="chat-error" role="alert">{chatError}</p>}
+              <form className="chat-form" onSubmit={submitChat}>
+                <label className="visually-hidden" htmlFor="assistant-question">Ask Gemini about the selected project pair</label>
+                <textarea
+                  id="assistant-question"
+                  value={chatInput}
+                  onChange={(event) => setChatInput(event.target.value)}
+                  placeholder="Ask about the map, dates, score, or next steps…"
+                  maxLength={1_500}
+                  rows={3}
+                  disabled={chatLoading}
+                />
+                <div className="chat-submit-row">
+                  <span>{chatInput.length} / 1,500</span>
+                  <button type="submit" className="send-button" disabled={chatLoading || !chatInput.trim()}>
+                    {chatLoading ? 'Thinking…' : 'Ask Gemini <'}
+                  </button>
+                </div>
+              </form>
+              <p className="privacy-note">Your question and selected public project details go to Google Gemini. Do not enter confidential, personal, or CEII information.</p>
+            </section>
+          </div>
+        </section>
+      ) : (
+        <section className="no-selection">
+          <h2>Select a match to compare project details</h2>
+          <p>Clear or widen your filters to find a candidate pair.</p>
+        </section>
+      )}
+      <footer className="page-footer">
+        <span>GridAlign · Utility project screening</span>
+        <span>Distances and route depictions are approximate. Confirm source schedules and geometry independently.</span>
+      </footer>
+    </div>
+  )
+}
+
+export default App
