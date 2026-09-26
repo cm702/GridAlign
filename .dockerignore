@@ -1,0 +1,13 @@
+.env
+.git
+.gitignore
+
+**/__pycache__
+**/*.pyc
+**/*.pyo
+
+backend-java/target
+
+.vscode
+.idea
+.DS_Store
