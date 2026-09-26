@@ -417,7 +417,7 @@ def login(
         value=session_token,
         httponly=True,
         samesite="lax",
-        secure=False,
+        secure=True,
         path="/",
     )
 
