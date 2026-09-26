@@ -4,7 +4,7 @@ from pathlib import Path
 from google import genai
 from google.genai import types
 
-from schemas import CompanyDataset
+from .schemas import CompanyDataset
 
 
 MODEL = "gemini-3.8-flash"

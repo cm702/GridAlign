@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>GridAlign</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+</head>
+
+<body>
+
+    <main class="login-page">
+        <section class="login-container">
+            <div class="brand">
+                <h1>GridAlign</h1>
+                <p>
+                    AI-powered utility infrastructure coordination
+                </p>
+
+            </div>
+            <div class="login-card">
+                <h2>Welcome</h2>
+                <p class="login-description">
+                    Sign in to access the GridAlign dashboard.
+                </p>
+                <form id="login-form">
+
+                    <div class="form-group">
+
+                        <label for="username">
+                            Username
+                        </label>
+
+                        <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            placeholder="Enter your username"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Enter your password"
+                            required
+                        >
+
+                    </div>
+
+                    <p
+                        id="login-error"
+                        class="error-message"
+                    ></p>
+
+                    <button
+                        type="submit"
+                        class="login-button"
+                    >
+                        Sign In
+                    </button>
+                </form>
+            </div>
+            <footer>
+                <p>
+                    GridAlign — Utility Coordination Intelligence
+                </p>
+            </footer>
+        </section>
+    </main>
+    <script src="js/login.js"></script>
+</body>
+</html>

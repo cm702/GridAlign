@@ -16,9 +16,9 @@ from reportlab.platypus import (
     Spacer,
 )
 
-from gemini_client import GeminiClient
-from report_prompt import build_report_prompt
-
+from .gemini_client import GeminiClient
+from .report_prompt import build_report_prompt
+    
 
 # GridAlign repository root
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -455,7 +455,7 @@ def generate_reports():
 
         output_file = (
             REPORTS_DIR
-            / f"report_{index:03d}.pdf"
+            / f"match_{index}.pdf"
         )
 
         create_pdf(
