@@ -3,7 +3,7 @@ FROM python:3.12-slim
 # Install Java and Maven
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-        openjdk-17-jdk-headless \
+        default-jdk-headless \
         maven && \
     rm -rf /var/lib/apt/lists/*
 
