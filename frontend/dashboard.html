@@ -11,32 +11,47 @@
 
     <title>GridAlign Dashboard</title>
 
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/dashboard.css">
+    <!-- Main styles -->
+    <link
+        rel="stylesheet"
+        href="/css/style.css"
+    >
 
+    <link
+        rel="stylesheet"
+        href="/css/dashboard.css"
+    >
+
+    <!-- Leaflet -->
     <link
         rel="stylesheet"
         href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     >
 </head>
 
+
 <body>
 
     <div class="dashboard-page">
 
         <!-- =========================
-             TOP NAVBAR
+             HEADER
         ========================== -->
 
         <header class="dashboard-header">
 
             <div class="dashboard-brand">
-                <h1>GridAlign</h1>
+
+                <h1>
+                    GridAlign
+                </h1>
 
                 <span>
                     Utility Coordination Intelligence
                 </span>
+
             </div>
+
 
             <div class="dashboard-header-right">
 
@@ -47,6 +62,7 @@
                 <button
                     class="logout-button"
                     id="logout-button"
+                    type="button"
                 >
                     Logout
                 </button>
@@ -57,10 +73,11 @@
 
 
         <!-- =========================
-             MAIN AREA
+             MAIN DASHBOARD
         ========================== -->
 
         <main class="dashboard-main">
+
 
             <!-- =========================
                  SIDEBAR
@@ -68,14 +85,25 @@
 
             <aside class="dashboard-sidebar">
 
+
+                <!-- =========================
+                     OVERVIEW
+                ========================== -->
+
                 <section class="sidebar-section">
 
-                    <h2>Overview</h2>
+                    <h2>
+                        Overview
+                    </h2>
+
 
                     <div class="stat-card">
 
-                        <span class="stat-number">
-                            22
+                        <span
+                            class="stat-number"
+                            id="stat-matches"
+                        >
+                            --
                         </span>
 
                         <span class="stat-label">
@@ -84,10 +112,14 @@
 
                     </div>
 
+
                     <div class="stat-card">
 
-                        <span class="stat-number">
-                            2
+                        <span
+                            class="stat-number"
+                            id="stat-utilities"
+                        >
+                            --
                         </span>
 
                         <span class="stat-label">
@@ -96,9 +128,13 @@
 
                     </div>
 
+
                     <div class="stat-card">
 
-                        <span class="stat-number">
+                        <span
+                            class="stat-number"
+                            id="stat-projects"
+                        >
                             --
                         </span>
 
@@ -111,27 +147,39 @@
                 </section>
 
 
+                <!-- =========================
+                     SYSTEM CONTROLS
+                ========================== -->
+
                 <section class="sidebar-section">
 
-                    <h2>System Controls</h2>
+                    <h2>
+                        System Controls
+                    </h2>
+
 
                     <button
                         class="control-button"
                         id="refresh-data"
+                        type="button"
                     >
                         Refresh Project Data
                     </button>
 
+
                     <button
                         class="control-button"
                         id="run-matcher"
+                        type="button"
                     >
                         Run Project Matcher
                     </button>
 
+
                     <button
                         class="control-button"
                         id="generate-reports"
+                        type="button"
                     >
                         Generate AI Reports
                     </button>
@@ -139,14 +187,22 @@
                 </section>
 
 
+                <!-- =========================
+                     UTILITY FILTERS
+                ========================== -->
+
                 <section class="sidebar-section">
 
-                    <h2>Utilities</h2>
+                    <h2>
+                        Utilities
+                    </h2>
+
 
                     <label class="utility-filter">
 
                         <input
                             type="checkbox"
+                            id="filter-georgia"
                             checked
                         >
 
@@ -154,10 +210,12 @@
 
                     </label>
 
+
                     <label class="utility-filter">
 
                         <input
                             type="checkbox"
+                            id="filter-dominion"
                             checked
                         >
 
@@ -171,52 +229,30 @@
 
 
             <!-- =========================
-                 CONTENT
+                 MAIN CONTENT
             ========================== -->
 
             <section class="dashboard-content">
 
 
                 <!-- =========================
-                     MAP
+                     MAP SECTION
                 ========================== -->
 
                 <section class="map-section">
 
-                    <div class="section-header">
-
-                        <div>
-                            <h2>Project Matches</h2>
-
-                            <p>
-                                Geographic coordination opportunities
-                                within 40 km.
-                            </p>
-                        </div>
-
-                    </div>
-
-                   <div id="map"></div>
-
-                </section>
-
-
-                <!-- =========================
-                     MATCHES
-                ========================== -->
-
-                <section class="matches-section">
 
                     <div class="section-header">
 
                         <div>
 
                             <h2>
-                                Coordination Opportunities
+                                Project Matches
                             </h2>
 
                             <p>
-                                Detected matches between utility projects.
+                                Geographic coordination opportunities
+                                within 40 km.
                             </p>
 
                         </div>
@@ -224,136 +260,36 @@
                     </div>
 
 
-                    <div class="matches-list">
+                    <div id="map"></div>
 
-
-                        <!-- MATCH EXAMPLE 1 -->
-
-                        <article class="match-card">
-
-                            <div class="match-info">
-
-                                <div class="match-project">
-
-                                    <span class="utility-name">
-                                        Georgia Power
-                                    </span>
-
-                                    <h3>
-                                        Callaway Road - Thomson Primary 500 kV
-                                    </h3>
-
-                                </div>
-
-                                <div class="match-arrow">
-                                    ↔
-                                </div>
-
-                                <div class="match-project">
-
-                                    <span class="utility-name">
-                                        Dominion Energy SC
-                                    </span>
-
-                                    <h3>
-                                        Hooks - Modoc 115/46 kV Rebuild
-                                    </h3>
-
-                                </div>
-
-                            </div>
-
-
-                            <div class="match-meta">
-
-                                <span>
-                                    20.05 km
-                                </span>
-
-                                <button class="view-report-button">
-                                    View Report
-                                </button>
-
-                                <button class="download-report-button">
-                                    Download
-                                </button>
-
-                            </div>
-
-                        </article>
-
-
-                        <!-- MATCH EXAMPLE 2 -->
-
-                        <article class="match-card">
-
-                            <div class="match-info">
-
-                                <div class="match-project">
-
-                                    <span class="utility-name">
-                                        Georgia Power
-                                    </span>
-
-                                    <h3>
-                                        Example Georgia Project
-                                    </h3>
-
-                                </div>
-
-                                <div class="match-arrow">
-                                    ↔
-                                </div>
-
-                                <div class="match-project">
-
-                                    <span class="utility-name">
-                                        Dominion Energy SC
-                                    </span>
-
-                                    <h3>
-                                        Example Dominion Project
-                                    </h3>
-
-                                </div>
-
-                            </div>
-
-
-                            <div class="match-meta">
-
-                                <span>
-                                    35.68 km
-                                </span>
-
-                                <button class="view-report-button">
-                                    View Report
-                                </button>
-
-                                <button class="download-report-button">
-                                    Download
-                                </button>
-
-                            </div>
-
-                        </article>
-
-
-                    </div>
 
                 </section>
+
 
             </section>
 
         </main>
 
     </div>
+
+
+    <!-- =========================
+         LEAFLET
+    ========================== -->
+
     <script
         src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
     </script>
 
-<script src="/js/map.js"></script>
-<script src="/js/dashboard.js"></script>
+
+    <!-- =========================
+         GRIDALIGN JAVASCRIPT
+    ========================== -->
+
+    <script src="/js/map.js?v=2"></script>
+
+    <script src="/js/dashboard.js?v=2"></script>
+
 
 </body>
 

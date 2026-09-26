@@ -351,33 +351,20 @@ function drawProject(
 
 
     L.circleMarker(
-        mainPoint,
-        style
-    )
-        .addTo(map)
+    mainPoint,
+    style
+)
+    .addTo(map)
 
-        .bindTooltip(
-            createLabel(project),
-            {
-                permanent: true,
-                direction: "top",
-                offset: [0, -9],
-                className: "gridalign-map-label"
-            }
+    .bindPopup(
+        createPopup(
+            project,
+            company,
+            matchId,
+            distance,
+            reportAvailable
         )
-
-        .bindPopup(
-            createPopup(
-                project,
-                company,
-                matchId,
-                distance,
-                reportAvailable
-            )
-        );
-
-
-    // Other known points for the project
+    );
 
     coordinates
         .slice(1)
