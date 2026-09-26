@@ -5,7 +5,7 @@ import { handleGeminiChat } from '../server/gemini.js'
 
 const opportunity = {
   id: 'OVL_2',
-  distanceMi: 5.65,
+  distanceKm: 5.65,
   timeGapDays: 152,
   screeningScore: 88,
   coordinationIdeas: [
@@ -128,6 +128,36 @@ test('sends selected context to Gemini and returns only assistant text', async (
   assert.match(providerBody.systemInstruction.parts[0].text, /Coordinate commissioning/)
   assert.match(providerBody.systemInstruction.parts[0].text, /not verified resources/)
   assert.equal(providerBody.contents[0].parts[0].text, 'What should we check first?')
+})
+
+test('accepts kilometer context and missing schedule or cost fields', async () => {
+  const context = {
+    ...opportunity,
+    distanceKm: 0.08,
+    timeGapDays: null,
+    projectA: { ...opportunity.projectA, inServiceDate: null, estimatedCostUsd: null },
+    projectB: { ...opportunity.projectB, inServiceDate: null, estimatedCostUsd: null },
+  }
+  let called = false
+  const { response } = await makeExchange({
+    apiKey: 'server-only-key',
+    body: {
+      messages: [{ role: 'user', text: 'What should we verify?' }],
+      opportunity: context,
+    },
+    fetchImpl: async () => {
+      called = true
+      return {
+        ok: true,
+        json: async () => ({
+          candidates: [{ content: { parts: [{ text: 'Verify route geometry first.' }] } }],
+        }),
+      }
+    },
+  })
+
+  assert.equal(response.statusCode, 200)
+  assert.equal(called, true)
 })
 
 test('reads the supplied lowercase .env names and calls the configured model', async () => {

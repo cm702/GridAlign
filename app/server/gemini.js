@@ -89,16 +89,41 @@ function validateMessages(messages) {
 
 function cleanProject(project) {
   if (!project || typeof project !== 'object') return null
-  const fields = ['utility', 'projectName', 'region', 'inServiceDate', 'projectType']
+  const fields = ['utility', 'projectName', 'region', 'projectType']
   const cleaned = {}
 
   for (const field of fields) {
     const value = project[field]
-    if (typeof value !== 'string' || value.length > 220) return null
+    if (typeof value !== 'string' || value.trim().length === 0 || value.length > 220) {
+      return null
+    }
     cleaned[field] = value
   }
 
-  return cleaned
+  const inServiceDate = project.inServiceDate
+  if (inServiceDate !== null && inServiceDate !== undefined && typeof inServiceDate !== 'string') {
+    return null
+  }
+  if (typeof inServiceDate === 'string' && inServiceDate.length > 120) return null
+
+  const estimatedCostUsd = project.estimatedCostUsd
+  if (
+    estimatedCostUsd !== null &&
+    estimatedCostUsd !== undefined &&
+    (!Number.isFinite(estimatedCostUsd) || estimatedCostUsd < 0)
+  ) {
+    return null
+  }
+
+  return {
+    ...cleaned,
+    inServiceDate: inServiceDate || 'Not supplied',
+    estimatedCostUsd: estimatedCostUsd ?? null,
+    costSource:
+      typeof project.costSource === 'string' && project.costSource.length <= 220
+        ? project.costSource
+        : 'Not supplied',
+  }
 }
 
 function cleanOpportunity(opportunity) {
@@ -106,11 +131,19 @@ function cleanOpportunity(opportunity) {
   const projectA = cleanProject(opportunity.projectA)
   const projectB = cleanProject(opportunity.projectB)
   const screeningScore = opportunity.screeningScore
+  const scoreExplanation = opportunity.scoreExplanation
   const coordinationIdeas = opportunity.coordinationIdeas
+  const timeGapDays = opportunity.timeGapDays
 
   if (
     screeningScore !== undefined &&
     (!Number.isInteger(screeningScore) || screeningScore < 0 || screeningScore > 100)
+  ) {
+    return null
+  }
+  if (
+    scoreExplanation !== undefined &&
+    (typeof scoreExplanation !== 'string' || scoreExplanation.length > 600)
   ) {
     return null
   }
@@ -137,21 +170,22 @@ function cleanOpportunity(opportunity) {
     !projectB ||
     typeof opportunity.id !== 'string' ||
     !/^OVL_\d+$/.test(opportunity.id) ||
-    typeof opportunity.distanceMi !== 'number' ||
-    !Number.isFinite(opportunity.distanceMi) ||
-    opportunity.distanceMi < 0 ||
-    typeof opportunity.timeGapDays !== 'number' ||
-    !Number.isFinite(opportunity.timeGapDays) ||
-    opportunity.timeGapDays < 0
+    typeof opportunity.distanceKm !== 'number' ||
+    !Number.isFinite(opportunity.distanceKm) ||
+    opportunity.distanceKm < 0 ||
+    (timeGapDays !== null &&
+      timeGapDays !== undefined &&
+      (typeof timeGapDays !== 'number' || !Number.isFinite(timeGapDays) || timeGapDays < 0))
   ) {
     return null
   }
 
   return {
     id: opportunity.id,
-    distanceMi: opportunity.distanceMi,
-    timeGapDays: opportunity.timeGapDays,
+    distanceKm: opportunity.distanceKm,
+    timeGapDays: timeGapDays ?? null,
     ...(screeningScore === undefined ? {} : { screeningScore }),
+    ...(scoreExplanation === undefined ? {} : { scoreExplanation }),
     ...(coordinationIdeas === undefined ? {} : { coordinationIdeas }),
     projectA,
     projectB,
@@ -164,7 +198,7 @@ function makeSystemInstruction(opportunity) {
     'Help users interpret the selected public-planning screening result and suggest practical next steps.',
     'Treat all shared crews, outage windows, procurement, staging, access, and right-of-way ideas as hypotheses to validate—not verified resources or promised savings.',
     'Do not invent project details, route geometry, costs, savings, approvals, or utility commitments.',
-    'The supplied straight-line distance is a screening estimate; proximity does not prove projects share a corridor.',
+    'The supplied distance is in kilometers and is a screening estimate; proximity does not prove projects share a corridor.',
     'Answer questions about what the user sees in the map and dashboard using only the selected match context below. Explain that the screening score ranks proximity and date alignment; it is not a probability, savings estimate, or engineering assessment.',
     'Clearly distinguish source facts from recommendations, be concise, and recommend confirmation with both utilities and public filings.',
     `Selected opportunity context: ${JSON.stringify(opportunity)}`,

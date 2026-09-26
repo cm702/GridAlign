@@ -1,105 +1,19 @@
 # GridAlign
-AI-powered platform for detecting coordination opportunities between utility infrastructure projects.
 
-## Current app
+GridAlign is a demo-ready web app for screening public utility transmission project catalogs for potential cross-utility coordination. The React/Vite interface provides a map, kilometer-based proximity tiers, schedule and text filters, project-cost citations, CSV/print summaries, and a server-side Gemini assistant.
 
-The interactive React dashboard, source-backed coordination suggestions, and server-side Gemini assistant are in [app/](./app/). For local setup, `.env` configuration, production build/start commands, and GoDaddy domain deployment notes, see [app/README.md](./app/README.md).
+## Run the demo
 
-# Project Name
+```powershell
+cd app
+npm ci
+npm run dev
+```
 
-An AI-powered platform that finds coordination opportunities between future electric utility projects.
+Open `http://127.0.0.1:5173/`. To use Gemini, copy `app/.env.example` to `app/.env` and set the lowercase `gemini_api_key`, `gemini_model`, and `gemini_fallback_model` values. The key stays on the server. The map, filters, project details, and exports work without Gemini credentials.
 
-## How It Works
+## Screening behavior
 
-### 1. Frontend
+The current saved catalogs contain 54 Dominion Energy South Carolina projects and 11 eligible Georgia Power transmission/substation projects, creating 594 cross-utility pairs. Distances use the closest supplied coordinate-point pair, calculated with Haversine; ten pairs are strictly under 40 km in this snapshot. The challenge tiers are under 0.1 km, 1.6 km, 8 km, and 40 km. The score is an app-defined ranking heuristic, not a probability or challenge-mandated formula.
 
-The frontend allows users to:
-
-- View utility projects on an interactive map
-- See projects from different utility companies
-- Filter projects by company, date, type, and status
-- View detected geographic overlaps
-- See timeline overlaps
-- View a ranked list of coordination opportunities
-- Open AI-generated reports explaining each opportunity
-
-### 2. Java Backend
-
-Java is the main data and analysis layer.
-
-It will:
-
-- Collect public project data from utility websites and documents
-- Use a different extractor for each public data source
-- Convert all data into one common project format
-- Validate and organize the project data
-- Store the normalized data
-- Compare projects from different utility companies
-- Calculate geographic distance between projects
-- Detect projects within 40 km of each other
-- Compare their construction timelines
-- Rank the strongest coordination opportunities
-
-Example pipeline:
-
-Utility Sources
-      |
-      v
-Java Extractors
-      |
-      v
-Common Project Format
-      |
-      v
-Storage
-      |
-      v
-Geographic Analysis
-      |
-      v
-Timeline Analysis
-      |
-      v
-Coordination Opportunities
-
-### 3. Python AI Service
-
-Python receives the coordination opportunities detected by Java.
-
-It will:
-
-- Send structured project information to the Gemini API
-- Analyze why coordination may be useful
-- Identify possible shared resources
-- Explain possible benefits and risks
-- Generate a human-readable coordination report
-- Return the report to the Java backend
-
-Java performs the exact calculations.
-
-Gemini is used to understand and explain the results, not to determine the geographic distance.
-
-### 4. Data Flow
-
-Public Utility Sources
-        |
-        v
-Java Data Extractors
-        |
-        v
-Normalized Project Data
-        |
-        v
-Java Geographic + Timeline Analysis
-        |
-        v
-Detected Coordination Opportunities
-        |
-        v
-Python + Gemini
-        |
-        v
-AI Coordination Report
-        |
-        v
-Frontend Dashboard
+Project coordinates and straight-line map connections are screening aids, not verified route geometry. Displayed project costs are reported capital budgets, not a basis for calculating coordination savings; the supplied sources lack shareable-work quantities, rates, and avoided-cost amounts. See [app/README.md](./app/README.md) for production deployment and data caveats.
