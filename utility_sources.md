@@ -1,6 +1,6 @@
 # Utility Data Sources
 
-All data sources will be converted into the same common project format.
+All data sources will be converted into the same common project format..
 
 If a source does not provide a field, the value will be stored as `null`.
 
