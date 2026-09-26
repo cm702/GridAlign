@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta
@@ -9,9 +10,13 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>GridAlign Dashboard</title>
+    <title>
+        GridAlign Dashboard
+    </title>
 
+    <link rel="icon" type="image/jpeg" href="/css/icon.jpg">
     <!-- Main styles -->
+
     <link
         rel="stylesheet"
         href="/css/style.css"
@@ -19,14 +24,17 @@
 
     <link
         rel="stylesheet"
-        href="/css/dashboard.css"
+        href="/css/dashboard.css?v=4"
     >
 
+
     <!-- Leaflet -->
+
     <link
         rel="stylesheet"
         href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     >
+
 </head>
 
 
@@ -34,11 +42,13 @@
 
     <div class="dashboard-page">
 
+
         <!-- =========================
              HEADER
         ========================== -->
 
         <header class="dashboard-header">
+
 
             <div class="dashboard-brand">
 
@@ -59,6 +69,7 @@
                     System Online
                 </span>
 
+
                 <button
                     class="logout-button"
                     id="logout-button"
@@ -69,11 +80,12 @@
 
             </div>
 
+
         </header>
 
 
         <!-- =========================
-             MAIN DASHBOARD
+             MAIN
         ========================== -->
 
         <main class="dashboard-main">
@@ -158,86 +170,90 @@
                     </h2>
 
 
-                    <button
-                        class="control-button"
-                        id="refresh-data"
-                        type="button"
-                    >
-                        Refresh Project Data
-                    </button>
+                    <!-- PROJECT DATA -->
+
+                    <div class="control-block">
+
+                        <button
+                            class="control-button"
+                            id="refresh-data"
+                            type="button"
+                        >
+                            Refresh Project Data
+                        </button>
 
 
-                    <button
-                        class="control-button"
-                        id="run-matcher"
-                        type="button"
-                    >
-                        Run Project Matcher
-                    </button>
+                        <div
+                            class="job-log"
+                            id="refresh-data-log"
+                            aria-live="polite"
+                        ></div>
+
+                    </div>
 
 
-                    <button
-                        class="control-button"
-                        id="generate-reports"
-                        type="button"
-                    >
-                        Generate AI Reports
-                    </button>
+                    <!-- MATCHER -->
+
+                    <div class="control-block">
+
+                        <button
+                            class="control-button"
+                            id="run-matcher"
+                            type="button"
+                        >
+                            Run Project Matcher
+                        </button>
+
+
+                        <div
+                            class="job-log"
+                            id="run-matcher-log"
+                            aria-live="polite"
+                        ></div>
+
+                    </div>
+
+
+                    <!-- REPORTS -->
+
+                    <div class="control-block">
+
+                        <button
+                            class="control-button"
+                            id="generate-reports"
+                            type="button"
+                        >
+                            Generate AI Reports
+                        </button>
+
+
+                        <div
+                            class="job-log"
+                            id="generate-reports-log"
+                            aria-live="polite"
+                        ></div>
+
+                    </div>
 
                 </section>
 
 
                 <!-- =========================
-                     UTILITY FILTERS
+                     UTILITIES
                 ========================== -->
 
-                <section class="sidebar-section">
+                
 
-                    <h2>
-                        Utilities
-                    </h2>
-
-
-                    <label class="utility-filter">
-
-                        <input
-                            type="checkbox"
-                            id="filter-georgia"
-                            checked
-                        >
-
-                        Georgia Power
-
-                    </label>
-
-
-                    <label class="utility-filter">
-
-                        <input
-                            type="checkbox"
-                            id="filter-dominion"
-                            checked
-                        >
-
-                        Dominion Energy SC
-
-                    </label>
-
-                </section>
 
             </aside>
 
 
             <!-- =========================
-                 MAIN CONTENT
+                 CONTENT
             ========================== -->
 
             <section class="dashboard-content">
 
-
-                <!-- =========================
-                     MAP SECTION
-                ========================== -->
 
                 <section class="map-section">
 
@@ -268,7 +284,9 @@
 
             </section>
 
+
         </main>
+
 
     </div>
 
@@ -283,12 +301,12 @@
 
 
     <!-- =========================
-         GRIDALIGN JAVASCRIPT
+         GRIDALIGN JS
     ========================== -->
 
-    <script src="/js/map.js?v=2"></script>
+    <script src="/js/map.js?v=4"></script>
 
-    <script src="/js/dashboard.js?v=2"></script>
+    <script src="/js/dashboard.js?v=4"></script>
 
 
 </body>

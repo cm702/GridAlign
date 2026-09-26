@@ -7,20 +7,20 @@
         "06810 H"
       ],
       "project_type": "Transmission Line Rebuild",
-      "description": "Replacing several wood pole sections on the Summerville 115 kV Loop that have reached the end of life.",
+      "description": "Replacing several wood pole sections on the Summerville 115 kV Loop that have reached the end of life. Project is required to address end of life and maintenance issues.",
       "status": "In Progress",
-      "location": "Summerville",
+      "location": "Summerville 115 kV Loop",
       "city": "Summerville",
       "county": "Dorchester County",
       "state": "SC",
       "coordinates": [
         {
           "latitude": 33.0185,
-          "longitude": -80.1756
+          "longitude": -80.1757
         }
       ],
       "start_date": null,
-      "end_date": "04/31/26",
+      "end_date": "2026-04-30",
       "estimated_cost": "$15,775,885",
       "sources": [
         {
@@ -35,20 +35,20 @@
         "02726 K"
       ],
       "project_type": "Transmission Line Rebuild",
-      "description": "This is the DESC funded portion of the Columbia Canal project and encompasses replacing the poles on the Columbia side of the canal.",
+      "description": "This is the DESC funded portion of the Columbia Canal project and encompasses replacing the poles on the Columbia side of the canal. Required to address end of life and maintenance issues.",
       "status": "In Progress",
-      "location": "Columbia Canal, Columbia",
+      "location": "Columbia Canal",
       "city": "Columbia",
       "county": "Richland County",
       "state": "SC",
       "coordinates": [
         {
-          "latitude": 34.0007,
-          "longitude": -81.0507
+          "latitude": 34.0047,
+          "longitude": -81.0494
         }
       ],
       "start_date": null,
-      "end_date": "05/31/26",
+      "end_date": "2026-05-31",
       "estimated_cost": "$1,150,364",
       "sources": [
         {
@@ -63,24 +63,20 @@
         "6853 B-F"
       ],
       "project_type": "Substation and Transmission Line Construction",
-      "description": "Construct 230kV Transmission Line for Scout Customer Substation and modify VCS1 and Killian terminals.",
+      "description": "Construct 230kV Transmission Line for Scout Customer Substation and modify VCS1 and Killian terminals to support load growth.",
       "status": "In Progress",
-      "location": "Blythewood",
-      "city": "Blythewood",
+      "location": "Scout Customer Substation / VCS1 and Killian terminals",
+      "city": null,
       "county": "Richland County",
       "state": "SC",
       "coordinates": [
         {
-          "latitude": 34.2146,
-          "longitude": -80.9737
-        },
-        {
-          "latitude": 34.2982,
-          "longitude": -81.3204
+          "latitude": 34.1485,
+          "longitude": -80.9576
         }
       ],
       "start_date": null,
-      "end_date": "5/31/2026",
+      "end_date": "2026-05-31",
       "estimated_cost": "$19,418,000",
       "sources": [
         {
@@ -95,9 +91,9 @@
         "6846 A"
       ],
       "project_type": "Transmission Line Rebuild",
-      "description": "Upgrade the DESC section (approx. 1 mile) of the tie line from 397.5 ACSR Ibis to 1272 ACSR.",
+      "description": "Upgrade the DESC section (approx. 1 mile) of the tie line from 397.5 ACSR Ibis to 1272 ACSR. Needed to improve system performance and meet NERC TPL and internal DESC Planning Criteria for reliability.",
       "status": "In Progress",
-      "location": "Eastover to Sumter",
+      "location": "Eastover – Sumter tie line",
       "city": "Eastover",
       "county": "Richland County",
       "state": "SC",
@@ -112,7 +108,7 @@
         }
       ],
       "start_date": null,
-      "end_date": "5/31/2026",
+      "end_date": "2026-05-31",
       "estimated_cost": "$1,238,443",
       "sources": [
         {
@@ -127,7 +123,7 @@
         "6809 N"
       ],
       "project_type": "Transmission Line Rebuild",
-      "description": "Rebuild 13.5 miles of conductor.",
+      "description": "Rebuild 13.5 miles of conductor for grid hardening.",
       "status": "In Progress",
       "location": "Batesburg to Saluda County",
       "city": "Batesburg-Leesville",
@@ -135,16 +131,16 @@
       "state": "SC",
       "coordinates": [
         {
-          "latitude": 33.9032,
-          "longitude": -81.5432
+          "latitude": 33.909,
+          "longitude": -81.5457
         },
         {
           "latitude": 34.0018,
-          "longitude": -81.7718
+          "longitude": -81.7729
         }
       ],
       "start_date": null,
-      "end_date": "06/31/2026",
+      "end_date": "2026-06-30",
       "estimated_cost": "$13,040,765",
       "sources": [
         {
@@ -161,18 +157,18 @@
       "project_type": "Transmission Line Relocation",
       "description": "Move Summerville – Boone Hill 115kV Transmission Line for SCDOT Road widening. Approximately 1.2 miles of Transmission line (23 Transmission Poles).",
       "status": "In Progress",
-      "location": "US 78, Summerville",
+      "location": "US78, Summerville to Boone Hill",
       "city": "Summerville",
       "county": "Dorchester County",
       "state": "SC",
       "coordinates": [
         {
           "latitude": 33.0185,
-          "longitude": -80.1756
+          "longitude": -80.1757
         }
       ],
       "start_date": null,
-      "end_date": "07/31/26",
+      "end_date": "2026-07-31",
       "estimated_cost": "$12,475,000",
       "sources": [
         {
@@ -189,18 +185,18 @@
       "project_type": "Transmission Line Rebuild",
       "description": "Upgrade the 477 ACSR portions of the Urquhart – Toolebeck 115 kV line to 1272 ACSR. Replace existing structures with Single Pole Double Circuit Structures. Approximately 12.5 miles.",
       "status": "In Progress",
-      "location": "Beech Island to Toolebeck",
+      "location": "Urquhart to Toolebeck",
       "city": "Beech Island",
       "county": "Aiken County",
       "state": "SC",
       "coordinates": [
         {
-          "latitude": 33.4118,
-          "longitude": -81.9073
+          "latitude": 33.456,
+          "longitude": -81.9076
         }
       ],
       "start_date": null,
-      "end_date": "8/12/2026",
+      "end_date": "2026-08-12",
       "estimated_cost": "$15,948,620",
       "sources": [
         {
@@ -214,25 +210,21 @@
       "aliases": [
         "6859"
       ],
-      "project_type": "Substation and Transmission Line Construction / Rebuild",
+      "project_type": "Substation Construction and Line Rebuild",
       "description": "Construct Dawson 230kV substation. Fold in the existing Canadys – Church Creek and Canadys – Faber Place 230kV lines at the Dawson 230kV substation (phase 1). Rebuild Canadys – Dawson 230kV #1 and #2 with B1272 ACSR (phase 2).",
       "status": "In Progress",
-      "location": "Canadys to Church Creek",
+      "location": "Dawson Substation / Canadys to Church Creek and Faber Place",
       "city": null,
-      "county": "Colleton County",
+      "county": "Dorchester County",
       "state": "SC",
       "coordinates": [
         {
-          "latitude": 33.0568,
-          "longitude": -80.6018
-        },
-        {
-          "latitude": 32.8368,
-          "longitude": -80.0543
+          "latitude": 32.973,
+          "longitude": -80.378
         }
       ],
       "start_date": null,
-      "end_date": "10/1/2026",
+      "end_date": "2026-10-01",
       "estimated_cost": "$93,603,207",
       "sources": [
         {
@@ -246,25 +238,25 @@
       "aliases": [
         "6341 A-F"
       ],
-      "project_type": "Transmission Line Construction / Rebuild",
+      "project_type": "Transmission Line Rebuild and New Line Construction",
       "description": "Upgrade the 954 ACSR portion of the Cainhoy – Hamlin 115 kV line to B795 ACSR conductor, construct a new Cainhoy – Hamlin 115 kV #2 line, add terminals to Cainhoy and Hamlin sub to accommodate upgrades.",
       "status": "In Progress",
-      "location": "Mount Pleasant area",
+      "location": "Cainhoy to Hamlin Substation",
       "city": "Mount Pleasant",
       "county": "Charleston County",
       "state": "SC",
       "coordinates": [
         {
-          "latitude": 32.9238,
-          "longitude": -79.8398
+          "latitude": 32.9221,
+          "longitude": -79.8407
         },
         {
-          "latitude": 32.8368,
-          "longitude": -79.7995
+          "latitude": 32.8466,
+          "longitude": -79.7915
         }
       ],
       "start_date": null,
-      "end_date": "12/02/26",
+      "end_date": "2026-12-02",
       "estimated_cost": "$40,858,628",
       "sources": [
         {
@@ -281,18 +273,18 @@
       "project_type": "Transmission Line Conversion",
       "description": "Convert the existing Coit - Gills Creek 33 kV Line to 115 kV. Approximately 1.25 miles. Construct Gills Creek Terminal at Coit Bus #1.",
       "status": "In Progress",
-      "location": "Columbia",
+      "location": "Coit to Gills Creek",
       "city": "Columbia",
       "county": "Richland County",
       "state": "SC",
       "coordinates": [
         {
-          "latitude": 33.9904,
-          "longitude": -80.9784
+          "latitude": 33.985,
+          "longitude": -80.985
         }
       ],
       "start_date": null,
-      "end_date": "12/31/2026",
+      "end_date": "2026-12-31",
       "estimated_cost": "$5,773,202",
       "sources": [
         {
@@ -309,22 +301,18 @@
       "project_type": "Substation Expansion and Line Fold-in",
       "description": "Expand existing Okatie Transmission sub, add a 230-115 autobank and fold the Jasper – Yemassee 230 kV #1 line into the 230 kV side. Construct two additional 115 kV bus tie lines.",
       "status": "In Progress",
-      "location": "Okatie",
+      "location": "Okatie Transmission Substation",
       "city": "Okatie",
       "county": "Beaufort County",
       "state": "SC",
       "coordinates": [
         {
-          "latitude": 32.3163,
-          "longitude": -80.9237
-        },
-        {
-          "latitude": 32.6885,
-          "longitude": -80.8504
+          "latitude": 32.3396,
+          "longitude": -80.9168
         }
       ],
       "start_date": null,
-      "end_date": "12/31/2026",
+      "end_date": "2026-12-31",
       "estimated_cost": "$11,630,257",
       "sources": [
         {
@@ -338,25 +326,25 @@
       "aliases": [
         "06367 D - G"
       ],
-      "project_type": "Transmission Line Construction",
+      "project_type": "New Transmission Line Construction",
       "description": "Construct a 230 kV line with B1272 ACSR from Jasper to Okatie 230/115kV Substation. The line is estimated to be 6.5 miles long. This makes Jasper a Medium Impact substation and will require a new CIP Hut.",
       "status": "In Progress",
-      "location": "Jasper to Okatie",
+      "location": "Jasper to Okatie Substation",
       "city": "Hardeeville",
       "county": "Jasper County",
       "state": "SC",
       "coordinates": [
         {
-          "latitude": 32.2813,
-          "longitude": -81.0801
+          "latitude": 32.2838,
+          "longitude": -81.0807
         },
         {
-          "latitude": 32.3163,
-          "longitude": -80.9237
+          "latitude": 32.3396,
+          "longitude": -80.9168
         }
       ],
       "start_date": null,
-      "end_date": "12/01/2026",
+      "end_date": "2026-12-01",
       "estimated_cost": "$19,280,474",
       "sources": [
         {
@@ -371,7 +359,7 @@
         "6367 D"
       ],
       "project_type": "Transmission Tap Construction",
-      "description": "Constructing a 230 kV Tap from Okatie to Riverport",
+      "description": "Constructing a 230 kV Tap from Okatie to Riverport.",
       "status": "In Progress",
       "location": "Okatie to Riverport",
       "city": "Hardeeville",
@@ -379,16 +367,16 @@
       "state": "SC",
       "coordinates": [
         {
-          "latitude": 32.3163,
-          "longitude": -80.9237
+          "latitude": 32.3396,
+          "longitude": -80.9168
         },
         {
-          "latitude": 32.2813,
-          "longitude": -81.0801
+          "latitude": 32.2618,
+          "longitude": -81.1276
         }
       ],
       "start_date": null,
-      "end_date": "12/01/26",
+      "end_date": "2026-12-01",
       "estimated_cost": "$41,389,047",
       "sources": [
         {
@@ -405,18 +393,18 @@
       "project_type": "Substation and Tap Construction",
       "description": "Constructing a 115 kV tap off the Belv Sw Sta - Graniteville 115 kV #1 line to feed the new Sub. Will include a 3-Way GOAB.",
       "status": "In Progress",
-      "location": "Graniteville",
+      "location": "Belv Sw Sta - Graniteville 115 kV #1 line",
       "city": "Graniteville",
       "county": "Aiken County",
       "state": "SC",
       "coordinates": [
         {
-          "latitude": 33.5651,
-          "longitude": -81.8079
+          "latitude": 33.6332,
+          "longitude": -81.8082
         }
       ],
       "start_date": null,
-      "end_date": "12/31/26",
+      "end_date": "2026-12-31",
       "estimated_cost": "$3,950,000",
       "sources": [
         {
@@ -431,20 +419,24 @@
         "6870 A"
       ],
       "project_type": "Transmission Line Rebuild",
-      "description": "Rebuild the existing Saluda Hydro – Bush River #1 and #2 Tie Lines to SPDC 1272.",
+      "description": "Rebuild the existing Saluda Hydro – Bush River #1 and #2 Tie Lines to SPDC 1272. Needed to improve system performance and to meet NERC TPL and internal DESC Planning Criteria for reliability.",
       "status": "In Progress",
-      "location": "Lake Murray to Bush River",
+      "location": "Saluda Hydro to Bush River",
       "city": "Columbia",
       "county": "Lexington County",
       "state": "SC",
       "coordinates": [
         {
-          "latitude": 34.0538,
-          "longitude": -81.2189
+          "latitude": 34.0537,
+          "longitude": -81.2173
+        },
+        {
+          "latitude": 34.032,
+          "longitude": -81.135
         }
       ],
       "start_date": null,
-      "end_date": "12/31/2026",
+      "end_date": "2026-12-31",
       "estimated_cost": "$20,400,000",
       "sources": [
         {
@@ -458,25 +450,25 @@
       "aliases": [
         "6847"
       ],
-      "project_type": "Transmission Line Construction / Substation Upgrade",
+      "project_type": "New Transmission Line Construction and Line Rebuild",
       "description": "Construct a 230 kV transmission line from Church Creek to Charleston Transmission. The Church Creek – Faber Place 230kV and 115kV lines will be rebuilt, and a 230kV line will be added between Faber Place and Charleston Transmission. Add 230/115kV transformer at Charleston Transmission. Add/upgrade terminals and bus work at impacted substations.",
       "status": "In Progress",
-      "location": "Charleston area",
+      "location": "Church Creek to Faber Place to Charleston Transmission",
       "city": "Charleston",
       "county": "Charleston County",
       "state": "SC",
       "coordinates": [
         {
-          "latitude": 32.8368,
-          "longitude": -80.0543
+          "latitude": 32.836,
+          "longitude": -80.05
         },
         {
-          "latitude": 32.8466,
-          "longitude": -79.9964
+          "latitude": 32.8468,
+          "longitude": -79.9882
         }
       ],
       "start_date": null,
-      "end_date": "5/1/2027",
+      "end_date": "2027-05-01",
       "estimated_cost": "$22,788,174",
       "sources": [
         {
@@ -490,25 +482,25 @@
       "aliases": [
         "6359"
       ],
-      "project_type": "Transmission Line Construction / Conversion",
+      "project_type": "New Transmission Line Construction and Conversion",
       "description": "Construct Ritter – Yemassee 230kV #1 and #2 SPDC with B1272 ACSR on both sides. Convert the existing Ritter – Yemassee 230 kV to 115 kV operation. Convert and add terminals at Ritter and Yemassee. Add 230 kV bus tie at Ritter and upgrade the Yemassee 230 kV bus tie.",
       "status": "In Progress",
       "location": "Yemassee to Ritter",
       "city": "Yemassee",
-      "county": "Colleton County",
+      "county": "Hampton County",
       "state": "SC",
       "coordinates": [
         {
-          "latitude": 32.6885,
-          "longitude": -80.8504
+          "latitude": 32.6896,
+          "longitude": -80.8529
         },
         {
-          "latitude": 32.7482,
-          "longitude": -80.6026
+          "latitude": 32.7849,
+          "longitude": -80.5962
         }
       ],
       "start_date": null,
-      "end_date": "6/1/2027",
+      "end_date": "2027-06-01",
       "estimated_cost": "$39,066,742",
       "sources": [
         {
@@ -523,7 +515,7 @@
         "6238 H"
       ],
       "project_type": "Transmission Line Upgrade",
-      "description": "Upgrade 336 ACSR portion of DESCSQ #1151 - Yemassee 115 kV line to 1272 ACSR.",
+      "description": "Upgrade 336 ACSR portion of DESCSQ #1151 - Yemassee 115 kV line to 1272 ACSR. Needed to interconnect DESCSQ #1151 in accordance with the DESC Transitional Cluster System Impact Study. Estimated cost of $20,350,000 is to be financed by the interconnection customer; DESC will reimburse after commercial operation.",
       "status": "Planned",
       "location": "Fairfax to Yemassee",
       "city": "Fairfax",
@@ -531,16 +523,16 @@
       "state": "SC",
       "coordinates": [
         {
-          "latitude": 32.9646,
-          "longitude": -81.2334
+          "latitude": 32.9643,
+          "longitude": -81.2332
         },
         {
-          "latitude": 32.6885,
-          "longitude": -80.8504
+          "latitude": 32.6896,
+          "longitude": -80.8529
         }
       ],
       "start_date": null,
-      "end_date": "9/7/2027",
+      "end_date": "2027-09-07",
       "estimated_cost": "$20,350,000",
       "sources": [
         {
@@ -555,20 +547,20 @@
         "6809 M"
       ],
       "project_type": "Transmission Line Rebuild",
-      "description": "Rebuild Line from Santee Substation - Duke/Progress Energy Tie.",
+      "description": "Rebuild Line from Santee Substation - Duke/Progress Energy Tie for grid hardening.",
       "status": "Planned",
-      "location": "Santee Substation",
+      "location": "Santee Substation to Duke/Progress Energy Tie",
       "city": "Santee",
       "county": "Orangeburg County",
       "state": "SC",
       "coordinates": [
         {
-          "latitude": 33.4904,
-          "longitude": -80.4823
+          "latitude": 33.4835,
+          "longitude": -80.4826
         }
       ],
       "start_date": null,
-      "end_date": "12/31/2027",
+      "end_date": "2027-12-31",
       "estimated_cost": "$4,569,331",
       "sources": [
         {
@@ -583,20 +575,20 @@
         "6809 G"
       ],
       "project_type": "Transmission Line Rebuild",
-      "description": "Upgrade 6.5 miles of aging conductor with 1272 ACSR and rebuild with SPDC.",
+      "description": "Upgrade 6.5 miles of aging conductor with 1272 ACSR and rebuild with SPDC. Required to address end of life and reliability issues.",
       "status": "Planned",
-      "location": "Modoc",
+      "location": "Hooks to Modoc",
       "city": "Modoc",
       "county": "McCormick County",
       "state": "SC",
       "coordinates": [
         {
-          "latitude": 33.7143,
-          "longitude": -82.2046
+          "latitude": 33.7165,
+          "longitude": -82.2037
         }
       ],
       "start_date": null,
-      "end_date": "12/31/27",
+      "end_date": "2027-12-31",
       "estimated_cost": "$10,534,285",
       "sources": [
         {
@@ -619,12 +611,12 @@
       "state": "SC",
       "coordinates": [
         {
-          "latitude": 32.4046,
+          "latitude": 32.3924,
           "longitude": -80.5759
         }
       ],
       "start_date": null,
-      "end_date": "12/31/2027",
+      "end_date": "2027-12-31",
       "estimated_cost": "$18,129,932",
       "sources": [
         {
@@ -641,18 +633,18 @@
       "project_type": "Transmission Tap Construction",
       "description": "Constructing a 115 kV Tap off the Edmund Switching Station- Owens Corning 115 kV Line to feed new Wagener Distribution substation.",
       "status": "Planned",
-      "location": "Wagener",
+      "location": "Edmund Switching Station - Owens Corning Line to Wagener Distribution Substation",
       "city": "Wagener",
       "county": "Aiken County",
       "state": "SC",
       "coordinates": [
         {
-          "latitude": 33.6493,
+          "latitude": 33.6404,
           "longitude": -81.3615
         }
       ],
       "start_date": null,
-      "end_date": "12/31/27",
+      "end_date": "2027-12-31",
       "estimated_cost": "$7,540,000",
       "sources": [
         {
@@ -667,24 +659,24 @@
         "6810 U"
       ],
       "project_type": "Transmission Line Rebuild",
-      "description": "Rebuilding the Cameron Jct – Elloree 46 kV Line. 7.3 miles.",
+      "description": "Rebuilding the Cameron Jct – Elloree 46 kV Line. 7.3 miles. System hardening.",
       "status": "Planned",
-      "location": "Cameron to Elloree",
+      "location": "Cameron Junction to Elloree",
       "city": "Elloree",
       "county": "Orangeburg County",
       "state": "SC",
       "coordinates": [
         {
-          "latitude": 33.5282,
-          "longitude": -80.5693
+          "latitude": 33.5554,
+          "longitude": -80.7168
         },
         {
-          "latitude": 33.5574,
-          "longitude": -80.7148
+          "latitude": 33.5282,
+          "longitude": -80.5184
         }
       ],
       "start_date": null,
-      "end_date": "12/31/2027",
+      "end_date": "2027-12-31",
       "estimated_cost": "$8,075,000",
       "sources": [
         {
@@ -708,11 +700,11 @@
       "coordinates": [
         {
           "latitude": 33.4357,
-          "longitude": -81.8754
+          "longitude": -81.8732
         }
       ],
       "start_date": null,
-      "end_date": "12/31/2028",
+      "end_date": "2028-12-31",
       "estimated_cost": "$3,646,027",
       "sources": [
         {
@@ -727,24 +719,24 @@
         "6810 J"
       ],
       "project_type": "Transmission Line Rebuild",
-      "description": "Rebuilding the 46 kV line between Elloree and Santee City. 8.35 miles.",
+      "description": "Rebuilding the 46 kV line between Elloree and Santee City. 8.35 miles. System hardening.",
       "status": "In Progress",
-      "location": "Elloree to Santee",
-      "city": "Santee",
+      "location": "Elloree to Santee City",
+      "city": "Elloree",
       "county": "Orangeburg County",
       "state": "SC",
       "coordinates": [
         {
           "latitude": 33.5282,
-          "longitude": -80.5693
+          "longitude": -80.5184
         },
         {
-          "latitude": 33.4904,
-          "longitude": -80.4823
+          "latitude": 33.4835,
+          "longitude": -80.4826
         }
       ],
       "start_date": null,
-      "end_date": "12/31/2027",
+      "end_date": "2027-12-31",
       "estimated_cost": "$10,294,609",
       "sources": [
         {
@@ -761,22 +753,18 @@
       "project_type": "Transmission Line Rebuild",
       "description": "Rebuilding the section of 46 kV line from Urquhart to the Aiken PSA tap point. TBD if the scope of this project includes rebuilding the actual tap Aiken PSA. 4.5 miles.",
       "status": "Planned",
-      "location": "Beech Island to Aiken",
-      "city": "Aiken",
+      "location": "Urquhart to Aiken PSA tap point",
+      "city": "Beech Island",
       "county": "Aiken County",
       "state": "SC",
       "coordinates": [
         {
-          "latitude": 33.4118,
-          "longitude": -81.9073
-        },
-        {
-          "latitude": 33.5604,
-          "longitude": -81.7196
+          "latitude": 33.456,
+          "longitude": -81.9076
         }
       ],
       "start_date": null,
-      "end_date": "12/31/2027",
+      "end_date": "2027-12-31",
       "estimated_cost": "$3,000,000",
       "sources": [
         {
@@ -791,24 +779,24 @@
         "6808 P"
       ],
       "project_type": "Transmission Line Rebuild",
-      "description": "Rebuilding the Wateree - Hopkins 230 kV Line #1. Line will be rebuilt SPSC with 1272 ACSR.",
+      "description": "Rebuilding the Wateree - Hopkins 230 kV Line #1. Line will be rebuilt SPSC with 1272 ACSR. Project is required to address end of life and reliability issues.",
       "status": "Planned",
-      "location": "Eastover to Hopkins",
+      "location": "Wateree to Hopkins",
       "city": "Hopkins",
       "county": "Richland County",
       "state": "SC",
       "coordinates": [
         {
           "latitude": 33.829,
-          "longitude": -80.6276
+          "longitude": -80.627
         },
         {
-          "latitude": 33.9138,
-          "longitude": -80.8768
+          "latitude": 33.9088,
+          "longitude": -80.877
         }
       ],
       "start_date": null,
-      "end_date": "12/31/2027",
+      "end_date": "2027-12-31",
       "estimated_cost": "$22,400,000",
       "sources": [
         {
@@ -822,21 +810,21 @@
       "aliases": [
         "6809 I2"
       ],
-      "project_type": "Transmission Line Rebuild / Structure Replacement",
-      "description": "Set the 2 River Crossing structures on the Dawhoo River and replace the other structures in the marsh with Distribution Underbuild. In addition, replace other structures identified on the 46kV line. Str 2,6,9,12,18,25,38-40,47,48,81-83,95-110 (Dawhoo Marsh),125,130-134,167,168,184,203,206,218-220,228,230,238,260-262,265,271-273,277,278,299,302. (58 Structures)",
+      "project_type": "Transmission Line Structure Replacement",
+      "description": "Set the 2 River Crossing structures on the Dawhoo River and replace the other structures in the marsh with Distribution Underbuild. In addition, replace other structures identified on the 46kV line (58 structures total).",
       "status": "Planned",
-      "location": "Adams Run to Red House Road, Dawhoo River",
+      "location": "Dawhoo River / Dawhoo Marsh, Adams Run to Red House Road",
       "city": "Adams Run",
       "county": "Charleston County",
       "state": "SC",
       "coordinates": [
         {
-          "latitude": 32.7249,
-          "longitude": -80.3523
+          "latitude": 32.7058,
+          "longitude": -80.347
         }
       ],
       "start_date": null,
-      "end_date": "12/31/2027",
+      "end_date": "2027-12-31",
       "estimated_cost": "$11,000,000",
       "sources": [
         {
@@ -851,20 +839,20 @@
         "6809 S"
       ],
       "project_type": "Transmission Line Rebuild",
-      "description": "Rebuild the section of 115kV line between Kilbourne Park and str# 67 on the Lyles - Kilbourne Park 115kV Line. Pull 1272 ACSR from Richland Mall GOAB to Kilbourne Park Sub. Most of this section of line is back lot construction (difficult access) along with distribution underbuilt throughout. 2.85 Miles.",
+      "description": "Rebuild the section of 115kV line between Kilbourne Park and str# 67 on the Lyles - Kilbourne Park 115kV Line. Pull 1272 ACSR from Richland Mall GOAB to Kilbourne Park Sub. Most of this section of line is back lot construction along with distribution underbuilt throughout. 2.85 Miles.",
       "status": "Planned",
-      "location": "Columbia",
+      "location": "Richland Mall GOAB to Kilbourne Park Substation",
       "city": "Columbia",
       "county": "Richland County",
       "state": "SC",
       "coordinates": [
         {
-          "latitude": 33.9922,
-          "longitude": -80.9712
+          "latitude": 33.9961,
+          "longitude": -80.9767
         }
       ],
       "start_date": null,
-      "end_date": "12/01/2027",
+      "end_date": "2027-12-01",
       "estimated_cost": "$4,770,000",
       "sources": [
         {
@@ -878,10 +866,10 @@
       "aliases": [
         "6873"
       ],
-      "project_type": "Substation Construction and Line Fold-in",
-      "description": "Construct new 230-115 kV substation and fold in the Parr – Winnsboro 115 kV #1 and VCS1 – Killian 230 kV lines into the new substation.",
+      "project_type": "Substation and Line Fold-in Construction",
+      "description": "Construct new 230-115 kV substation and fold in the Parr – Winnsboro 115 kV #1 and VCS1 – Killian 230 kV lines into the new substation. Needed to uprate the Parr Gas Turbines GT1 and GT2 in accordance with the DESC Transitional Cluster System Impact Study. Estimated cost of $23,272,000 financed by interconnection customer and reimbursed after commercial operation.",
       "status": "In Progress",
-      "location": "Winnsboro",
+      "location": "Winnsboro West Substation",
       "city": "Winnsboro",
       "county": "Fairfield County",
       "state": "SC",
@@ -892,7 +880,7 @@
         }
       ],
       "start_date": null,
-      "end_date": "1/31/2028",
+      "end_date": "2028-01-31",
       "estimated_cost": "$23,272,000",
       "sources": [
         {
@@ -906,25 +894,25 @@
       "aliases": [
         "6388 A"
       ],
-      "project_type": "Transmission Line Upgrade / Rebuild",
+      "project_type": "Transmission Line Rebuild and Upgrade",
       "description": "Rebuild the section of the Williams - Summerville 230 kV line from Ladson Jct to Williams. Line to upgraded to B-1272 and designed for a future second circuit. Approximately 10 miles.",
       "status": "Planned",
-      "location": "Ladson to Williams Generating Station",
-      "city": "Summerville",
+      "location": "Ladson Jct to Williams",
+      "city": "Ladson",
       "county": "Berkeley County",
       "state": "SC",
       "coordinates": [
         {
-          "latitude": 33.0185,
-          "longitude": -80.1756
+          "latitude": 33.0135,
+          "longitude": -80.1068
         },
         {
-          "latitude": 33.0038,
-          "longitude": -80.1068
+          "latitude": 33.048,
+          "longitude": -79.94
         }
       ],
       "start_date": null,
-      "end_date": "05/01/2028",
+      "end_date": "2028-05-01",
       "estimated_cost": "$31,100,000",
       "sources": [
         {
@@ -938,25 +926,25 @@
       "aliases": [
         "06372 A"
       ],
-      "project_type": "Transmission Structure Replacement",
-      "description": "Replacing approximately 38 guyed wooden structures due to recent failures in the fiberglass strain insulators along this line. Structures to be changed out are dead ends/large angles. We will also be adding a few in-line dead ends where there are tangents runs of greater than 15,000'. Replacement structures will be designed for B-1272 ACSR and be offset such that a future circuit could be added along this alignment. Estimated STRs to Replace: 38 structures total. 28 concrete foundations and 10 vibratory caisson foundations.",
+      "project_type": "Transmission Line Structure Replacement",
+      "description": "Replacing approximately 38 guyed wooden structures due to recent failures in the fiberglass strain insulators along this line. Structures to be changed out are dead ends/large angles. Adding a few in-line dead ends where there are tangents runs greater than 15,000'. Replacement structures will be designed for B-1272 ACSR and offset for a future circuit (28 concrete foundations and 10 vibratory caisson foundations).",
       "status": "In Progress",
-      "location": "Church Creek to Ritter",
+      "location": "Church Creek to Ritter 230kV line",
       "city": "Charleston",
       "county": "Charleston County",
       "state": "SC",
       "coordinates": [
         {
-          "latitude": 32.8368,
-          "longitude": -80.0543
+          "latitude": 32.836,
+          "longitude": -80.05
         },
         {
-          "latitude": 32.7482,
-          "longitude": -80.6026
+          "latitude": 32.7849,
+          "longitude": -80.5962
         }
       ],
       "start_date": null,
-      "end_date": "12/31/2028",
+      "end_date": "2028-12-31",
       "estimated_cost": "$11,424,330",
       "sources": [
         {
@@ -971,20 +959,20 @@
         "6854 C"
       ],
       "project_type": "Substation Construction",
-      "description": "Construct 115 – 12kV distribution substation to replace Jackson 46kV Substation. Jackson 46kV has reverse power modifications for Aiken Schools #3936. Verify that Jackson 115-12kV will inherit this reverse power requirement.",
+      "description": "Construct 115 – 12kV distribution substation to replace Jackson 46kV Substation. Reverse power modifications for Aiken Schools #3936.",
       "status": "Planned",
-      "location": "Jackson",
+      "location": "Jackson Substation",
       "city": "Jackson",
       "county": "Aiken County",
       "state": "SC",
       "coordinates": [
         {
           "latitude": 33.3282,
-          "longitude": -81.7876
+          "longitude": -81.7879
         }
       ],
       "start_date": null,
-      "end_date": "12/31/2028",
+      "end_date": "2028-12-31",
       "estimated_cost": "$3,003,760",
       "sources": [
         {
@@ -999,20 +987,20 @@
         "06005 B"
       ],
       "project_type": "Transmission Tap Construction",
-      "description": "Extend the 115 kV line from the Blue Circle tap to the Harleyville substation to provide 115 kV service.",
+      "description": "Extend the 115 kV line from the Blue Circle tap to the Harleyville substation to provide 115 kV service (1.4 miles).",
       "status": "Planned",
-      "location": "Harleyville",
+      "location": "Blue Circle tap to Harleyville substation",
       "city": "Harleyville",
       "county": "Dorchester County",
       "state": "SC",
       "coordinates": [
         {
-          "latitude": 33.2146,
-          "longitude": -80.4468
+          "latitude": 33.2132,
+          "longitude": -80.4507
         }
       ],
       "start_date": null,
-      "end_date": "12/31/2028",
+      "end_date": "2028-12-31",
       "estimated_cost": "$2,750,000",
       "sources": [
         {
@@ -1027,9 +1015,9 @@
         "6809 F"
       ],
       "project_type": "Transmission Line Rebuild",
-      "description": "Rebuilding the 7.5 mile Orangeburg #1 – Cameron Jct. 46 kV Line. The line will be rebuilt on existing R/W using steel poles, 115 kV insulation, and 1272 ACSR Conductor",
+      "description": "Rebuilding the 7.5 mile Orangeburg #1 – Cameron Jct. 46 kV Line on existing R/W using steel poles, 115 kV insulation, and 1272 ACSR Conductor. Required to address end of life and reliability issues.",
       "status": "Planned",
-      "location": "Orangeburg to Cameron Jct",
+      "location": "Orangeburg #1 to Cameron Junction",
       "city": "Orangeburg",
       "county": "Orangeburg County",
       "state": "SC",
@@ -1039,12 +1027,12 @@
           "longitude": -80.8557
         },
         {
-          "latitude": 33.5574,
-          "longitude": -80.7148
+          "latitude": 33.5554,
+          "longitude": -80.7168
         }
       ],
       "start_date": null,
-      "end_date": "12/31/2028",
+      "end_date": "2028-12-31",
       "estimated_cost": "$7,912,400",
       "sources": [
         {
@@ -1059,24 +1047,24 @@
         "6808 N,O"
       ],
       "project_type": "Transmission Line Rebuild",
-      "description": "Replace wooden H-Frame structures with Self Supporting Steel Structures and restring with standard 1272 ACSR conductor.",
+      "description": "Replace wooden H-Frame structures with Self Supporting Steel Structures and restring with standard 1272 ACSR conductor on VCS1-Denny Terrace 230kV & VCS1-Pineland 230kV single circuit sections.",
       "status": "In Progress",
-      "location": "V.C. Summer to Denny Terrace and Pineland",
+      "location": "VCS1 to Denny Terrace / VCS1 to Pineland",
       "city": "Jenkinsville",
       "county": "Fairfield County",
       "state": "SC",
       "coordinates": [
         {
-          "latitude": 34.2982,
+          "latitude": 34.2983,
           "longitude": -81.3204
         },
         {
-          "latitude": 34.0543,
-          "longitude": -81.0493
+          "latitude": 34.053,
+          "longitude": -81.042
         }
       ],
       "start_date": null,
-      "end_date": "12/31/28",
+      "end_date": "2028-12-31",
       "estimated_cost": "$13,285,118",
       "sources": [
         {
@@ -1090,21 +1078,21 @@
       "aliases": [
         "6842 C,D"
       ],
-      "project_type": "Substation and Tap Construction",
-      "description": "Construct a 115-23.9kV substation at the Coast Guard substation site with 37.3MVA transformer and 4 feeder bays. There is room in the substation for a future transformer. Construct a 115kV transmission line between Clemson Wind Turbine & Coast Guard Sub. The Coast Guard Substation will be served radially from this new line.",
+      "project_type": "Substation and Transmission Line Construction",
+      "description": "Construct a 115-23.9kV substation at the Coast Guard substation site with 37.3MVA transformer and 4 feeder bays (with room for future transformer). Construct a 115kV transmission line between Clemson Wind Turbine & Coast Guard Sub.",
       "status": "Planned",
-      "location": "North Charleston",
+      "location": "Clemson Wind Turbine to Coast Guard Substation",
       "city": "North Charleston",
       "county": "Charleston County",
       "state": "SC",
       "coordinates": [
         {
-          "latitude": 32.868,
-          "longitude": -79.957
+          "latitude": 32.8622,
+          "longitude": -79.9576
         }
       ],
       "start_date": null,
-      "end_date": "12/31/27",
+      "end_date": "2027-12-31",
       "estimated_cost": "$5,560,000",
       "sources": [
         {
@@ -1121,18 +1109,18 @@
       "project_type": "Transmission Tap Construction and Line Rebuild",
       "description": "Construct Millrace 115kV tap from the existing Dunbar Road – Lyles 115kV line. Due to added load on the Dunbar Road – Lyles 115kV line, rebuild with 1272 ACSR.",
       "status": "Planned",
-      "location": "Cayce / West Columbia area",
+      "location": "Dunbar Road – Lyles 115kV line",
       "city": "Cayce",
       "county": "Lexington County",
       "state": "SC",
       "coordinates": [
         {
-          "latitude": 33.9657,
-          "longitude": -81.0743
+          "latitude": 33.9427,
+          "longitude": -81.0718
         }
       ],
       "start_date": null,
-      "end_date": "12/31/2028",
+      "end_date": "2028-12-31",
       "estimated_cost": "$3,200,000",
       "sources": [
         {
@@ -1146,25 +1134,25 @@
       "aliases": [
         "1060A, I, L"
       ],
-      "project_type": "Substation Equipment Replacement / Addition",
+      "project_type": "Substation Equipment Replacement and Addition",
       "description": "Replace switch house, switch house equipment, and relay panels at Williams Street substation. Replace the switch house at AM Williams substation. Add Switching House at McMeekin Substation to move relays from plant relay room.",
       "status": "In Progress",
-      "location": "Williams Street, AM Williams, McMeekin Substations",
+      "location": "Williams Street Substation, AM Williams Substation, and McMeekin Substation",
       "city": "Columbia",
       "county": "Richland County",
       "state": "SC",
       "coordinates": [
         {
-          "latitude": 33.9925,
-          "longitude": -81.0423
+          "latitude": 33.998,
+          "longitude": -81.045
         },
         {
-          "latitude": 34.0538,
-          "longitude": -81.2189
+          "latitude": 34.0537,
+          "longitude": -81.2173
         }
       ],
       "start_date": null,
-      "end_date": "12/31/28",
+      "end_date": "2028-12-31",
       "estimated_cost": "$11,182,924",
       "sources": [
         {
@@ -1179,16 +1167,16 @@
         "6810 T"
       ],
       "project_type": "Transmission Line Rebuild",
-      "description": "Rebuilding the 46 kV line between Cameron Jct and St Matthews. 9.8 miles.",
+      "description": "Rebuilding the 46 kV line between Cameron Jct and St Matthews. 9.8 miles. System hardening.",
       "status": "Planned",
-      "location": "Cameron to St Matthews",
+      "location": "Cameron Junction to Cameron to St Matthews",
       "city": "St. Matthews",
       "county": "Calhoun County",
       "state": "SC",
       "coordinates": [
         {
-          "latitude": 33.5574,
-          "longitude": -80.7148
+          "latitude": 33.5554,
+          "longitude": -80.7168
         },
         {
           "latitude": 33.6643,
@@ -1196,7 +1184,7 @@
         }
       ],
       "start_date": null,
-      "end_date": "12/31/2028",
+      "end_date": "2028-12-31",
       "estimated_cost": "$11,700,000",
       "sources": [
         {
@@ -1210,21 +1198,21 @@
       "aliases": [
         "6888"
       ],
-      "project_type": "Substation Construction / Equipment Addition",
+      "project_type": "Substation Construction and Equipment Addition",
       "description": "Construct Deerfield Switching Station and Install a 9% series reactor on the Okatie – McIntosh 115kV Tie Line.",
       "status": "Planned",
-      "location": "Okatie",
+      "location": "Deerfield Switching Station / Okatie – McIntosh Tie Line",
       "city": "Okatie",
       "county": "Beaufort County",
       "state": "SC",
       "coordinates": [
         {
-          "latitude": 32.3163,
-          "longitude": -80.9237
+          "latitude": 32.3396,
+          "longitude": -80.9168
         }
       ],
       "start_date": null,
-      "end_date": "12/31/2028",
+      "end_date": "2028-12-31",
       "estimated_cost": "$5,376,418",
       "sources": [
         {
@@ -1238,21 +1226,21 @@
       "aliases": [
         "6809 R"
       ],
-      "project_type": "Transmission Structure Replacement",
-      "description": "There are 28 laminated wood poles on the CAE Industrial Park - Springdale Sub 115kV line, and 5 have been identified as \"rotten\" by OSMOSE inspections. Replace all 28 laminated wood poles.",
+      "project_type": "Transmission Line Structure Replacement",
+      "description": "There are 28 laminated wood poles on the CAE Industrial Park - Springdale Sub 115kV line, and 5 have been identified as \"rotten\" by OSMOSE inspections. Replace all 28 laminated wood poles for system hardening.",
       "status": "Planned",
-      "location": "West Columbia / Springdale",
+      "location": "CAE Industrial Park to Springdale Substation",
       "city": "Springdale",
       "county": "Lexington County",
       "state": "SC",
       "coordinates": [
         {
-          "latitude": 33.9571,
-          "longitude": -81.129
+          "latitude": 33.9515,
+          "longitude": -81.1276
         }
       ],
       "start_date": null,
-      "end_date": "12/31/2028",
+      "end_date": "2028-12-31",
       "estimated_cost": "$4,450,000",
       "sources": [
         {
@@ -1267,24 +1255,24 @@
         "6809 O"
       ],
       "project_type": "Transmission Line Rebuild",
-      "description": "Rebuild Structures 83-108 on existing St. George – Holly Hill 115 kV transmission line. Total length, 3.4 miles. Replace flat switches at Don's Car Crushing with new flat switches. Distribution wants to be underbuilt when we rebuild.",
+      "description": "Rebuild Structures 83-108 on existing St. George – Holly Hill 115 kV transmission line. Total length, 3.4 miles. Replace flat switches at Don's Car Crushing with new flat switches. Distribution wants to be underbuilt when rebuilt.",
       "status": "Planned",
       "location": "St. George to Holly Hill",
-      "city": "St. George",
+      "city": "Saint George",
       "county": "Dorchester County",
       "state": "SC",
       "coordinates": [
         {
-          "latitude": 33.1866,
-          "longitude": -80.5757
+          "latitude": 33.1857,
+          "longitude": -80.5759
         },
         {
-          "latitude": 33.3229,
+          "latitude": 33.3218,
           "longitude": -80.4132
         }
       ],
       "start_date": null,
-      "end_date": "12/31/2028",
+      "end_date": "2028-12-31",
       "estimated_cost": "$8,125,000",
       "sources": [
         {
@@ -1299,24 +1287,24 @@
         "06076 A"
       ],
       "project_type": "Transmission Line Rebuild",
-      "description": "Rebuild Canadys-Ritter 115 kV line as SPDC with 1272 ACSR. Project includes the rebuild of the Canadys - Ritter 115kV only. No 230kV work associated with this project. 17.5 miles",
+      "description": "Rebuild Canadys-Ritter 115 kV line as SPDC with 1272 ACSR. Project includes the rebuild of the Canadys - Ritter 115kV only. No 230kV work associated with this project. 17.5 miles.",
       "status": "In Progress",
       "location": "Canadys to Ritter",
-      "city": "Walterboro",
+      "city": "Canadys",
       "county": "Colleton County",
       "state": "SC",
       "coordinates": [
         {
-          "latitude": 33.0568,
-          "longitude": -80.6018
+          "latitude": 33.0565,
+          "longitude": -80.5984
         },
         {
-          "latitude": 32.7482,
-          "longitude": -80.6026
+          "latitude": 32.7849,
+          "longitude": -80.5962
         }
       ],
       "start_date": null,
-      "end_date": "6/1/2029",
+      "end_date": "2029-06-01",
       "estimated_cost": "$38,121,795",
       "sources": [
         {
@@ -1331,24 +1319,24 @@
         "6808 R"
       ],
       "project_type": "Transmission Line Rebuild",
-      "description": "Rebuilding the Wateree - Killian 230 kV Line. Line will be rebuilt SPSC with 1272 ACSR. Length - 35 miles",
+      "description": "Rebuilding the Wateree - Killian 230 kV Line. Line will be rebuilt SPSC with 1272 ACSR. Length - 35 miles. Project is required to address end of life and reliability issues.",
       "status": "Planned",
-      "location": "Eastover to Killian",
+      "location": "Wateree to Killian",
       "city": "Columbia",
       "county": "Richland County",
       "state": "SC",
       "coordinates": [
         {
           "latitude": 33.829,
-          "longitude": -80.6276
+          "longitude": -80.627
         },
         {
           "latitude": 34.1485,
-          "longitude": -80.9329
+          "longitude": -80.9576
         }
       ],
       "start_date": null,
-      "end_date": "12/31/29",
+      "end_date": "2029-12-31",
       "estimated_cost": "$44,517,719",
       "sources": [
         {
@@ -1363,20 +1351,24 @@
         "6877 A"
       ],
       "project_type": "Transmission Line Rebuild",
-      "description": "Rebuild Dawson – Long Savannah 230kV Line SPSC B1272 (Designed SPDC B1272). Approximately 13.6 miles. 6869C includes rebuild from Long Savannah – Church Creek 230kV (3.0 miles). For 8 miles (Dawson – Mateeba), include the rebuild of Dawson – Faber Place SPSC B1272 (Designed SPDC B1272)",
+      "description": "Rebuild Dawson – Long Savannah 230kV Line SPSC B1272 (Designed SPDC B1272). Approximately 13.6 miles. 6869C includes rebuild from Long Savannah – Church Creek 230kV (3.0 miles). For 8 miles (Dawson – Mateeba), include the rebuild of Dawson – Faber Place SPSC B1272 (Designed SPDC B1272).",
       "status": "Planned",
-      "location": "Dawson to Long Savannah",
+      "location": "Long Savannah to Dawson Substation",
       "city": "Charleston",
-      "county": "Charleston County",
+      "county": "Dorchester County",
       "state": "SC",
       "coordinates": [
         {
-          "latitude": 32.8368,
-          "longitude": -80.0543
+          "latitude": 32.836,
+          "longitude": -80.05
+        },
+        {
+          "latitude": 32.973,
+          "longitude": -80.378
         }
       ],
       "start_date": null,
-      "end_date": "12/31/2029",
+      "end_date": "2029-12-31",
       "estimated_cost": "$42,375,000",
       "sources": [
         {
@@ -1399,16 +1391,16 @@
       "state": "SC",
       "coordinates": [
         {
-          "latitude": 32.8368,
-          "longitude": -80.0543
+          "latitude": 32.836,
+          "longitude": -80.05
         },
         {
-          "latitude": 32.7663,
-          "longitude": -80.2434
+          "latitude": 32.784,
+          "longitude": -80.142
         }
       ],
       "start_date": null,
-      "end_date": "12/31/2029",
+      "end_date": "2029-12-31",
       "estimated_cost": "$5,100,000",
       "sources": [
         {
@@ -1423,7 +1415,7 @@
         "6809 M"
       ],
       "project_type": "Transmission Line Rebuild",
-      "description": "Rebuilding the section of 115/46kV line between Modoc and McCormick. Lines will be SPDC with 115 kV insulation on both sides.",
+      "description": "Rebuilding the section of 115/46kV line between Modoc and McCormick. Lines will be SPDC with 115 kV insulation on both sides. System hardening.",
       "status": "Planned",
       "location": "Modoc to McCormick",
       "city": "McCormick",
@@ -1431,8 +1423,8 @@
       "state": "SC",
       "coordinates": [
         {
-          "latitude": 33.7143,
-          "longitude": -82.2046
+          "latitude": 33.7165,
+          "longitude": -82.2037
         },
         {
           "latitude": 33.9135,
@@ -1440,7 +1432,7 @@
         }
       ],
       "start_date": null,
-      "end_date": "12/31/29",
+      "end_date": "2029-12-31",
       "estimated_cost": "$19,800,000",
       "sources": [
         {
@@ -1459,20 +1451,20 @@
       "status": "Planned",
       "location": "Stevens Creek to Graniteville",
       "city": "Graniteville",
-      "county": "Aiken County",
+      "county": "Edgefield County",
       "state": "SC",
       "coordinates": [
         {
-          "latitude": 33.6368,
-          "longitude": -82.0743
+          "latitude": 33.6267,
+          "longitude": -82.0224
         },
         {
-          "latitude": 33.5651,
-          "longitude": -81.8079
+          "latitude": 33.6332,
+          "longitude": -81.8082
         }
       ],
       "start_date": null,
-      "end_date": "12/31/29",
+      "end_date": "2029-12-31",
       "estimated_cost": "$18,200,000",
       "sources": [
         {
@@ -1487,24 +1479,24 @@
         "6810 N"
       ],
       "project_type": "Transmission Line Rebuild",
-      "description": "System Hardening project – Rebuilding the 46 kV line between North and Calhoun County. 9.5 miles",
+      "description": "System Hardening project – Rebuilding the 46 kV line between North and Calhoun County. 9.5 miles.",
       "status": "Planned",
       "location": "North to Calhoun County",
       "city": "North",
-      "county": "Calhoun County",
+      "county": "Orangeburg County",
       "state": "SC",
       "coordinates": [
         {
-          "latitude": 33.6165,
-          "longitude": -81.1007
+          "latitude": 33.6163,
+          "longitude": -81.1009
         },
         {
-          "latitude": 33.6643,
-          "longitude": -80.7765
+          "latitude": 33.67,
+          "longitude": -80.78
         }
       ],
       "start_date": null,
-      "end_date": "12/31/2029",
+      "end_date": "2029-12-31",
       "estimated_cost": "$10,200,000",
       "sources": [
         {
@@ -1519,9 +1511,9 @@
         "0167 C-D"
       ],
       "project_type": "Substation and Tap Construction",
-      "description": "Installing a 115 kV Tap (or possibly dedicated feed from Charlotte St) to feed the Union Pier 115 kV Sub.",
+      "description": "Installing a 115 kV Tap (or possibly dedicated feed from Charlotte St) to feed the Union Pier 115 kV Sub. Needed for load growth in the Charleston area.",
       "status": "Planned",
-      "location": "Union Pier, Charleston",
+      "location": "Union Pier / Charlotte St",
       "city": "Charleston",
       "county": "Charleston County",
       "state": "SC",
@@ -1532,7 +1524,7 @@
         }
       ],
       "start_date": null,
-      "end_date": "12/31/30",
+      "end_date": "2030-12-31",
       "estimated_cost": "$22,400,000",
       "sources": [
         {
@@ -1549,22 +1541,22 @@
       "project_type": "Transmission Line Rebuild",
       "description": "Rebuild Faber Place - Bayfront 115kV from N. Bridge Terrace Sub - Bayfront Sub. Line will be rebuilt SPSC with 1272 ACSR. String 1272 ACSR from Across the Ashley River - N. Bridge Terrace. String 1272 ACSR from Bayfront - Camp Rd. Scope modified to include Camp Rd. - James Island section as well.",
       "status": "In Progress",
-      "location": "North Bridge Terrace to Bayfront",
+      "location": "N. Bridge Terrace Sub to Bayfront Sub, across Ashley River, Camp Rd, James Island",
       "city": "Charleston",
       "county": "Charleston County",
       "state": "SC",
       "coordinates": [
         {
           "latitude": 32.8122,
-          "longitude": -79.9882
+          "longitude": -80.003
         },
         {
           "latitude": 32.7485,
-          "longitude": -79.9676
+          "longitude": -79.9715
         }
       ],
       "start_date": null,
-      "end_date": "12/31/30",
+      "end_date": "2030-12-31",
       "estimated_cost": "$18,964,478",
       "sources": [
         {
@@ -1578,25 +1570,25 @@
       "aliases": [
         "0147 A-I"
       ],
-      "project_type": "Transmission Tap Construction",
+      "project_type": "Substation and Transmission Tap Construction",
       "description": "Construct a 115 kV tap from Cainhoy to Clements Ferry. Approximately 2.8 miles. Construct terminal at Cainhoy.",
       "status": "Planned",
-      "location": "Cainhoy to Clements Ferry Rd",
+      "location": "Cainhoy to Clements Ferry Rd Substation",
       "city": "Charleston",
       "county": "Berkeley County",
       "state": "SC",
       "coordinates": [
         {
-          "latitude": 32.9238,
-          "longitude": -79.8398
+          "latitude": 32.9221,
+          "longitude": -79.8407
         },
         {
-          "latitude": 32.8837,
-          "longitude": -79.8973
+          "latitude": 32.885,
+          "longitude": -79.897
         }
       ],
       "start_date": null,
-      "end_date": "12/31/2031",
+      "end_date": "2031-12-31",
       "estimated_cost": "$9,750,000",
       "sources": [
         {
@@ -1611,24 +1603,24 @@
         "06810 F"
       ],
       "project_type": "Transmission Line Rebuild",
-      "description": "Rebuild 40 miles of 230 kV line.",
+      "description": "Rebuild 40 miles of 230 kV line. This project is required to address end of life and maintenance issues.",
       "status": "Planned",
-      "location": "V.C. Summer to Ward",
+      "location": "VCS2 to Ward",
       "city": "Ward",
       "county": "Saluda County",
       "state": "SC",
       "coordinates": [
         {
-          "latitude": 34.2982,
+          "latitude": 34.2983,
           "longitude": -81.3204
         },
         {
-          "latitude": 33.8565,
-          "longitude": -81.7482
+          "latitude": 33.8568,
+          "longitude": -81.7584
         }
       ],
       "start_date": null,
-      "end_date": "12/31/32",
+      "end_date": "2032-12-31",
       "estimated_cost": "$18,875,000",
       "sources": [
         {

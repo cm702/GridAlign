@@ -1,12 +1,12 @@
 import os
 from pathlib import Path
 
-from report_generator import generate_reports
+from .report_generator import generate_reports
 
 from dotenv import load_dotenv
 
-from gemini_client import GeminiClient
-from extraction_prompt import build_extraction_prompt
+from .gemini_client import GeminiClient
+from .extraction_prompt import build_extraction_prompt
 
 
 # GridAlign repository root

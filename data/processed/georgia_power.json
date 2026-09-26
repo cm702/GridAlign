@@ -2,107 +2,32 @@
   "company_name": "Georgia Power",
   "projects": [
     {
-      "project_name": "McGrau Ford BESS Project",
+      "project_name": "Plant Vogtle Units 3 & 4",
       "aliases": [
-        "McGrau Ford BESS",
-        "McGrau Ford Battery Energy Storage System",
-        "McGrau Ford Battery Facility"
+        "Vogtle Units 3 & 4",
+        "Plant Vogtle Expansion"
       ],
-      "project_type": "Battery Energy Storage System",
-      "description": "Development, ownership, and operation of a 265 MW battery energy storage facility provisionally authorized in the 2022 IRP, with final approval planned to be sought from the Georgia PSC by the end of 2024 and commercial operation projected by the end of 2026.",
-      "status": "In development",
-      "location": "McGrau Ford Substation",
-      "city": "Ball Ground",
-      "county": "Cherokee County",
+      "project_type": "Nuclear Generation",
+      "description": "Expansion of Plant Vogtle featuring the construction and commissioning of Units 3 and 4, the first new nuclear units built in the United States in three decades.",
+      "status": "Completed",
+      "location": "Plant Vogtle, 7821 River Rd",
+      "city": "Waynesboro",
+      "county": "Burke County",
       "state": "Georgia",
       "coordinates": [
         {
-          "latitude": 34.3384,
-          "longitude": -84.3774
+          "latitude": 33.1419,
+          "longitude": -81.7647
         }
       ],
       "start_date": null,
-      "end_date": "2026",
+      "end_date": "2024",
       "estimated_cost": null,
       "sources": [
         {
           "file_name": "irp.html",
           "page": null
         },
-        {
-          "file_name": "georgia-power-2023-integrated-resource-plan-update-supports-georgia-extraordinary-economic-growth.html",
-          "page": null
-        },
-        {
-          "file_name": "georgia-power-files-plan-preparing-for-future-energy-landscape.html",
-          "page": null
-        }
-      ]
-    },
-    {
-      "project_name": "Plant Yates Simple-Cycle Combustion Turbines",
-      "aliases": [
-        "Plant Yates Combustion Turbines",
-        "Plant Yates New CTs"
-      ],
-      "project_type": "Natural Gas Power Plant",
-      "description": "Construction of new simple-cycle combustion turbines at Plant Yates to leverage existing infrastructure and recognize operational efficiencies.",
-      "status": "Approved",
-      "location": "Plant Yates",
-      "city": "Newnan",
-      "county": "Coweta County",
-      "state": "Georgia",
-      "coordinates": [
-        {
-          "latitude": 33.4716,
-          "longitude": -84.9038
-        }
-      ],
-      "start_date": null,
-      "end_date": null,
-      "estimated_cost": null,
-      "sources": [
-        {
-          "file_name": "irp.html",
-          "page": null
-        },
-        {
-          "file_name": "georgia-power-2023-integrated-resource-plan-update-supports-georgia-extraordinary-economic-growth.html",
-          "page": null
-        },
-        {
-          "file_name": "georgia-psc-finalizes-and-approves-georgia-powers-2023-irp-update.html",
-          "page": null
-        },
-        {
-          "file_name": "georgia-public-service-commission-approves-2023-irp-update.html",
-          "page": null
-        }
-      ]
-    },
-    {
-      "project_name": "Plant McIntosh Upgrades",
-      "aliases": [
-        "Plant McIntosh Natural Gas Capacity Addition",
-        "Plant McIntosh Expansion"
-      ],
-      "project_type": "Natural Gas Power Plant Upgrade",
-      "description": "Upgrades at Plant McIntosh near Savannah to add an additional 268 MW of natural gas capacity.",
-      "status": "Approved",
-      "location": "Plant McIntosh near Savannah",
-      "city": "Rincon",
-      "county": "Effingham County",
-      "state": "Georgia",
-      "coordinates": [
-        {
-          "latitude": 32.3533,
-          "longitude": -81.1834
-        }
-      ],
-      "start_date": null,
-      "end_date": null,
-      "estimated_cost": null,
-      "sources": [
         {
           "file_name": "georgia-public-service-commission-approves-plan-to-meet-the-energy-needs-of-a-growing-georgia.html",
           "page": null
@@ -117,19 +42,19 @@
       "project_name": "Plant Vogtle Units 1 & 2 Extended Power Uprates",
       "aliases": [
         "Vogtle Units 1 & 2 Upgrades",
-        "Plant Vogtle Units 1 & 2 Upgrades"
+        "Vogtle Units 1 & 2 Extended Power Uprates"
       ],
-      "project_type": "Nuclear Power Plant Upgrade",
-      "description": "Extended power uprates and upgrades at Vogtle Units 1 & 2 to enable the units to deliver an additional 54 MW of carbon-free energy.",
+      "project_type": "Nuclear Generation Upgrade",
+      "description": "Reinvestment in Vogtle Units 1 & 2 upgrades to perform extended power uprates enabling the units to deliver an additional 54 MW of carbon-free generation capacity.",
       "status": "Approved",
-      "location": "Plant Vogtle",
+      "location": "Plant Vogtle, 7821 River Rd",
       "city": "Waynesboro",
       "county": "Burke County",
       "state": "Georgia",
       "coordinates": [
         {
           "latitude": 33.1419,
-          "longitude": -81.7644
+          "longitude": -81.7647
         }
       ],
       "start_date": null,
@@ -143,6 +68,10 @@
         {
           "file_name": "georgia-power-files-2025-irp-plan-to-meet-energy-needs.html",
           "page": null
+        },
+        {
+          "file_name": "irp.html",
+          "page": null
         }
       ]
     },
@@ -152,10 +81,10 @@
         "Hatch Units 1 & 2 Upgrades",
         "Plant Hatch Extended Power Uprates"
       ],
-      "project_type": "Nuclear Power Plant Upgrade",
-      "description": "Preliminary planning, licensing, and engineering for potential future capacity uprates at nuclear Units 1 & 2 at Plant Hatch.",
+      "project_type": "Nuclear Generation Upgrade",
+      "description": "Preliminary planning, licensing, and engineering for potential future capacity uprates at Edwin I. Hatch Nuclear Plant Units 1 & 2 to deliver additional carbon-free energy.",
       "status": "Planning",
-      "location": "Plant Hatch",
+      "location": "Edwin I. Hatch Nuclear Plant, 11028 Hatch Pkwy N",
       "city": "Baxley",
       "county": "Appling County",
       "state": "Georgia",
@@ -180,22 +109,22 @@
       ]
     },
     {
-      "project_name": "Tallulah Hydro Facility Modernization",
+      "project_name": "Plant McIntosh Natural Gas Upgrades",
       "aliases": [
-        "Tallulah Hydro Modernization",
-        "Tallulah Falls Hydro Modernization"
+        "Plant McIntosh Upgrades",
+        "Plant McIntosh Capacity Expansion"
       ],
-      "project_type": "Hydroelectric Power Plant Modernization",
-      "description": "Modernization investments and upgrades at the Tallulah hydro facility, including critical replacements and refurbishments of turbines, generators, and equipment to extend operational life for at least 40 years.",
+      "project_type": "Natural Gas Generation Upgrade",
+      "description": "Capacity expansion and upgrades at Plant McIntosh adding an additional 268 MW of natural gas generating capacity.",
       "status": "Approved",
-      "location": "Tallulah Hydro Facility",
-      "city": "Tallulah Falls",
-      "county": "Rabun County",
+      "location": "Plant McIntosh, 981 Old Rincon Rd",
+      "city": "Rincon",
+      "county": "Effingham County",
       "state": "Georgia",
       "coordinates": [
         {
-          "latitude": 34.733,
-          "longitude": -83.393
+          "latitude": 32.3539,
+          "longitude": -81.1711
         }
       ],
       "start_date": null,
@@ -213,93 +142,26 @@
       ]
     },
     {
-      "project_name": "Yonah Hydro Facility Modernization",
+      "project_name": "Plant Bowen Natural Gas Co-Firing and Life Extension",
       "aliases": [
-        "Yonah Hydro Modernization",
-        "Plant Yonah Modernization"
+        "Plant Bowen Upgrades",
+        "Plant Bowen Environmental Compliance"
       ],
-      "project_type": "Hydroelectric Power Plant Modernization",
-      "description": "Modernization investments and upgrades at the Yonah hydro facility to allow operation for at least another 40 years while improving fleet efficiency and integrity.",
+      "project_type": "Power Plant Modernization / Co-Firing",
+      "description": "Continued operation of coal-fired units through at least 2034, additions and upgrades for federal environmental compliance, and pursuit of natural gas co-firing at Plant Bowen.",
       "status": "Approved",
-      "location": "Yonah Hydro Facility",
-      "city": "Toccoa",
-      "county": "Stephens County",
+      "location": "Plant Bowen, 317 Covered Bridge Rd SW",
+      "city": "Euharlee",
+      "county": "Bartow County",
       "state": "Georgia",
       "coordinates": [
         {
-          "latitude": 34.686,
-          "longitude": -83.344
+          "latitude": 34.1236,
+          "longitude": -84.9214
         }
       ],
       "start_date": null,
-      "end_date": null,
-      "estimated_cost": null,
-      "sources": [
-        {
-          "file_name": "georgia-public-service-commission-approves-plan-to-meet-the-energy-needs-of-a-growing-georgia.html",
-          "page": null
-        },
-        {
-          "file_name": "georgia-power-files-2025-irp-plan-to-meet-energy-needs.html",
-          "page": null
-        }
-      ]
-    },
-    {
-      "project_name": "Bartlett's Ferry Hydro Facility Modernization",
-      "aliases": [
-        "Bartlett's Ferry Modernization",
-        "Bartlett's Ferry Hydroelectric Plant Modernization"
-      ],
-      "project_type": "Hydroelectric Power Plant Modernization",
-      "description": "Modernization investments and upgrades at the Bartlett's Ferry hydro facility to extend operations for at least another 40 years while improving efficiency and integrity.",
-      "status": "Approved",
-      "location": "Bartlett's Ferry Hydro Facility",
-      "city": "Fortson",
-      "county": "Harris County",
-      "state": "Georgia",
-      "coordinates": [
-        {
-          "latitude": 32.668,
-          "longitude": -85.088
-        }
-      ],
-      "start_date": null,
-      "end_date": null,
-      "estimated_cost": null,
-      "sources": [
-        {
-          "file_name": "georgia-public-service-commission-approves-plan-to-meet-the-energy-needs-of-a-growing-georgia.html",
-          "page": null
-        },
-        {
-          "file_name": "georgia-power-files-2025-irp-plan-to-meet-energy-needs.html",
-          "page": null
-        }
-      ]
-    },
-    {
-      "project_name": "North Highlands Hydro Facility Modernization",
-      "aliases": [
-        "North Highlands Modernization",
-        "North Highlands Hydroelectric Plant Modernization",
-        "Plant North Highlands"
-      ],
-      "project_type": "Hydroelectric Power Plant Modernization",
-      "description": "Modernization investments and upgrades at the North Highlands hydro facility to improve efficiencies in hydro system operations and help ensure the units continue to provide clean and dispatchable carbon-free energy for another 40 years.",
-      "status": "Approved",
-      "location": "North Highlands Hydro Facility",
-      "city": "Columbus",
-      "county": "Muscogee County",
-      "state": "Georgia",
-      "coordinates": [
-        {
-          "latitude": 32.502,
-          "longitude": -84.997
-        }
-      ],
-      "start_date": null,
-      "end_date": null,
+      "end_date": "2034",
       "estimated_cost": null,
       "sources": [
         {
@@ -317,57 +179,26 @@
       ]
     },
     {
-      "project_name": "Plant Bowen Natural Gas Co-Firing",
+      "project_name": "Plant Scherer Natural Gas Co-Firing and Life Extension",
       "aliases": [
-        "Plant Bowen Natural Gas Co-Firing Project"
+        "Plant Scherer Upgrades",
+        "Plant Scherer Environmental Compliance"
       ],
-      "project_type": "Power Plant Upgrade / Fuel Conversion",
-      "description": "Implementation of natural gas co-firing at Plant Bowen coal-fired units to aid in compliance with federal environmental regulations and support continued operation through at least 2034.",
+      "project_type": "Power Plant Modernization / Co-Firing",
+      "description": "Continued operation of coal-fired units through at least 2034, environmental compliance upgrades, and implementation of natural gas co-firing at Plant Scherer.",
       "status": "Approved",
-      "location": "Plant Bowen",
-      "city": "Cartersville",
-      "county": "Bartow County",
-      "state": "Georgia",
-      "coordinates": [
-        {
-          "latitude": 34.123,
-          "longitude": -84.921
-        }
-      ],
-      "start_date": null,
-      "end_date": null,
-      "estimated_cost": null,
-      "sources": [
-        {
-          "file_name": "georgia-public-service-commission-approves-plan-to-meet-the-energy-needs-of-a-growing-georgia.html",
-          "page": null
-        },
-        {
-          "file_name": "georgia-power-files-2025-irp-plan-to-meet-energy-needs.html",
-          "page": null
-        }
-      ]
-    },
-    {
-      "project_name": "Plant Scherer Natural Gas Co-Firing",
-      "aliases": [
-        "Plant Scherer Natural Gas Co-Firing Project"
-      ],
-      "project_type": "Power Plant Upgrade / Fuel Conversion",
-      "description": "Implementation of natural gas co-firing at Plant Scherer coal-fired units to aid in compliance with federal environmental regulations and support continued operation through at least 2034.",
-      "status": "Approved",
-      "location": "Plant Scherer",
+      "location": "Plant Scherer, 10986 GA-87",
       "city": "Juliette",
       "county": "Monroe County",
       "state": "Georgia",
       "coordinates": [
         {
-          "latitude": 33.062,
-          "longitude": -83.805
+          "latitude": 33.0625,
+          "longitude": -83.8033
         }
       ],
       "start_date": null,
-      "end_date": null,
+      "end_date": "2034",
       "estimated_cost": null,
       "sources": [
         {
@@ -381,22 +212,22 @@
       ]
     },
     {
-      "project_name": "Plant Vogtle Units 3 & 4",
+      "project_name": "Tallulah Falls Hydroelectric Facility Modernization",
       "aliases": [
-        "Vogtle 3 & 4",
-        "Plant Vogtle Units 3 and 4"
+        "Tallulah Hydro Modernization",
+        "Tallulah Hydro Facility Upgrades"
       ],
-      "project_type": "Nuclear Power Plant",
-      "description": "Plant Vogtle units 3 and 4 will be the first new nuclear units built in the United States in the last three decades and Georgia Power remains focused on safety and quality as top priorities.",
-      "status": null,
-      "location": "Plant Vogtle",
-      "city": "Waynesboro",
-      "county": "Burke County",
+      "project_type": "Hydroelectric Generation Modernization",
+      "description": "Investments, refurbishments, and critical replacements of turbines, generators, and equipment to extend facility operation for at least another 40 years and enhance efficiency.",
+      "status": "Approved",
+      "location": "Tallulah Falls Hydroelectric Plant",
+      "city": "Tallulah Falls",
+      "county": "Rabun County",
       "state": "Georgia",
       "coordinates": [
         {
-          "latitude": 33.1419,
-          "longitude": -81.7644
+          "latitude": 34.7333,
+          "longitude": -83.3931
         }
       ],
       "start_date": null,
@@ -404,23 +235,230 @@
       "estimated_cost": null,
       "sources": [
         {
-          "file_name": "georgia-psc-finalizes-and-approves-georgia-powers-2023-irp-update.html",
+          "file_name": "georgia-public-service-commission-approves-plan-to-meet-the-energy-needs-of-a-growing-georgia.html",
           "page": null
-        },
+        }
+      ]
+    },
+    {
+      "project_name": "Yonah Hydroelectric Facility Modernization",
+      "aliases": [
+        "Yonah Hydro Modernization",
+        "Yonah Hydro Facility Upgrades"
+      ],
+      "project_type": "Hydroelectric Generation Modernization",
+      "description": "Modernization upgrades and critical component replacements to preserve dispatchable carbon-free hydro capacity and extend operation for at least 40 years.",
+      "status": "Approved",
+      "location": "Yonah Dam Hydroelectric Facility, Tugaloo River",
+      "city": "Toccoa",
+      "county": "Stephens County",
+      "state": "Georgia",
+      "coordinates": [
         {
-          "file_name": "georgia-power-2023-integrated-resource-plan-update-supports-georgia-extraeconomic-growth.html",
+          "latitude": 34.6853,
+          "longitude": -83.3444
+        }
+      ],
+      "start_date": null,
+      "end_date": null,
+      "estimated_cost": null,
+      "sources": [
+        {
+          "file_name": "georgia-public-service-commission-approves-plan-to-meet-the-energy-needs-of-a-growing-georgia.html",
           "page": null
-        },
+        }
+      ]
+    },
+    {
+      "project_name": "Bartlett's Ferry Hydroelectric Facility Modernization",
+      "aliases": [
+        "Bartlett's Ferry Hydro Modernization",
+        "Bartlett's Ferry Hydro Facility Upgrades"
+      ],
+      "project_type": "Hydroelectric Generation Modernization",
+      "description": "Modernization upgrades and replacements for turbines, generators, and equipment to allow operation for at least another 40 years.",
+      "status": "Approved",
+      "location": "Bartlett's Ferry Dam, Chattahoochee River",
+      "city": "Fortson",
+      "county": "Harris County",
+      "state": "Georgia",
+      "coordinates": [
         {
-          "file_name": "georgia-power-strengthens-reliability-for-customers,-marks-high-performance-in-2023.html",
+          "latitude": 32.6708,
+          "longitude": -85.0886
+        }
+      ],
+      "start_date": null,
+      "end_date": null,
+      "estimated_cost": null,
+      "sources": [
+        {
+          "file_name": "georgia-public-service-commission-approves-plan-to-meet-the-energy-needs-of-a-growing-georgia.html",
           "page": null
-        },
+        }
+      ]
+    },
+    {
+      "project_name": "North Highlands Hydroelectric Facility Modernization",
+      "aliases": [
+        "North Highlands Hydro Modernization",
+        "North Highlands Hydro Facility Upgrades",
+        "Plant North Highlands Modernization"
+      ],
+      "project_type": "Hydroelectric Generation Modernization",
+      "description": "Modernization upgrades and component replacements to preserve long-term dispatchable carbon-free generation and extend plant life by at least 40 years.",
+      "status": "Approved",
+      "location": "North Highlands Dam, Chattahoochee River",
+      "city": "Columbus",
+      "county": "Muscogee County",
+      "state": "Georgia",
+      "coordinates": [
         {
-          "file_name": "georgia-public-service-commission-approves-2023-irp-update.html",
+          "latitude": 32.505,
+          "longitude": -84.9964
+        }
+      ],
+      "start_date": null,
+      "end_date": null,
+      "estimated_cost": null,
+      "sources": [
+        {
+          "file_name": "georgia-public-service-commission-approves-plan-to-meet-the-energy-needs-of-a-growing-georgia.html",
           "page": null
         },
         {
           "file_name": "georgia-power-files-plan-preparing-for-future-energy-landscape.html",
+          "page": null
+        }
+      ]
+    },
+    {
+      "project_name": "Burton Hydroelectric Facility Modernization",
+      "aliases": [
+        "Plant Burton Hydro Modernization",
+        "Burton Hydro Modernization",
+        "Plant Burton Hydro Facility Upgrades"
+      ],
+      "project_type": "Hydroelectric Generation Modernization",
+      "description": "Investments and upgrades to improve efficiencies in hydro system operations and help ensure the facility continues to provide clean and dispatchable carbon-free energy for another 40 years.",
+      "status": "Proposed",
+      "location": "Burton Dam, Lake Burton",
+      "city": "Clayton",
+      "county": "Rabun County",
+      "state": "Georgia",
+      "coordinates": [
+        {
+          "latitude": 34.7975,
+          "longitude": -83.5422
+        }
+      ],
+      "start_date": null,
+      "end_date": null,
+      "estimated_cost": null,
+      "sources": [
+        {
+          "file_name": "georgia-power-files-plan-preparing-for-future-energy-landscape.html",
+          "page": null
+        }
+      ]
+    },
+    {
+      "project_name": "Sinclair Hydroelectric Facility Modernization",
+      "aliases": [
+        "Plant Sinclair Hydro Modernization",
+        "Sinclair Hydro Modernization",
+        "Plant Sinclair Hydro Facility Upgrades"
+      ],
+      "project_type": "Hydroelectric Generation Modernization",
+      "description": "Investments and upgrades to improve efficiencies in hydro system operations and help ensure the units continue to provide clean and dispatchable carbon-free energy for another 40 years.",
+      "status": "Proposed",
+      "location": "Sinclair Dam, Lake Sinclair",
+      "city": "Milledgeville",
+      "county": "Baldwin County",
+      "state": "Georgia",
+      "coordinates": [
+        {
+          "latitude": 33.1436,
+          "longitude": -83.2086
+        }
+      ],
+      "start_date": null,
+      "end_date": null,
+      "estimated_cost": null,
+      "sources": [
+        {
+          "file_name": "georgia-power-files-plan-preparing-for-future-energy-landscape.html",
+          "page": null
+        }
+      ]
+    },
+    {
+      "project_name": "McGrau Ford Battery Energy Storage System",
+      "aliases": [
+        "McGrau Ford BESS",
+        "McGrau Ford BESS project",
+        "McGrau Ford Battery Facility"
+      ],
+      "project_type": "Battery Energy Storage System (BESS)",
+      "description": "Development, ownership, and operation of a 265 MW utility-scale battery energy storage system facility.",
+      "status": "In Development",
+      "location": "McGrau Ford Substation",
+      "city": "Ball Ground",
+      "county": "Cherokee County",
+      "state": "Georgia",
+      "coordinates": [
+        {
+          "latitude": 34.3386,
+          "longitude": -84.3783
+        }
+      ],
+      "start_date": null,
+      "end_date": "2026",
+      "estimated_cost": null,
+      "sources": [
+        {
+          "file_name": "irp.html",
+          "page": null
+        },
+        {
+          "file_name": "georgia-power-2023-integrated-resource-plan-update-supports-georgia-extraordinary-economic-growth.html",
+          "page": null
+        },
+        {
+          "file_name": "georgia-power-files-plan-preparing-for-future-energy-landscape.html",
+          "page": null
+        }
+      ]
+    },
+    {
+      "project_name": "Plant Yates Simple-Cycle Combustion Turbines",
+      "aliases": [
+        "Plant Yates Combustion Turbines Project",
+        "Plant Yates CTs"
+      ],
+      "project_type": "Natural Gas Generation",
+      "description": "Construction of new simple-cycle combustion turbines at Plant Yates to leverage existing infrastructure and capture operational efficiencies.",
+      "status": "Approved",
+      "location": "Plant Yates, 708 Dyer Rd",
+      "city": "Newnan",
+      "county": "Coweta County",
+      "state": "Georgia",
+      "coordinates": [
+        {
+          "latitude": 33.4739,
+          "longitude": -84.9039
+        }
+      ],
+      "start_date": null,
+      "end_date": null,
+      "estimated_cost": null,
+      "sources": [
+        {
+          "file_name": "irp.html",
+          "page": null
+        },
+        {
+          "file_name": "georgia-power-2023-integrated-resource-plan-update-supports-georgia-extraordinary-economic-growth.html",
           "page": null
         }
       ]
@@ -428,16 +466,16 @@
     {
       "project_name": "Grid Investment Program",
       "aliases": [
-        "Georgia Power Grid Investment Program",
+        "GIP",
         "Grid Investment Plan",
         "Undergrounding Project",
         "Programa de Inversión en la Red",
         "Plan de Inversión en la Red"
       ],
       "project_type": "Grid Modernization",
-      "description": "Multi-year capital investment program approved by the Georgia Public Service Commission to strengthen and modernize the power grid across Georgia. Focuses on upgrading transmission lines, substations, and distribution circuits delivering power to customers' homes and businesses, relocating overhead lines underground, replacing thousands of power poles, and deploying smart devices and automated self-healing technology to enhance system reliability and reduce outage duration and frequency.",
-      "status": "In progress",
-      "location": "Statewide",
+      "description": "Multi-year grid reliability and resiliency investment program including the deployment of smart automated devices, self-healing distribution networks, upgrading and rebuilding transmission lines and substations, undergrounding power lines, and improving or installing utility poles.",
+      "status": "In Progress",
+      "location": null,
       "city": null,
       "county": null,
       "state": "Georgia",
@@ -477,104 +515,41 @@
       ]
     },
     {
-      "project_name": "Burton Hydro Facility Modernization",
-      "aliases": [
-        "Plant Burton Hydro Modernization",
-        "Burton Hydro Modernization",
-        "Plant Burton"
-      ],
-      "project_type": "Hydroelectric Power Plant Modernization",
-      "description": "Investments and upgrades at the Plant Burton hydro facility to improve efficiencies in hydro system operations and help ensure the unit continues to provide clean and dispatchable carbon-free energy for another 40 years.",
-      "status": "Proposed",
-      "location": "Plant Burton",
-      "city": "Clayton",
-      "county": "Rabun County",
-      "state": "Georgia",
-      "coordinates": [
-        {
-          "latitude": 34.877,
-          "longitude": -83.541
-        }
-      ],
-      "start_date": null,
-      "end_date": null,
-      "estimated_cost": null,
-      "sources": [
-        {
-          "file_name": "georgia-power-files-plan-preparing-for-future-energy-landscape.html",
-          "page": null
-        }
-      ]
-    },
-    {
-      "project_name": "Sinclair Hydro Facility Modernization",
-      "aliases": [
-        "Plant Sinclair Hydro Modernization",
-        "Sinclair Hydro Modernization",
-        "Plant Sinclair"
-      ],
-      "project_type": "Hydroelectric Power Plant Modernization",
-      "description": "Investments and upgrades at the Plant Sinclair hydro facility to improve efficiencies in hydro system operations and help ensure the unit continues to provide clean and dispatchable carbon-free energy for another 40 years.",
-      "status": "Proposed",
-      "location": "Plant Sinclair",
-      "city": "Milledgeville",
-      "county": "Baldwin County",
-      "state": "Georgia",
-      "coordinates": [
-        {
-          "latitude": 33.146,
-          "longitude": -83.212
-        }
-      ],
-      "start_date": null,
-      "end_date": null,
-      "estimated_cost": null,
-      "sources": [
-        {
-          "file_name": "georgia-power-files-plan-preparing-for-future-energy-landscape.html",
-          "page": null
-        }
-      ]
-    },
-    {
       "project_name": "Ashley Park–Wansley 500kV Project",
       "aliases": [
         "Ashley Park-Wansley 500kV Project",
-        "Ashley Park–Wansley 500kV Transmission Line",
-        "Ashley Park to Wansley 500kV Transmission Line",
+        "Ashley Park–Wansley 500kV project",
+        "Ashley Park to Plant Wansley 500kV Transmission Line",
         "Ashley Park – Wansley 500 kV",
-        "Ashley Park - Wansley 500 kV",
         "Ashley Park – Wansley 500 kV Transmission Line Project",
-        "Ashley Park - Wansley 500 kV Transmission Line Project",
-        "Ashley Park – Wansley 500kV Transmission Project",
-        "Ashley Park - Wansley 500kV Transmission Project"
+        "Ashley Park - Wansley 500 kV Project"
       ],
       "project_type": "Transmission Line",
-      "description": "A 35-mile, 500kV transmission line connecting the Ashley Park Substation in Fayette County to Plant Wansley in Heard County, crossing through Fulton and Coweta counties, designed to strengthen grid reliability, support renewable integration, improve resiliency, and meet growing energy demand.",
+      "description": "A 35-mile 500kV transmission line running between the Ashley Park substation in north Fayette County and Plant Wansley in Heard County, crossing through Fulton and Coweta counties, to provide regional reliability, resiliency, and efficiency benefits.",
       "status": "Planning",
-      "location": "Between Ashley Park substation and Plant Wansley",
+      "location": "Between Ashley Park Substation and Plant Wansley",
       "city": null,
-      "county": null,
+      "county": "Coweta, Fayette, Fulton, & Heard counties",
       "state": "Georgia",
       "coordinates": [
         {
           "latitude": 33.5,
-          "longitude": -84.48
+          "longitude": -84.47
         },
         {
-          "latitude": 33.407,
-          "longitude": -85.034
+          "latitude": 33.4042,
+          "longitude": -85.0347
         },
         {
-          "latitude": 33.5131,
-          "longitude": -84.4898
+          "latitude": 33.5131375,
+          "longitude": -84.4897599
         },
         {
-          "latitude": 33.4111,
-          "longitude": -85.033
+          "latitude": 33.4110952,
+          "longitude": -85.0330225
         }
       ],
-      "start_date": "Q2 2025",
+      "start_date": "Q1 2027",
       "end_date": "Q2 2028",
       "estimated_cost": null,
       "sources": [
@@ -594,10 +569,12 @@
     },
     {
       "project_name": "Ashley Park Substation",
-      "aliases": [],
+      "aliases": [
+        "Ashley Park Substation Project"
+      ],
       "project_type": "Substation",
-      "description": "Construction of the Ashley Park substation in north Fayette County.",
-      "status": "Under construction",
+      "description": "Construction of the new Ashley Park substation in north Fayette County.",
+      "status": "Under Construction",
       "location": "North Fayette County",
       "city": null,
       "county": "Fayette County",
@@ -605,11 +582,11 @@
       "coordinates": [
         {
           "latitude": 33.5,
-          "longitude": -84.48
+          "longitude": -84.47
         },
         {
-          "latitude": 33.5131,
-          "longitude": -84.4898
+          "latitude": 33.5131375,
+          "longitude": -84.4897599
         }
       ],
       "start_date": null,
@@ -630,45 +607,36 @@
       "project_name": "Hills Bridge – Speedway Project",
       "aliases": [
         "Hills Bridge - Speedway Project",
-        "Hills Bridge – Speedway",
-        "Hills Bridge - Speedway",
+        "Hills Bridge – Speedway project",
+        "Hills Bridge - Speedway project",
         "Hills Bridge – Speedway 500/230 kV",
-        "Hills Bridge - Speedway 500/230 kV",
         "Hills Bridge - Speedway 230/500 kV Transmission Line Project",
-        "Hills Bridge–Speedway 500 kV Transmission Project",
+        "Hills Bridge – Speedway 500 kV Transmission Project",
         "Hills Bridge - Speedway 500/230 kV Transmission Project"
       ],
       "project_type": "Transmission Line",
-      "description": "Construction of new transmission infrastructure across Clayton and Henry counties to support the electric needs of a data center customer that requires new transmission infrastructure and strengthen the local electric grid. The project currently includes three transmission lines (O’Hara–Scherer 500 kV Hills Bridge Loop approx. 0.25 mile, Hills Bridge–Speedway #1 230 kV approx. 1.5 miles, and Hills Bridge–Speedway #2 230 kV approx. 1.0 mile) and two new substations (Hills Bridge 500/230 kV Substation in Clayton County and Speedway 230 kV Substation in Henry County).",
-      "status": "Planning",
-      "location": "Lower Woolsey Road corridor",
-      "city": null,
-      "county": null,
+      "description": "Transmission infrastructure project in Henry and Clayton counties to support the electric needs of a data center customer while strengthening the local grid, currently including construction of three transmission lines (approximately 0.25-mile O’Hara–Scherer 500 kV Hills Bridge Loop, approximately 1.5-mile Hills Bridge–Speedway #1 230 kV line, and approximately 1.0-mile Hills Bridge–Speedway #2 230 kV line) as well as two new substations.",
+      "status": "Pre-Construction",
+      "location": "Along Lower Woolsey Road and connecting Hills Bridge and Speedway substations",
+      "city": "Hampton",
+      "county": "Clayton & Henry counties",
       "state": "Georgia",
       "coordinates": [
         {
-          "latitude": 33.36,
-          "longitude": -84.37
+          "latitude": 33.392,
+          "longitude": -84.325
         },
         {
-          "latitude": 33.54,
-          "longitude": -84.36
+          "latitude": 33.3727395,
+          "longitude": -84.35968924
         },
         {
-          "latitude": 33.45,
-          "longitude": -84.15
+          "latitude": 33.37290739,
+          "longitude": -84.34275744
         },
         {
-          "latitude": 33.3721,
-          "longitude": -84.3615
-        },
-        {
-          "latitude": 33.3729,
-          "longitude": -84.3417
-        },
-        {
-          "latitude": 33.3841,
-          "longitude": -84.3535
+          "latitude": 33.38479976,
+          "longitude": -84.35457738
         }
       ],
       "start_date": "Q2 2026",
@@ -694,15 +662,15 @@
       "aliases": [
         "Grassy Hollow - Great Valley 230 kV Transmission Line",
         "Grassy Hollow – Great Valley 230 kV Transmission Project",
-        "Grassy Hollow – Great Valley 230 kV Transmission Line",
+        "Grassy Hollow - Great Valley Transmission Project",
         "Grassy Hollow – Great Valley 230 kV",
-        "Grassy Hollow - Great Valley 230 kV",
-        "Grassy Hollow–Great Valley 230 kv Transmission Line Project",
-        "Grassy Hollow–Great Valley 230 kV Transmission Line Project"
+        "Grassy Hollow–Great Valley 230 kV Transmission Line Project",
+        "Grassy Hollow–Great Valley 230 kV Transmission Project",
+        "Grassy Hollow - Great Valley 230 kV Transmission Line Project"
       ],
       "project_type": "Transmission Line",
-      "description": "Construction of a new Grassy Hollow Substation and a new approximately 10.4-mile 230 kV transmission line connecting the Grassy Hollow Substation to the Great Valley Substation in Bartow County to serve the electric needs of a large-load customer while adding capacity and strengthening reliability for the local electric grid.",
-      "status": "In development",
+      "description": "Construction of a new approximately 10.4-mile 230 kV transmission line connecting the Grassy Hollow Substation to the Great Valley Substation, along with a new Grassy Hollow Substation, in Bartow County to serve the electric needs of a large-load customer while adding capacity and strengthening reliability for the local electric grid.",
+      "status": "Planning",
       "location": "Between Grassy Hollow Substation and Great Valley Substation",
       "city": null,
       "county": "Bartow County",
@@ -726,7 +694,7 @@
       "estimated_cost": null,
       "sources": [
         {
-          "file_name": "grassy-hollow-great-valley-230kv-project.pdf",
+          "file_name": "grassy-hollow-great-valley-230-kv-transmission-project.pdf",
           "page": 1
         },
         {
@@ -740,23 +708,21 @@
       ]
     },
     {
-      "project_name": "Hatch – Wadley Primary 500 kV Transmission Project",
+      "project_name": "Hatch – Wadley Primary 500 kV Transmission Line",
       "aliases": [
         "Hatch - Wadley Primary 500 kV Transmission Line",
-        "Hatch – Wadley Primary 500 kV Transmission Line",
         "Hatch - Wadley Primary 500 kV Transmission Project",
-        "Hatch - Wadley Primary 500kV Project",
+        "Hatch – Wadley Primary 500 kV Transmission Project",
         "Hatch – Wadley Primary 500 kV",
-        "Hatch - Wadley Primary 500 kV",
         "Hatch-Wadley Primary 500 kV Transmission Line Project",
         "Hatch-Wadley Primary 500 kV Transmission Project"
       ],
       "project_type": "Transmission Line",
-      "description": "Construction of a new approximately 75-mile, 500 kV transmission line beginning at Plant Hatch in Appling County, crossing Toombs and Emanuel counties, and ending at the Wadley Primary Substation in Jefferson County to enhance grid reliability, improve resiliency, and support long-term energy needs.",
+      "description": "Construction of a new approximately 75-mile 500 kV transmission line beginning at Plant Hatch in Appling County, crossing Toombs and Emanuel counties, and ending at the Wadley Primary Substation in Jefferson County to enhance grid reliability, improve resiliency, and support long-term regional energy needs.",
       "status": "Planning",
       "location": "Between Plant Hatch and Wadley Primary Substation",
       "city": null,
-      "county": null,
+      "county": "Appling, Emanuel, Jefferson, & Toombs counties",
       "state": "Georgia",
       "coordinates": [
         {
@@ -764,16 +730,16 @@
           "longitude": -82.3439
         },
         {
-          "latitude": 32.8674,
+          "latitude": 32.8665,
           "longitude": -82.4043
-        },
-        {
-          "latitude": 32.8834019,
-          "longitude": -82.4141306
         },
         {
           "latitude": 31.9341389,
           "longitude": -82.3466604
+        },
+        {
+          "latitude": 32.8834019,
+          "longitude": -82.4141306
         }
       ],
       "start_date": "Q4 2028",
@@ -781,7 +747,7 @@
       "estimated_cost": null,
       "sources": [
         {
-          "file_name": "hatch-wadley-primary-500kv-project.pdf",
+          "file_name": "hatch-wadley-primary-500-kv-transmission-project-information-and-faqs.pdf",
           "page": 1
         },
         {
@@ -797,42 +763,40 @@
     {
       "project_name": "Tomochichi - Towaliga River 230 kV",
       "aliases": [
-        "Tomochichi – Towaliga River 230 kV",
         "Tomochichi - Towaliga River 230 kV Project",
-        "Tomochichi – Towaliga River",
+        "Tomochichi – Towaliga River 230 kV",
         "Tomochichi – Towaliga River Area Project",
-        "Tomochichi - Towaliga River Area Project",
         "Tomochichi – Towaliga River Transmission Project",
-        "Tomochichi - Towaliga River Transmission Project",
         "Tomochichi – Towaliga River 230 kV Area Transmission Project",
-        "Tomochichi - Towaliga River 230 kV Area Transmission Project"
+        "Tomochichi – Towaliga River #1 230 kV Transmission Line",
+        "Tomochichi – Towaliga River #2 230 kV Transmission Line"
       ],
       "project_type": "Transmission Line",
-      "description": "A 230 kV area transmission project located in Butts and Spalding counties to support the electric needs of a large-load customer and enhance regional grid reliability. The project includes construction of two new approximately 5-mile 230 kV transmission lines (Tomochichi – Towaliga River #1 and #2) and the new Tomochichi Substation.",
+      "description": "Construction of two new approximately 5-mile 230 kV transmission lines (Tomochichi – Towaliga River #1 and #2) in Butts and Spalding counties to serve the electric needs of a large-load customer and strengthen local grid reliability.",
       "status": "Planning",
       "location": "Between Tomochichi Substation and Towaliga River Substation",
       "city": null,
-      "county": null,
+      "county": "Butts & Spalding counties",
       "state": "Georgia",
       "coordinates": [
         {
-          "latitude": 33.29,
-          "longitude": -83.96
+          "latitude": 33.2954,
+          "longitude": -83.9619
         },
         {
-          "latitude": 33.26,
-          "longitude": -84.28
+          "latitude": 33.2612,
+          "longitude": -84.2831
         },
         {
-          "latitude": 33.2728,
-          "longitude": -84.1408
+          "latitude": 33.27283687,
+          "longitude": -84.14076122
         },
         {
-          "latitude": 33.2735,
-          "longitude": -84.065
+          "latitude": 33.27350709,
+          "longitude": -84.06503473
         }
       ],
-      "start_date": "Q3 2025",
+      "start_date": "Q3 2026",
       "end_date": "Q4 2027",
       "estimated_cost": null,
       "sources": [
@@ -847,57 +811,67 @@
       ]
     },
     {
-      "project_name": "Big Tazewell - Farley 500 kV",
+      "project_name": "Tomochichi Substation",
       "aliases": [
-        "Big Tazewell – Farley 500 kV",
-        "Big Tazewell - Farley 500 kV Project",
-        "Big Tazewell–Farley 500 kV Transmission Line Project",
-        "Big Tazewell - Farley 500 kV Transmission Line Project",
-        "Big Tazewell - Farley 500kv Transmission Project",
-        "Big Tazewell - Farley 500 kV Transmission Project"
+        "Tomochichi Substation Project"
       ],
-      "project_type": "Transmission Line",
-      "description": "Construction of an approximately 102-mile, 500 kV transmission line extending from the Farley Switching Station in Houston County, Alabama, to the new Big Tazewell 500 kV Substation in Marion County, Georgia, traversing Houston County in Alabama and Early, Clay, Quitman, Stewart, Chattahoochee, and Marion counties in Georgia to enhance grid reliability, improve operational efficiency, and support long-term energy needs.",
-      "status": "Planning",
-      "location": "Between Farley Switching Station and Big Tazewell Substation",
+      "project_type": "Substation",
+      "description": "Construction of a new substation in Butts/Spalding County to support new 230 kV transmission lines, enhance system capacity, and improve reliability for a large-load customer and the local grid.",
+      "status": "Under Construction",
+      "location": "Butts / Spalding County",
       "city": null,
-      "county": null,
+      "county": "Butts & Spalding counties",
       "state": "Georgia",
       "coordinates": [
         {
-          "latitude": 32.35,
-          "longitude": -84.79
-        },
-        {
-          "latitude": 31.62,
-          "longitude": -85.01
-        },
-        {
-          "latitude": 31.32,
-          "longitude": -84.9
-        },
-        {
-          "latitude": 32.35,
-          "longitude": -84.53
-        },
-        {
-          "latitude": 31.87,
-          "longitude": -85.02
-        },
-        {
-          "latitude": 32.08,
-          "longitude": -84.84
-        },
-        {
-          "latitude": 31.2326,
-          "longitude": -85.1134
-        },
-        {
-          "latitude": 32.3633,
-          "longitude": -84.4843
+          "latitude": 33.27283687,
+          "longitude": -84.14076122
         }
       ],
-      "start_date": "Q3 2025",
+      "start_date": "Q1 2026",
+      "end_date": "Q3 2027",
+      "estimated_cost": null,
+      "sources": [
+        {
+          "file_name": "tomochichi-towaliga.html",
+          "page": null
+        }
+      ]
+    },
+    {
+      "project_name": "Big Tazewell - Farley 500 kV",
+      "aliases": [
+        "Big Tazewell - Farley 500 kV Transmission Line",
+        "Big Tazewell – Farley 500 kV",
+        "Big Tazewell – Farley 500 kV Transmission Line Project",
+        "Big Tazewell - Farley 500kv Transmission Project"
+      ],
+      "project_type": "Transmission Line",
+      "description": "Construction of an approximately 102-mile 500 kV transmission line extending from the Farley Switching Station in Houston County, Alabama, to the new Big Tazewell 500 kV Substation in Marion County, Georgia, traversing Chattahoochee, Clay, Early, Marion, Quitman, and Stewart counties to increase bulk system power flow and long-term grid reliability.",
+      "status": "Planning",
+      "location": "Between Farley Switching Station, AL and Big Tazewell Substation, GA",
+      "city": null,
+      "county": "Chattahoochee, Clay, Early, Marion, Quitman, & Stewart counties",
+      "state": "Georgia",
+      "coordinates": [
+        {
+          "latitude": 32.3785,
+          "longitude": -84.5369
+        },
+        {
+          "latitude": 31.2227,
+          "longitude": -85.1127
+        },
+        {
+          "latitude": 31.23258365,
+          "longitude": -85.11344023
+        },
+        {
+          "latitude": 32.36332714,
+          "longitude": -84.48428053
+        }
+      ],
+      "start_date": "Q3 2026",
       "end_date": "Q4 2028",
       "estimated_cost": null,
       "sources": [
@@ -912,15 +886,44 @@
       ]
     },
     {
+      "project_name": "Big Tazewell Substation",
+      "aliases": [
+        "Big Tazewell 500 kV Substation",
+        "Big Tazewell Substation Project"
+      ],
+      "project_type": "Substation",
+      "description": "Construction of a new 500 kV substation in Marion County, Georgia, connecting to the Big Tazewell–Farley 500 kV transmission line to enhance grid reliability and power flow.",
+      "status": "Planning",
+      "location": "Marion County",
+      "city": null,
+      "county": "Marion County",
+      "state": "Georgia",
+      "coordinates": [
+        {
+          "latitude": 32.36332714,
+          "longitude": -84.48428053
+        }
+      ],
+      "start_date": "Q1 2027",
+      "end_date": "Q2 2028",
+      "estimated_cost": null,
+      "sources": [
+        {
+          "file_name": "big-tazewell-farley.html",
+          "page": null
+        }
+      ]
+    },
+    {
       "project_name": "Decatur - Scottdale 115 kV",
       "aliases": [
+        "Decatur - Scottdale 115 kV Upgrade",
         "Decatur – Scottdale 115 kV",
-        "Decatur - Scottdale 115 kV Project",
         "Decatur – Scottdale 115 kV Transmission Line Project",
         "Decatur - Scottdale 115 kV Transmission Project"
       ],
       "project_type": "Transmission Line Upgrade",
-      "description": "Rebuilding of the existing approximately 2.5-mile Decatur – Scottdale 115 kV transmission line between the Scottdale Substation in DeKalb County and the Decatur Substation on East College Avenue, and relocating approximately 0.7 miles of line. Originally constructed in 1965, the rebuild replaces aging infrastructure to enhance system reliability and support evolving energy needs.",
+      "description": "Rebuilding the existing approximately 2.5-mile Decatur – Scottdale 115 kV transmission line between the Scottdale Substation in DeKalb County and the Decatur Substation on East College Avenue, as well as relocating approximately 0.7 miles of line, replacing aging infrastructure originally constructed in 1965 to enhance system reliability and support growing energy needs.",
       "status": "Planning",
       "location": "Between Scottdale Substation and Decatur Substation on East College Avenue",
       "city": "Decatur",
@@ -932,16 +935,16 @@
           "longitude": -84.2963
         },
         {
-          "latitude": 33.7937,
+          "latitude": 33.7932,
           "longitude": -84.2619
         },
         {
-          "latitude": 33.79125,
-          "longitude": -84.27153
+          "latitude": 33.7912508965,
+          "longitude": -84.2715258704
         },
         {
-          "latitude": 33.77069,
-          "longitude": -84.29156
+          "latitude": 33.7706919877,
+          "longitude": -84.2915580501
         }
       ],
       "start_date": "Q1 2027",
@@ -961,39 +964,39 @@
     {
       "project_name": "Callaway Road - Thomson Primary 500 kV",
       "aliases": [
-        "Callaway Road – Thomson Primary 500 kV",
         "Callaway Road - Thomson Primary 500 kV Project",
+        "Callaway Road – Thomson Primary 500 kV",
         "Callaway Road – Thomson Primary 500 kV Area Transmission Project",
         "Callaway Road – Thomson 500kv Transmission Project",
         "Callaway Road – Thomson Transmission Area Project",
-        "Callaway Road - Thomson Primary"
+        "Callaway Road–Thomson 500 kV Transmission Project"
       ],
       "project_type": "Transmission Line",
-      "description": "A 500 kV area transmission project in Columbia and McDuffie counties to support the electric needs of a large-load customer and strengthen the local transmission system. The project includes construction of the new 500/230 kV Callaway Road Substation in Columbia County, approximately 17 miles of new 500 kV transmission infrastructure (Callaway Road–Thomson #1 approx. 10 miles and Callaway Road–Thomson #2 approx. 7 miles), and associated facilities.",
+      "description": "Area transmission project in McDuffie and Columbia counties including approximately 17 miles of new 500 kV transmission infrastructure (comprising the approximately 10-mile Callaway Road–Thomson #1 500 kV line and the approximately 7-mile Callaway Road–Thomson #2 500 kV line) and the new 500/230 kV Callaway Road Substation, designed to serve a large-load customer while adding capacity and strengthening the local electric grid.",
       "status": "Planning",
-      "location": "Between Thomson Primary Substation and Callaway Road Substation",
+      "location": "Between Callaway Road Substation and Thomson Primary Substation",
       "city": "Thomson",
-      "county": null,
+      "county": "Columbia & McDuffie counties",
       "state": "Georgia",
       "coordinates": [
         {
-          "latitude": 33.54,
-          "longitude": -82.26
+          "latitude": 33.5415,
+          "longitude": -82.2615
         },
         {
           "latitude": 33.4707,
           "longitude": -82.5046
         },
         {
-          "latitude": 33.45646,
-          "longitude": -82.41269
+          "latitude": 33.45645761,
+          "longitude": -82.41269284
         },
         {
-          "latitude": 33.51092,
-          "longitude": -82.37583
+          "latitude": 33.51091517,
+          "longitude": -82.37582817
         }
       ],
-      "start_date": "Spring 2027",
+      "start_date": "Summer 2027",
       "end_date": null,
       "estimated_cost": null,
       "sources": [
@@ -1011,11 +1014,11 @@
       "project_name": "Effingham County 500 kV",
       "aliases": [
         "Effingham County 500 kV Project",
-        "Effingham County 500 kV Area Transmission Project",
-        "Effingham County Transmission Project"
+        "Effingham County Transmission Project",
+        "Effingham County 500 kV Area Transmission Project"
       ],
       "project_type": "Transmission Line",
-      "description": "A 500 kV area transmission project in Effingham County to support the electrical needs of a large-load customer while strengthening the local transmission system. The project is expected to include a new 500/230 kV Effingham County Substation, new 500 kV transmission infrastructure, and associated facilities.",
+      "description": "Transmission infrastructure project in Effingham County planned to serve the electric needs of a large-load customer while strengthening the local grid, expected to include a new 500/230 kV Effingham County Substation, new 500 kV transmission infrastructure, and associated facilities.",
       "status": "Planning",
       "location": "Effingham County",
       "city": null,
@@ -1023,11 +1026,11 @@
       "state": "Georgia",
       "coordinates": [
         {
-          "latitude": 32.37,
-          "longitude": -81.34
+          "latitude": 32.3668,
+          "longitude": -81.3431
         }
       ],
-      "start_date": "Fall 2027",
+      "start_date": null,
       "end_date": null,
       "estimated_cost": null,
       "sources": [
@@ -1045,18 +1048,18 @@
       "project_name": "Conyers – Klondike 230 kV",
       "aliases": [
         "Conyers - Klondike 230 kV",
-        "Conyers – Klondike 230 kV Project",
+        "Conyers - Klondike 230 kV Transmission Line",
+        "Conyers – Klondike 230 kV Transmission Line",
         "Conyers-Klondike 230 kV Transmission Line Project",
         "Conyers - Klondike 230 kV Transmission Line Project",
-        "Conyers – Klondike 230 kV Transmission Line Project",
-        "Conyers - Klondike 230 kV Project"
+        "Conyers – Klondike 230 kV Project"
       ],
       "project_type": "Transmission Line",
-      "description": "Construction of a new 8.5-mile, 230 kV transmission line connecting the Conyers Substation in Rockdale County to the Klondike Substation in DeKalb County, following the existing transmission corridor in some locations and creating a new corridor where required by design, to enhance system reliability and support Georgia's evolving energy needs.",
+      "description": "Construction of a new 8.5-mile 230 kV transmission line connecting the Conyers Substation in Rockdale County to the Klondike Substation in DeKalb County, partly following the existing transmission corridor and establishing new corridor as needed, to enhance system reliability and support growing energy needs.",
       "status": "Planning",
       "location": "Between Conyers Substation and Klondike Substation",
       "city": "Conyers",
-      "county": null,
+      "county": "DeKalb & Rockdale counties",
       "state": "Georgia",
       "coordinates": [
         {
@@ -1064,8 +1067,8 @@
           "longitude": -84.0177
         },
         {
-          "latitude": 33.6637,
-          "longitude": -84.1452
+          "latitude": 33.6748,
+          "longitude": -84.1444
         },
         {
           "latitude": 33.6974241654,
@@ -1096,10 +1099,10 @@
         "Meter Upgrade Program",
         "Meter Upgrade Project"
       ],
-      "project_type": "Advanced Metering Infrastructure",
-      "description": "Statewide initiative to replace and upgrade electric metering equipment with advanced smart meters to enhance the accuracy and reliability of energy usage data, improve outage detection, and elevate overall customer service reliability, executed in partnership with authorized contractor NexGen Energy Services.",
-      "status": "In progress",
-      "location": "Statewide",
+      "project_type": "Grid Modernization",
+      "description": "Statewide initiative to replace existing meters with new smart meters providing real-time data, improved outage detection, and enhanced energy data accuracy, partnered with NexGen Energy Services to perform meter installations.",
+      "status": "In Progress",
+      "location": null,
       "city": null,
       "county": null,
       "state": "Georgia",
@@ -1125,10 +1128,10 @@
         "Vegetation Easement & Clearance Program",
         "Vegetation Management Program"
       ],
-      "project_type": "Vegetation Management / Grid Reliability",
-      "description": "Voluntary statewide program seeking additional vegetation clearance easement rights in select locations across Georgia to reduce tree-related outages and improve distribution circuit reliability during storms, ice storms, and high wind. Contractor land agents work with property owners to secure easement rights, and professional tree contractors prune or remove vegetation in accordance with ANSI and ISA standards.",
-      "status": "In progress",
-      "location": "Statewide",
+      "project_type": "Right-of-Way / Grid Reliability",
+      "description": "Statewide initiative seeking additional vegetation clearance easement rights in select locations to clear vegetation impacting electric lines and improve grid reliability. Pruning and tree clearing are executed in cooperation with professional contracted land agents and tree services according to ANSI and ISA standards.",
+      "status": "In Progress",
+      "location": null,
       "city": null,
       "county": null,
       "state": "Georgia",
@@ -1152,6 +1155,163 @@
         {
           "file_name": "contact-us.html",
           "page": null
+        }
+      ]
+    },
+    {
+      "project_name": "Callaway Road Substation",
+      "aliases": [
+        "Callaway Road 500/230 kV Substation",
+        "Callaway Road Substation Project"
+      ],
+      "project_type": "Substation",
+      "description": "Construction of a new 500/230 kV substation in Columbia County to support 500 kV and 230 kV transmission infrastructure, serve a large-load customer, and reinforce the regional transmission system.",
+      "status": "Planning",
+      "location": "Columbia County",
+      "city": null,
+      "county": "Columbia County",
+      "state": "Georgia",
+      "coordinates": [
+        {
+          "latitude": 33.51091517,
+          "longitude": -82.37582817
+        }
+      ],
+      "start_date": "Spring 2027",
+      "end_date": null,
+      "estimated_cost": null,
+      "sources": [
+        {
+          "file_name": "callaway-thomson.html",
+          "page": null
+        }
+      ]
+    },
+    {
+      "project_name": "Effingham County Substation",
+      "aliases": [
+        "500/230 kV Effingham County Substation",
+        "Effingham County 500/230 kV Substation",
+        "Effingham County Substation Project"
+      ],
+      "project_type": "Substation",
+      "description": "Construction of a new 500/230 kV substation in Effingham County to support 500 kV transmission infrastructure, serve a large-load customer, and reinforce the local transmission system.",
+      "status": "Planning",
+      "location": "Effingham County",
+      "city": null,
+      "county": "Effingham County",
+      "state": "Georgia",
+      "coordinates": [
+        {
+          "latitude": 32.3668,
+          "longitude": -81.3431
+        }
+      ],
+      "start_date": "Fall 2027",
+      "end_date": null,
+      "estimated_cost": null,
+      "sources": [
+        {
+          "file_name": "effingham-county.html",
+          "page": null
+        }
+      ]
+    },
+    {
+      "project_name": "Hills Bridge Substation",
+      "aliases": [
+        "Hills Bridge 500/230 kV Substation",
+        "Hills Bridge Sub",
+        "Hills Bridge Substation Project"
+      ],
+      "project_type": "Substation",
+      "description": "Construction of a new 500/230 kV substation in Clayton County to support both 500 kV and 230 kV transmission infrastructure.",
+      "status": "Planning",
+      "location": "Clayton County",
+      "city": "Hampton",
+      "county": "Clayton County",
+      "state": "Georgia",
+      "coordinates": [
+        {
+          "latitude": 33.3727395,
+          "longitude": -84.35968924
+        }
+      ],
+      "start_date": "Q2 2026",
+      "end_date": "Q4 2028",
+      "estimated_cost": null,
+      "sources": [
+        {
+          "file_name": "hills-bridge-speedway.html",
+          "page": null
+        }
+      ]
+    },
+    {
+      "project_name": "Speedway Substation",
+      "aliases": [
+        "Speedway 230 kV Substation",
+        "Speedway Substation Project",
+        "Speedway #1 Sub",
+        "Speedway #2 Sub"
+      ],
+      "project_type": "Substation",
+      "description": "Construction of a new 230 kV substation in Henry County to serve a new data center customer on the customer’s property.",
+      "status": "Planning",
+      "location": "Henry County",
+      "city": "Hampton",
+      "county": "Henry County",
+      "state": "Georgia",
+      "coordinates": [
+        {
+          "latitude": 33.37290739,
+          "longitude": -84.34275744
+        },
+        {
+          "latitude": 33.38479976,
+          "longitude": -84.35457738
+        }
+      ],
+      "start_date": "Q2 2026",
+      "end_date": "Q4 2028",
+      "estimated_cost": null,
+      "sources": [
+        {
+          "file_name": "hills-bridge-speedway.html",
+          "page": null
+        }
+      ]
+    },
+    {
+      "project_name": "Grassy Hollow Substation",
+      "aliases": [
+        "Grassy Hollow 230 kV Substation",
+        "Grassy Hollow Substation Project"
+      ],
+      "project_type": "Substation",
+      "description": "Construction of the new Grassy Hollow Substation in Bartow County to serve the electric needs of a large-load customer while adding capacity and strengthening reliability for the local electric grid.",
+      "status": "Planning",
+      "location": "Bartow County",
+      "city": null,
+      "county": "Bartow County",
+      "state": "Georgia",
+      "coordinates": [
+        {
+          "latitude": 34.2448811,
+          "longitude": -84.67487111
+        }
+      ],
+      "start_date": "Q2 2026",
+      "end_date": "Q1 2027",
+      "estimated_cost": null,
+      "sources": [
+        {
+          "file_name": "grassy-hollow-great-valley.html",
+          "page": null
+        },
+        {
+          "file_name": "grassy-hollow-great-valley-230-kv-transmission-project.pdf",
+          "page": 1
         }
       ]
     }

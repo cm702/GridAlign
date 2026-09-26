@@ -1,24 +1,155 @@
+// =========================
+// GRIDALIGN DASHBOARD
+// =========================
+
 document.addEventListener(
     "DOMContentLoaded",
     function () {
 
         console.log(
-            "GridAlign dashboard.js loaded"
+            "GridAlign dashboard loaded"
         );
 
 
-        // =========================
-        // ELEMENTS
-        // =========================
+        const refreshDataButton =
+            document.getElementById(
+                "refresh-data"
+            );
+
+        const runMatcherButton =
+            document.getElementById(
+                "run-matcher"
+            );
 
         const generateReportsButton =
             document.getElementById(
                 "generate-reports"
             );
 
+        const logoutButton =
+            document.getElementById(
+                "logout-button"
+            );
+
 
         // =========================
-        // REPORT GENERATION
+        // REFRESH PROJECT DATA
+        // =========================
+
+        if (refreshDataButton) {
+
+            refreshDataButton.addEventListener(
+                "click",
+                async function () {
+
+                    const confirmed = confirm(
+                        "Process the utility source data again?"
+                    );
+
+
+                    if (!confirmed) {
+                        return;
+                    }
+
+
+                    await startJob({
+
+                        button:
+                            refreshDataButton,
+
+                        endpoint:
+                            "/api/refresh-data",
+
+                        statusEndpoint:
+                            "/api/refresh-data/status",
+
+                        logElement:
+                            "refresh-data-log",
+
+                        runningText:
+                            "Processing Project Data...",
+
+                        normalText:
+                            "Refresh Project Data",
+
+                        successMessage:
+                            "Project data processed successfully.",
+
+                        afterSuccess:
+                            function () {
+
+                                alert(
+                                    "Project data processed successfully.\n\nRun Project Matcher next."
+                                );
+                            }
+                    });
+
+                }
+            );
+        }
+
+
+        // =========================
+        // RUN PROJECT MATCHER
+        // =========================
+
+        if (runMatcherButton) {
+
+            runMatcherButton.addEventListener(
+                "click",
+                async function () {
+
+                    const confirmed = confirm(
+                        "Run the Java Project Matcher?"
+                    );
+
+
+                    if (!confirmed) {
+                        return;
+                    }
+
+
+                    await startJob({
+
+                        button:
+                            runMatcherButton,
+
+                        endpoint:
+                            "/api/run-matcher",
+
+                        statusEndpoint:
+                            "/api/run-matcher/status",
+
+                        logElement:
+                            "run-matcher-log",
+
+                        runningText:
+                            "Running Matcher...",
+
+                        normalText:
+                            "Run Project Matcher",
+
+                        successMessage:
+                            "Project matching completed successfully.",
+
+                        afterSuccess:
+                            function () {
+
+                                alert(
+                                    "Project matching completed successfully."
+                                );
+
+                                window.location.reload();
+                            }
+                    });
+
+                }
+            );
+        }
+
+
+        // =========================
+        // GENERATE REPORTS
         // =========================
 
         if (generateReportsButton) {
@@ -31,155 +162,388 @@ document.addEventListener(
                         "Generate AI reports for all detected matches?"
                     );
 
+
                     if (!confirmed) {
                         return;
                     }
 
 
-                    generateReportsButton.disabled = true;
+                    await startJob({
 
-                    generateReportsButton.textContent =
-                        "Starting...";
+                        button:
+                            generateReportsButton,
 
-
-                    try {
-
-                        const response = await fetch(
+                        endpoint:
                             "/api/generate-reports",
-                            {
-                                method: "POST"
+
+                        statusEndpoint:
+                            "/api/reports/status",
+
+                        logElement:
+                            "generate-reports-log",
+
+                        runningText:
+                            "Generating AI Reports...",
+
+                        normalText:
+                            "Generate AI Reports",
+
+                        successMessage:
+                            "AI reports generated successfully.",
+
+                        afterSuccess:
+                            function () {
+
+                                alert(
+                                    "All AI reports were generated successfully."
+                                );
+
+                                window.location.reload();
                             }
-                        );
+                    });
 
-
-                        const data =
-                            await response.json();
-
-
-                        if (!response.ok) {
-
-                            alert(
-                                data.detail ||
-                                "Could not start report generation."
-                            );
-
-                            generateReportsButton.disabled =
-                                false;
-
-                            generateReportsButton.textContent =
-                                "Generate AI Reports";
-
-                            return;
-                        }
-
-
-                        generateReportsButton.textContent =
-                            "Generating AI Reports...";
-
-
-                        checkReportGenerationStatus();
-
-                    } catch (error) {
-
-                        console.error(
-                            "Report generation error:",
-                            error
-                        );
-
-                        alert(
-                            "Could not connect to the server."
-                        );
-
-                        generateReportsButton.disabled =
-                            false;
-
-                        generateReportsButton.textContent =
-                            "Generate AI Reports";
-                    }
                 }
-            );
-
-        } else {
-
-            console.warn(
-                "Generate reports button not found."
             );
         }
 
 
         // =========================
-        // LOAD OVERVIEW
+        // LOGOUT
+        // =========================
+
+        if (logoutButton) {
+
+            logoutButton.addEventListener(
+                "click",
+                async function () {
+
+                    try {
+
+                        await fetch(
+                            "/api/logout",
+                            {
+                                method: "POST"
+                            }
+                        );
+
+                    } catch (error) {
+
+                        console.error(
+                            "Logout error:",
+                            error
+                        );
+                    }
+
+
+                    window.location.href = "/";
+                }
+            );
+        }
+
+
+        // =========================
+        // INITIAL LOAD
         // =========================
 
         loadOverview();
+
+        restoreJobStatuses();
 
     }
 );
 
 
 // =========================
-// REPORT STATUS
+// AUTH CHECK
 // =========================
 
-async function checkReportGenerationStatus() {
+function handleUnauthorized(
+    response
+) {
 
-    const button =
+    if (response.status === 401) {
+
+        window.location.href = "/";
+
+        return true;
+    }
+
+    return false;
+}
+
+
+// =========================
+// UPDATE TERMINAL
+// =========================
+
+function updateJobLog(
+    elementId,
+    status
+) {
+
+    const element =
         document.getElementById(
-            "generate-reports"
+            elementId
         );
+
+
+    if (!element) {
+        return;
+    }
+
+
+    const lines =
+        status.log || [];
+
+
+    if (lines.length === 0) {
+
+        element.textContent = "";
+
+        element.classList.remove(
+            "active"
+        );
+
+        return;
+    }
+
+
+    element.classList.add(
+        "active"
+    );
+
+
+    element.textContent =
+        lines.join("\n");
+
+
+    element.scrollTop =
+        element.scrollHeight;
+}
+
+
+// =========================
+// START JOB
+// =========================
+
+async function startJob(
+    options
+) {
+
+    const {
+        button,
+        endpoint,
+        statusEndpoint,
+        logElement,
+        runningText,
+        normalText,
+        successMessage,
+        afterSuccess
+    } = options;
+
+
+    button.disabled = true;
+
+    button.textContent =
+        runningText;
+
+
+    const logBox =
+        document.getElementById(
+            logElement
+        );
+
+
+    if (logBox) {
+
+        logBox.textContent =
+            "Starting...";
+
+        logBox.classList.add(
+            "active"
+        );
+    }
 
 
     try {
 
         const response = await fetch(
-            "/api/reports/status",
+            endpoint,
+            {
+                method: "POST",
+                cache: "no-store"
+            }
+        );
+
+
+        if (
+            handleUnauthorized(
+                response
+            )
+        ) {
+            return;
+        }
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            alert(
+                data.detail ||
+                "Could not start operation."
+            );
+
+
+            button.disabled = false;
+
+            button.textContent =
+                normalText;
+
+
+            return;
+        }
+
+
+        pollJobStatus({
+            button,
+            statusEndpoint,
+            logElement,
+            runningText,
+            normalText,
+            successMessage,
+            afterSuccess
+        });
+
+
+    } catch (error) {
+
+        console.error(
+            "Job start error:",
+            error
+        );
+
+
+        button.disabled = false;
+
+        button.textContent =
+            normalText;
+
+
+        alert(
+            "Could not connect to the server."
+        );
+    }
+}
+
+
+// =========================
+// POLL JOB
+// =========================
+
+async function pollJobStatus(
+    options
+) {
+
+    const {
+        button,
+        statusEndpoint,
+        logElement,
+        runningText,
+        normalText,
+        successMessage,
+        afterSuccess
+    } = options;
+
+
+    try {
+
+        const response = await fetch(
+            statusEndpoint,
             {
                 cache: "no-store"
             }
         );
 
 
+        if (
+            handleUnauthorized(
+                response
+            )
+        ) {
+            return;
+        }
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Could not read job status."
+            );
+        }
+
+
         const status =
             await response.json();
 
 
+        updateJobLog(
+            logElement,
+            status
+        );
+
+
         if (status.running) {
 
-            if (button) {
-                button.textContent =
-                    "Generating AI Reports...";
-            }
+            button.disabled = true;
+
+            button.textContent =
+                runningText;
+
 
             setTimeout(
-                checkReportGenerationStatus,
-                2000
+                function () {
+
+                    pollJobStatus(
+                        options
+                    );
+
+                },
+                1000
             );
+
 
             return;
         }
 
 
-        if (button) {
+        button.disabled = false;
 
-            button.disabled = false;
-
-            button.textContent =
-                "Generate AI Reports";
-        }
+        button.textContent =
+            normalText;
 
 
         if (
             status.message ===
-            "AI reports generated successfully."
+            successMessage
         ) {
 
-            alert(
-                "All AI reports were generated successfully."
-            );
+            if (afterSuccess) {
 
-            window.location.reload();
+                afterSuccess();
+            }
 
-        } else {
+
+            return;
+        }
+
+
+        if (
+            status.message &&
+            status.message !== "Idle"
+        ) {
 
             alert(
                 status.message
@@ -190,17 +554,175 @@ async function checkReportGenerationStatus() {
     } catch (error) {
 
         console.error(
-            "Report status error:",
+            "Job status error:",
             error
         );
 
 
-        if (button) {
+        button.disabled = false;
 
-            button.disabled = false;
+        button.textContent =
+            normalText;
+    }
+}
 
-            button.textContent =
-                "Generate AI Reports";
+
+// =========================
+// RESTORE JOB STATUS
+// =========================
+
+async function restoreJobStatuses() {
+
+    const jobs = [
+
+        {
+            button:
+                document.getElementById(
+                    "refresh-data"
+                ),
+
+            statusEndpoint:
+                "/api/refresh-data/status",
+
+            logElement:
+                "refresh-data-log",
+
+            runningText:
+                "Processing Project Data...",
+
+            normalText:
+                "Refresh Project Data",
+
+            successMessage:
+                "Project data processed successfully.",
+
+            afterSuccess:
+                function () {}
+        },
+
+
+        {
+            button:
+                document.getElementById(
+                    "run-matcher"
+                ),
+
+            statusEndpoint:
+                "/api/run-matcher/status",
+
+            logElement:
+                "run-matcher-log",
+
+            runningText:
+                "Running Matcher...",
+
+            normalText:
+                "Run Project Matcher",
+
+            successMessage:
+                "Project matching completed successfully.",
+
+            afterSuccess:
+                function () {}
+        },
+
+
+        {
+            button:
+                document.getElementById(
+                    "generate-reports"
+                ),
+
+            statusEndpoint:
+                "/api/reports/status",
+
+            logElement:
+                "generate-reports-log",
+
+            runningText:
+                "Generating AI Reports...",
+
+            normalText:
+                "Generate AI Reports",
+
+            successMessage:
+                "AI reports generated successfully.",
+
+            afterSuccess:
+                function () {}
+        }
+
+    ];
+
+
+    for (const job of jobs) {
+
+        if (!job.button) {
+            continue;
+        }
+
+
+        try {
+
+            const response = await fetch(
+                job.statusEndpoint,
+                {
+                    cache: "no-store"
+                }
+            );
+
+
+            if (
+                handleUnauthorized(
+                    response
+                )
+            ) {
+                return;
+            }
+
+
+            if (!response.ok) {
+                continue;
+            }
+
+
+            const status =
+                await response.json();
+
+
+            updateJobLog(
+                job.logElement,
+                status
+            );
+
+
+            if (status.running) {
+
+                job.button.disabled = true;
+
+                job.button.textContent =
+                    job.runningText;
+
+
+                pollJobStatus(
+                    job
+                );
+
+            } else {
+
+                job.button.disabled = false;
+
+                job.button.textContent =
+                    job.normalText;
+            }
+
+
+        } catch (error) {
+
+            console.error(
+                "Could not restore job:",
+                error
+            );
         }
     }
 }
@@ -222,11 +744,36 @@ async function loadOverview() {
         );
 
 
+        if (
+            handleUnauthorized(
+                response
+            )
+        ) {
+            return;
+        }
+
+
         if (!response.ok) {
 
-            throw new Error(
-                "Could not load dashboard statistics."
+            // This is normal if matches.json
+            // has not been created yet.
+
+            setOverviewValue(
+                "stat-matches",
+                "0"
             );
+
+            setOverviewValue(
+                "stat-utilities",
+                "0"
+            );
+
+            setOverviewValue(
+                "stat-projects",
+                "0"
+            );
+
+            return;
         }
 
 
@@ -238,26 +785,14 @@ async function loadOverview() {
             data.matches || [];
 
 
-        console.log(
-            "Matches:",
+        // =========================
+        // MATCHES
+        // =========================
+
+        setOverviewValue(
+            "stat-matches",
             matches.length
         );
-
-
-        // =========================
-        // MATCH COUNT
-        // =========================
-
-        const matchesElement =
-            document.getElementById(
-                "stat-matches"
-            );
-
-        if (matchesElement) {
-
-            matchesElement.textContent =
-                matches.length;
-        }
 
 
         // =========================
@@ -268,33 +803,31 @@ async function loadOverview() {
             new Set();
 
 
-        matches.forEach(match => {
+        matches.forEach(
+            function (match) {
 
-            if (match.company_a) {
-                utilities.add(
-                    match.company_a
-                );
+                if (match.company_a) {
+
+                    utilities.add(
+                        match.company_a
+                    );
+                }
+
+
+                if (match.company_b) {
+
+                    utilities.add(
+                        match.company_b
+                    );
+                }
             }
-
-            if (match.company_b) {
-                utilities.add(
-                    match.company_b
-                );
-            }
-
-        });
+        );
 
 
-        const utilitiesElement =
-            document.getElementById(
-                "stat-utilities"
-            );
-
-        if (utilitiesElement) {
-
-            utilitiesElement.textContent =
-                utilities.size;
-        }
+        setOverviewValue(
+            "stat-utilities",
+            utilities.size
+        );
 
 
         // =========================
@@ -305,47 +838,47 @@ async function loadOverview() {
             new Set();
 
 
-        matches.forEach(match => {
+        matches.forEach(
+            function (match) {
 
-            if (
-                match.project_a &&
-                match.project_a.project_name
-            ) {
+                if (
+                    match.project_a &&
+                    match.project_a.project_name
+                ) {
 
-                projects.add(
-                    match.company_a
-                    + "|"
-                    + match.project_a.project_name
-                );
+                    projects.add(
+                        match.company_a
+                        + "|"
+                        + match.project_a.project_name
+                    );
+                }
+
+
+                if (
+                    match.project_b &&
+                    match.project_b.project_name
+                ) {
+
+                    projects.add(
+                        match.company_b
+                        + "|"
+                        + match.project_b.project_name
+                    );
+                }
             }
+        );
 
 
-            if (
-                match.project_b &&
-                match.project_b.project_name
-            ) {
-
-                projects.add(
-                    match.company_b
-                    + "|"
-                    + match.project_b.project_name
-                );
-            }
-
-        });
+        setOverviewValue(
+            "stat-projects",
+            projects.size
+        );
 
 
-        const projectsElement =
-            document.getElementById(
-                "stat-projects"
-            );
-
-        if (projectsElement) {
-
-            projectsElement.textContent =
-                projects.size;
-        }
-
+        console.log(
+            "Matches:",
+            matches.length
+        );
 
         console.log(
             "Utilities:",
@@ -353,7 +886,7 @@ async function loadOverview() {
         );
 
         console.log(
-            "Unique projects:",
+            "Projects:",
             projects.size
         );
 
@@ -361,9 +894,31 @@ async function loadOverview() {
     } catch (error) {
 
         console.error(
-            "GridAlign overview error:",
+            "Overview error:",
             error
         );
+    }
+}
 
+
+// =========================
+// SET OVERVIEW VALUE
+// =========================
+
+function setOverviewValue(
+    id,
+    value
+) {
+
+    const element =
+        document.getElementById(
+            id
+        );
+
+
+    if (element) {
+
+        element.textContent =
+            value;
     }
 }
