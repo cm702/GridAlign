@@ -389,6 +389,63 @@ select:focus-visible {
   margin: 14px 0 10px;
 }
 
+.map-view-controls,
+.map-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.map-view-controls {
+  padding: 3px;
+  border: 1px solid #e1e9eb;
+  border-radius: 9px;
+  background: #f5f8f8;
+}
+
+.map-view-button,
+.map-action-button {
+  min-height: 32px;
+  padding: 0 10px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: transparent;
+  color: #526b77;
+  font-size: 0.7rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.map-view-button:hover:not(:disabled),
+.map-action-button:hover {
+  background: #e7f0f1;
+  color: var(--navy);
+}
+
+.map-view-button.active {
+  background: var(--navy);
+  color: #fff;
+}
+
+.map-view-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.map-action-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-color: #d9e4e7;
+  background: #fff;
+  white-space: nowrap;
+}
+
+.map-action-button span {
+  color: var(--teal);
+  font-size: 1rem;
+}
+
 .utility-pills {
   display: flex;
   gap: 5px;
@@ -478,6 +535,40 @@ select:focus-visible {
   overflow: hidden;
 }
 
+.map-expanded {
+  position: fixed;
+  z-index: 1200;
+  inset: 14px;
+  min-height: 0;
+  height: auto;
+  padding: 20px;
+  overflow-y: auto;
+  border-color: #b6c9ce;
+  box-shadow: 0 24px 90px rgba(13, 37, 51, 0.34);
+}
+
+.map-expanded .map {
+  min-height: 300px;
+}
+
+.popup-focus-button {
+  align-self: flex-start;
+  min-height: 30px;
+  margin-top: 4px;
+  padding: 0 9px;
+  border: 0;
+  border-radius: 6px;
+  background: var(--navy);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.popup-focus-button:hover {
+  background: #1a5062;
+}
+
 .leaflet-container {
   background: #e8eff0;
 }
@@ -556,6 +647,11 @@ select:focus-visible {
   width: 20px;
   display: inline-block;
   border-top: 2px dashed #b42318;
+}
+
+.legend-line.endpoint-join {
+  border-top-color: #5d7982;
+  border-top-style: dotted;
 }
 
 .map-note,
@@ -1300,6 +1396,13 @@ select:focus-visible {
     min-height: 510px;
   }
 
+  .map-expanded {
+    inset: 8px;
+    min-height: 0;
+    height: auto;
+    padding: 14px;
+  }
+
   .results-panel {
     min-height: 0;
   }
@@ -1368,6 +1471,31 @@ select:focus-visible {
   .map-controls {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .map-view-controls {
+    width: 100%;
+  }
+
+  .map-view-button {
+    flex: 1;
+    padding: 0 7px;
+    font-size: 0.65rem;
+  }
+
+  .map-expanded .panel-header {
+    flex-direction: row;
+  }
+
+  .map-expanded .map-action-button {
+    max-width: 130px;
+    white-space: normal;
+    font-size: 0.65rem;
+  }
+
+  .map-expanded .map-layer-controls {
+    max-height: 74px;
+    overflow-y: auto;
   }
 
   .utility-pills {

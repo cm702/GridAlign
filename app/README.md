@@ -1,6 +1,6 @@
 # GridAlign
 
-GridAlign compares publicly described utility transmission projects and surfaces nearby cross-utility pairs for human review. The dashboard includes an interactive map with selectable layers, project and schedule search filters, sortable match rankings, side-by-side project details, suggested coordination questions, and a Gemini assistant that receives the selected pair's public project data, screening score, and coordination prompts as context.
+GridAlign compares publicly described utility transmission projects and surfaces nearby cross-utility pairs for human review. The dashboard includes an interactive map with overview and selected-match focus, map/list selection, an expanded map view, selectable layers, project and schedule search filters, sortable match rankings, side-by-side project details, suggested coordination questions, and a Gemini assistant that receives the selected pair's public project data, screening score, and coordination prompts as context.
 
 ## Run locally
 
@@ -30,4 +30,4 @@ A domain registration alone does not run the app. Point the domain's DNS to a ho
 
 The browser sends the chat message history and the currently selected public project-pair details to `/api/chat`. The server calls the configured Gemini model using `gemini_api_key`; the key never needs to be sent to or embedded in the browser. Do not enter confidential, personal, or CEII information. Gemini suggestions are generated guidance, not engineering review or utility commitments.
 
-Distances and date gaps come from the supplied challenge workbook. Mapped endpoint joins are visual straight-line approximations, not surveyed route geometry. Shared crews, right-of-way, outages, equipment, procurement, costs, and savings are suggestions to investigate—not confirmed resources or outcomes.
+Distances and date gaps come from the supplied challenge workbook. Mapped project and named-location coordinates are screening data; project-specific coordinate citations and verification records are not attached. Mapped endpoint joins and cross-utility links are visual straight-line approximations, not surveyed or source-verified route geometry. The location guide recommends confirming candidate locations against public utility documents before treating them as verified. Shared crews, right-of-way, outages, equipment, procurement, costs, and savings are suggestions to investigate—not confirmed resources or outcomes.

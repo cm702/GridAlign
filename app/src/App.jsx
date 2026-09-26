@@ -338,20 +338,40 @@ function describeScheduleGap(days) {
   return 'Dates more than 3 years apart'
 }
 
-function OpportunityMapFocus({ opportunity }) {
+function getProjectMapPoints(project) {
+  const locations = [[project.lat, project.lon], ...project.sites.map((site) => [site.lat, site.lon])]
+  return [...new Map(locations.map((point) => [point.join(','), point])).values()]
+}
+
+function MapViewport({ mode, projects, opportunity, focusedProject, expanded }) {
   const map = useMap()
 
   useEffect(() => {
-    if (!opportunity) return
+    let focusProjects = projects
+    if (mode === 'match' && opportunity) {
+      focusProjects = [opportunity.projectA, opportunity.projectB]
+    } else if (mode === 'project' && focusedProject) {
+      focusProjects = [focusedProject]
+    }
 
-    map.fitBounds(
-      [
-        [opportunity.projectA.lat, opportunity.projectA.lon],
-        [opportunity.projectB.lat, opportunity.projectB.lon],
-      ],
-      { padding: [56, 56], maxZoom: 11, animate: true },
-    )
-  }, [map, opportunity])
+    const points = focusProjects.flatMap(getProjectMapPoints)
+    if (!points.length) return
+
+    if (points.length === 1) {
+      map.setView(points[0], mode === 'overview' ? 7 : 11, { animate: true })
+    } else {
+      map.fitBounds(points, {
+        padding: [48, 48],
+        maxZoom: mode === 'overview' ? 8 : 11,
+        animate: true,
+      })
+    }
+  }, [map, mode, projects, opportunity, focusedProject])
+
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => map.invalidateSize({ pan: false }))
+    return () => cancelAnimationFrame(frame)
+  }, [map, expanded])
 
   return null
 }
@@ -366,6 +386,10 @@ function App() {
   const [showProjectPaths, setShowProjectPaths] = useState(true)
   const [showPairLinks, setShowPairLinks] = useState(true)
   const [showNamedEndpoints, setShowNamedEndpoints] = useState(true)
+  const [scrollZoomEnabled, setScrollZoomEnabled] = useState(false)
+  const [mapViewMode, setMapViewMode] = useState('overview')
+  const [focusedProjectId, setFocusedProjectId] = useState(null)
+  const [mapExpanded, setMapExpanded] = useState(false)
   const [chatState, setChatState] = useState({
     opportunityId: 'OVL_2',
     messages: [welcomeMessage],
@@ -374,6 +398,9 @@ function App() {
   const [chatInput, setChatInput] = useState('')
   const [chatLoadingFor, setChatLoadingFor] = useState(null)
   const chatTranscriptRef = useRef(null)
+  const expandMapButtonRef = useRef(null)
+  const closeMapButtonRef = useRef(null)
+  const mapWasExpandedRef = useRef(false)
 
   const visibleOverlaps = useMemo(
     () => overlapData.filter((overlap) => overlap.distanceMi <= maxDistance),
@@ -426,22 +453,29 @@ function App() {
   const selectedOverlap =
     filteredOpportunities.find((opportunity) => opportunity.id === selectedOverlapId) ??
     filteredOpportunities[0]
+  const focusedProject = projectData.find((project) => project.id === focusedProjectId)
 
   const displayProjects = useMemo(() => {
-    if (selectedUtility === 'all') return projectData
-
     const highlightedMatchIds = selectedOverlap
       ? [selectedOverlap.projectIdA, selectedOverlap.projectIdB]
       : []
-    const visibleProjectIds = new Set([
-      ...projectData
-        .filter((project) => project.utility === selectedUtility)
-        .map((project) => project.id),
-      ...highlightedMatchIds,
-    ])
+    const hasOpportunityFilters = searchTerm.trim().length > 0 || scheduleWindow !== 'any'
+    const visibleMatchIds = hasOpportunityFilters
+      ? filteredOpportunities.flatMap((opportunity) => [
+          opportunity.projectIdA,
+          opportunity.projectIdB,
+        ])
+      : projectData.map((project) => project.id)
+    const visibleProjectIds = new Set([...visibleMatchIds, ...highlightedMatchIds])
 
-    return projectData.filter((project) => visibleProjectIds.has(project.id))
-  }, [selectedOverlap, selectedUtility])
+    return projectData.filter(
+      (project) =>
+        visibleProjectIds.has(project.id) &&
+        (selectedUtility === 'all' ||
+          project.utility === selectedUtility ||
+          highlightedMatchIds.includes(project.id)),
+    )
+  }, [filteredOpportunities, scheduleWindow, searchTerm, selectedOverlap, selectedUtility])
   const mapOpportunities =
     selectedUtility === 'all' ? filteredOpportunities : selectedOverlap ? [selectedOverlap] : []
   const activeChat =
@@ -451,6 +485,12 @@ function App() {
   const chatMessages = activeChat.messages
   const chatError = activeChat.error
   const chatLoading = chatLoadingFor === selectedOverlap?.id
+  const activeMapViewMode =
+    mapViewMode === 'project' && displayProjects.some((project) => project.id === focusedProjectId)
+      ? 'project'
+      : mapViewMode === 'project'
+        ? 'overview'
+        : mapViewMode
   const closestDistance = filteredOpportunities.length
     ? Math.min(...filteredOpportunities.map((pair) => pair.distanceMi)).toFixed(1)
     : '—'
@@ -461,11 +501,77 @@ function App() {
     setSearchTerm('')
     setScheduleWindow('any')
     setSortBy('score')
+    setMapViewMode('overview')
+    setFocusedProjectId(null)
+  }
+
+  function focusMatch(opportunity) {
+    setSelectedOverlapId(opportunity.id)
+    setFocusedProjectId(null)
+    setMapViewMode('match')
+  }
+
+  function focusProject(project) {
+    const match = filteredOpportunities.find(
+      (opportunity) =>
+        opportunity.projectIdA === project.id || opportunity.projectIdB === project.id,
+    )
+    setFocusedProjectId(match ? null : project.id)
+    setMapViewMode(match ? 'match' : 'project')
+    if (match) setSelectedOverlapId(match.id)
   }
 
   function clearConversation() {
     if (!selectedOverlap) return
     setChatState({ opportunityId: selectedOverlap.id, messages: [welcomeMessage], error: '' })
+  }
+
+  useEffect(() => {
+    if (!mapExpanded) {
+      if (mapWasExpandedRef.current) {
+        mapWasExpandedRef.current = false
+        expandMapButtonRef.current?.focus()
+      }
+      return undefined
+    }
+
+    const previousOverflow = document.body.style.overflow
+    mapWasExpandedRef.current = true
+    document.body.style.overflow = 'hidden'
+    closeMapButtonRef.current?.focus()
+    function closeOnEscape(event) {
+      if (event.key === 'Escape') setMapExpanded(false)
+    }
+    document.addEventListener('keydown', closeOnEscape)
+
+    return () => {
+      document.body.style.overflow = previousOverflow
+      document.removeEventListener('keydown', closeOnEscape)
+    }
+  }, [mapExpanded])
+
+  function handleExpandedMapKeyDown(event) {
+    if (!mapExpanded) return
+    if (event.key === 'Escape') {
+      setMapExpanded(false)
+      return
+    }
+    if (event.key !== 'Tab') return
+
+    const focusable = [
+      ...event.currentTarget.querySelectorAll(
+        'button:not(:disabled), input:not(:disabled), a[href], [tabindex="0"]',
+      ),
+    ].filter((element) => element.getClientRects().length > 0)
+    const first = focusable[0]
+    const last = focusable[focusable.length - 1]
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault()
+      last?.focus()
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault()
+      first?.focus()
+    }
   }
 
   useEffect(() => {
@@ -623,16 +729,75 @@ function App() {
       </section>
 
       <section className="content-grid">
-        <div className="panel map-panel">
+        <div
+          className={mapExpanded ? 'panel map-panel map-expanded' : 'panel map-panel'}
+          role={mapExpanded ? 'dialog' : undefined}
+          aria-modal={mapExpanded ? 'true' : undefined}
+          aria-label={mapExpanded ? 'Expanded project map' : undefined}
+          onKeyDown={handleExpandedMapKeyDown}
+        >
           <div className="panel-header">
             <div>
               <p className="label">01 · Explore geography</p>
               <h2>Project map</h2>
-              <p className="panel-subtitle">Select a match from the list to focus the map and details.</p>
+              <p className="panel-subtitle">
+                {activeMapViewMode === 'match' && selectedOverlap
+                  ? `Focused on ${selectedOverlap.id} · ${selectedOverlap.distanceMi.toFixed(2)} mi screening distance`
+                  : activeMapViewMode === 'project' && focusedProject
+                    ? `Focused on ${focusedProject.projectName}`
+                    : 'Showing all project locations that match the current filters.'}
+              </p>
+            </div>
+            <div className="map-header-actions">
+              {mapExpanded ? (
+                <button
+                  type="button"
+                  className="map-action-button"
+                  ref={closeMapButtonRef}
+                  onClick={() => setMapExpanded(false)}
+                >
+                  Close expanded map <span aria-hidden="true">×</span>
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  className="map-action-button"
+                  ref={expandMapButtonRef}
+                  onClick={() => setMapExpanded(true)}
+                >
+                  Expand map <span aria-hidden="true">⤢</span>
+                </button>
+              )}
             </div>
           </div>
 
           <div className="map-controls">
+            <div className="map-view-controls" role="group" aria-label="Map view">
+              <button
+                type="button"
+                className={activeMapViewMode === 'overview' ? 'map-view-button active' : 'map-view-button'}
+                onClick={() => {
+                  setMapViewMode('overview')
+                  setFocusedProjectId(null)
+                }}
+                aria-pressed={activeMapViewMode === 'overview'}
+              >
+                All visible
+              </button>
+              <button
+                type="button"
+                className={activeMapViewMode === 'match' ? 'map-view-button active' : 'map-view-button'}
+                onClick={() => {
+                  if (!selectedOverlap) return
+                  setFocusedProjectId(null)
+                  setMapViewMode('match')
+                }}
+                disabled={!selectedOverlap}
+                aria-pressed={activeMapViewMode === 'match'}
+              >
+                Focus selected match
+              </button>
+            </div>
             <div className="utility-pills" role="group" aria-label="Map project filter">
               {['all', 'Dominion Energy South Carolina', 'Georgia Power'].map((utility) => (
                 <button
@@ -667,12 +832,19 @@ function App() {
 
           <div className="map-layer-controls" aria-label="Map layers">
             <span>Map layers</span>
-            <label><input type="checkbox" checked={showProjectPaths} onChange={(event) => setShowProjectPaths(event.target.checked)} /> Endpoint lines</label>
-            <label><input type="checkbox" checked={showPairLinks} onChange={(event) => setShowPairLinks(event.target.checked)} /> Match links</label>
-            <label><input type="checkbox" checked={showNamedEndpoints} onChange={(event) => setShowNamedEndpoints(event.target.checked)} /> Named endpoints</label>
+            <label><input type="checkbox" checked={showProjectPaths} onChange={(event) => setShowProjectPaths(event.target.checked)} /> Approximate endpoint joins</label>
+            <label><input type="checkbox" checked={showPairLinks} onChange={(event) => setShowPairLinks(event.target.checked)} /> Screening-distance links</label>
+            <label><input type="checkbox" checked={showNamedEndpoints} onChange={(event) => setShowNamedEndpoints(event.target.checked)} /> Named locations</label>
+            <label><input type="checkbox" checked={scrollZoomEnabled} onChange={(event) => setScrollZoomEnabled(event.target.checked)} /> Scroll to zoom</label>
           </div>
 
-          <MapContainer className="map" center={[32.8, -81.5]} zoom={7} scrollWheelZoom>
+          <MapContainer
+            className="map"
+            center={[32.8, -81.5]}
+            zoom={7}
+            scrollWheelZoom={scrollZoomEnabled}
+            keyboard
+          >
             <TileLayer
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -685,12 +857,13 @@ function App() {
                   positions={project.sites.map((site) => [site.lat, site.lon])}
                   pathOptions={{
                     color: utilityStyles[project.utility].color,
-                    weight: 4,
-                    opacity: 0.85,
+                    weight: 3,
+                    opacity: 0.68,
+                    dashArray: '4 7',
                   }}
                 >
                   <Tooltip sticky>
-                    {project.id} · straight-line endpoint approximation, not surveyed route geometry
+                    {project.id} · approximate straight join between named locations, not route geometry
                   </Tooltip>
                 </Polyline>
               ) : null,
@@ -711,7 +884,7 @@ function App() {
                 }}
               >
                 <Tooltip sticky>
-                  {opportunity.id} · {opportunity.distanceMi.toFixed(2)} mi cross-utility proximity
+                  {opportunity.id} · {opportunity.distanceMi.toFixed(2)} mi screening distance between project points, not a route
                 </Tooltip>
               </Polyline>
             ))}
@@ -736,6 +909,7 @@ function App() {
                   fillColor: utilityStyles[project.utility].color,
                   fillOpacity: 1,
                 }}
+                eventHandlers={{ click: () => focusProject(project) }}
               >
                 <Tooltip direction="top" offset={[0, -8]}>
                   {project.id} · {project.region}
@@ -746,47 +920,67 @@ function App() {
                     <strong>{project.projectName}</strong>
                     <small>{project.region}</small>
                     <small>Planned in service: {project.inServiceDate}</small>
-                    <small>
-                      {project.sites.length > 1
-                        ? `${project.sites.length} named endpoints shown`
-                        : 'Only one location confirmed in source data'}
-                    </small>
+                    <small>{project.sites.length} named {project.sites.length === 1 ? 'location' : 'locations'} in working data</small>
+                    <small>These coordinates are screening locations; project-specific coordinate citations are not attached.</small>
+                    <button type="button" className="popup-focus-button" onClick={() => focusProject(project)}>
+                      {filteredOpportunities.some((opportunity) => opportunity.projectIdA === project.id || opportunity.projectIdB === project.id)
+                        ? 'Focus a matching pair'
+                        : 'Focus this project'}
+                    </button>
                   </div>
                 </Popup>
               </CircleMarker>
             ))}
 
             {showNamedEndpoints && displayProjects.flatMap((project) =>
-              project.sites.length > 1
-                ? project.sites.map((site) => (
+              project.sites.map((site) => (
                     <CircleMarker
                       key={`${project.id}-${site.name}`}
                       center={[site.lat, site.lon]}
-                      radius={5}
+                      radius={project.sites.length === 1 ? 4 : 5}
                       pathOptions={{
-                        color: '#ffffff',
-                        weight: 1.5,
-                        fillColor: utilityStyles[project.utility].color,
-                        fillOpacity: 0.6,
+                        color: utilityStyles[project.utility].color,
+                        weight: 2,
+                        fillColor: '#ffffff',
+                        fillOpacity: 0.95,
                       }}
+                      eventHandlers={{ click: () => focusProject(project) }}
                     >
                       <Tooltip>{project.id} · {site.name}</Tooltip>
+                      <Popup>
+                        <div className="popup-card">
+                          <small className="popup-id">Named location · {utilityStyles[project.utility].label}</small>
+                          <strong>{site.name}</strong>
+                          <small>{project.projectName}</small>
+                          <small>Point location only; verified route geometry is not included.</small>
+                          <small>Coordinate source citation is not attached to this dataset.</small>
+                          <button type="button" className="popup-focus-button" onClick={() => focusProject(project)}>
+                            Focus this project
+                          </button>
+                        </div>
+                      </Popup>
                     </CircleMarker>
-                  ))
-                : [],
+                  )),
             )}
 
-            <OpportunityMapFocus opportunity={selectedOverlap} />
+            <MapViewport
+              mode={activeMapViewMode}
+              projects={displayProjects}
+              opportunity={selectedOverlap}
+              focusedProject={focusedProject}
+              expanded={mapExpanded}
+            />
           </MapContainer>
           <div className="map-legend" aria-label="Map legend">
-            <span><i className="legend-dot desc" /> Dominion Energy SC</span>
-            <span><i className="legend-dot gpc" /> Georgia Power</span>
-            <span><i className="legend-dot endpoint" /> Named endpoint</span>
-            <span><i className="legend-line overlap" /> Cross-utility match</span>
+            <span><i className="legend-dot desc" /> Dominion SC screening point</span>
+            <span><i className="legend-dot gpc" /> Georgia Power screening point</span>
+            <span><i className="legend-dot endpoint" /> Named location</span>
+            <span><i className="legend-line endpoint-join" /> Approximate endpoint join</span>
+            <span><i className="legend-line overlap" /> Cross-utility screening distance</span>
           </div>
           <p className="map-note">
-            Straight lines connect listed locations only; they are not surveyed routes. Dashed
-            links are screening matches, not proof of a shared corridor.
+            No verified transmission-route geometry is included. Lines are straight-line screening
+            aids; per-location coordinate source citations are not attached to the working dataset.
           </p>
         </div>
 
@@ -805,7 +999,7 @@ function App() {
                 key={opportunity.id}
                 type="button"
                 className={selectedOverlap?.id === opportunity.id ? 'opportunity-card selected' : 'opportunity-card'}
-                onClick={() => setSelectedOverlapId(opportunity.id)}
+                onClick={() => focusMatch(opportunity)}
                 aria-pressed={selectedOverlap?.id === opportunity.id}
               >
                 <span className="rank">0{index + 1}</span>
