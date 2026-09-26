@@ -10,6 +10,7 @@ import {
 } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import './App.css'
+import { createOpportunityCsv, locationProvenance } from './mapExport.js'
 
 const projectData = [
   {
@@ -386,9 +387,9 @@ function App() {
   const [showProjectPaths, setShowProjectPaths] = useState(true)
   const [showPairLinks, setShowPairLinks] = useState(true)
   const [showNamedEndpoints, setShowNamedEndpoints] = useState(true)
-  const [scrollZoomEnabled, setScrollZoomEnabled] = useState(false)
   const [mapViewMode, setMapViewMode] = useState('overview')
   const [focusedProjectId, setFocusedProjectId] = useState(null)
+  const [selectedMapProjectId, setSelectedMapProjectId] = useState(null)
   const [mapExpanded, setMapExpanded] = useState(false)
   const [chatState, setChatState] = useState({
     opportunityId: 'OVL_2',
@@ -476,6 +477,15 @@ function App() {
           highlightedMatchIds.includes(project.id)),
     )
   }, [filteredOpportunities, scheduleWindow, searchTerm, selectedOverlap, selectedUtility])
+  const selectedMapProject =
+    displayProjects.find((project) => project.id === selectedMapProjectId) ?? null
+  const selectedProjectMatches = selectedMapProject
+    ? filteredOpportunities.filter(
+        (opportunity) =>
+          opportunity.projectIdA === selectedMapProject.id ||
+          opportunity.projectIdB === selectedMapProject.id,
+      )
+    : []
   const mapOpportunities =
     selectedUtility === 'all' ? filteredOpportunities : selectedOverlap ? [selectedOverlap] : []
   const activeChat =
@@ -508,10 +518,12 @@ function App() {
   function focusMatch(opportunity) {
     setSelectedOverlapId(opportunity.id)
     setFocusedProjectId(null)
+    setSelectedMapProjectId(null)
     setMapViewMode('match')
   }
 
   function focusProject(project) {
+    setSelectedMapProjectId(project.id)
     const match = filteredOpportunities.find(
       (opportunity) =>
         opportunity.projectIdA === project.id || opportunity.projectIdB === project.id,
@@ -519,6 +531,31 @@ function App() {
     setFocusedProjectId(match ? null : project.id)
     setMapViewMode(match ? 'match' : 'project')
     if (match) setSelectedOverlapId(match.id)
+  }
+
+  function openMatchDetails() {
+    document.getElementById('detail-title')?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    })
+  }
+
+  function downloadSelectedMatchCsv() {
+    if (!selectedOverlap) return
+    const csv = createOpportunityCsv(selectedOverlap)
+    const url = URL.createObjectURL(new Blob([`\uFEFF${csv}`], { type: 'text/csv;charset=utf-8' }))
+    const link = document.createElement('a')
+    link.href = url
+    link.download = `gridalign-${selectedOverlap.id.toLowerCase()}-screening.csv`
+    document.body.append(link)
+    link.click()
+    link.remove()
+    window.setTimeout(() => URL.revokeObjectURL(url), 1_000)
+  }
+
+  function printSelectedMatch() {
+    if (!selectedOverlap) return
+    window.print()
   }
 
   function clearConversation() {
@@ -830,19 +867,60 @@ function App() {
             </label>
           </div>
 
+          {selectedOverlap && (
+            <section className="map-match-summary" aria-labelledby="map-match-title" aria-live="polite">
+              <div className="map-match-heading">
+                <span className="map-match-id">{selectedOverlap.id}</span>
+                <div>
+                  <p className="label">Selected potential match</p>
+                  <h3 id="map-match-title">Two projects to compare</h3>
+                </div>
+              </div>
+              <div className="map-match-projects">
+                {[selectedOverlap.projectA, selectedOverlap.projectB].map((project) => (
+                  <div className="map-match-project" key={project.id}>
+                    <span className={`utility-dot ${project.utility === 'Georgia Power' ? 'gpc' : 'desc'}`} />
+                    <div>
+                      <strong>{utilityStyles[project.utility].label}</strong>
+                      <span>{project.projectName}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="map-match-facts">
+                <div>
+                  <span>Point distance</span>
+                  <strong>{selectedOverlap.distanceMi.toFixed(2)} mi</strong>
+                </div>
+                <div>
+                  <span>Planned-date gap</span>
+                  <strong>{selectedOverlap.timeGapDays.toLocaleString()} days</strong>
+                  <small>{describeScheduleGap(selectedOverlap.timeGapDays)}</small>
+                </div>
+                <div>
+                  <span>Screening rank</span>
+                  <strong>{selectedOverlap.score} / 100</strong>
+                  <small>Not a probability or savings estimate</small>
+                </div>
+              </div>
+              <button type="button" className="map-match-details-button" onClick={openMatchDetails}>
+                View project details &amp; next steps <span aria-hidden="true">↓</span>
+              </button>
+            </section>
+          )}
+
           <div className="map-layer-controls" aria-label="Map layers">
             <span>Map layers</span>
             <label><input type="checkbox" checked={showProjectPaths} onChange={(event) => setShowProjectPaths(event.target.checked)} /> Approximate endpoint joins</label>
             <label><input type="checkbox" checked={showPairLinks} onChange={(event) => setShowPairLinks(event.target.checked)} /> Screening-distance links</label>
             <label><input type="checkbox" checked={showNamedEndpoints} onChange={(event) => setShowNamedEndpoints(event.target.checked)} /> Named locations</label>
-            <label><input type="checkbox" checked={scrollZoomEnabled} onChange={(event) => setScrollZoomEnabled(event.target.checked)} /> Scroll to zoom</label>
           </div>
 
           <MapContainer
             className="map"
             center={[32.8, -81.5]}
             zoom={7}
-            scrollWheelZoom={scrollZoomEnabled}
+            scrollWheelZoom
             keyboard
           >
             <TileLayer
@@ -901,11 +979,13 @@ function App() {
                 }
                 pathOptions={{
                   color:
-                    project.id === selectedOverlap?.projectIdA ||
+                    project.id === selectedMapProjectId
+                      ? '#08737b'
+                      : project.id === selectedOverlap?.projectIdA ||
                     project.id === selectedOverlap?.projectIdB
                       ? '#b42318'
                       : '#ffffff',
-                  weight: 3,
+                  weight: project.id === selectedMapProjectId ? 4 : 3,
                   fillColor: utilityStyles[project.utility].color,
                   fillOpacity: 1,
                 }}
@@ -971,11 +1051,48 @@ function App() {
               expanded={mapExpanded}
             />
           </MapContainer>
+          {selectedMapProject && (
+            <section className="map-project-inspector" aria-live="polite" aria-labelledby="map-project-title">
+              <div className="map-project-inspector-main">
+                <p className="label">Selected map project</p>
+                <h3 id="map-project-title">{selectedMapProject.projectName}</h3>
+                <p>
+                  {utilityStyles[selectedMapProject.utility].label} · {selectedMapProject.projectType} · {selectedMapProject.region}
+                </p>
+                <div className="location-provenance">
+                  <strong>{locationProvenance.verificationStatus}</strong>
+                  <span>Source: {locationProvenance.sourceName} · coordinate basis: {locationProvenance.coordinateBasis}.</span>
+                  <span>No verified route geometry is included.</span>
+                </div>
+              </div>
+              <div className="map-related-matches">
+                <span>Related matches</span>
+                {selectedProjectMatches.length ? (
+                  selectedProjectMatches.map((opportunity) => (
+                    <button
+                      type="button"
+                      key={opportunity.id}
+                      onClick={() => focusMatch(opportunity)}
+                      className={selectedOverlap?.id === opportunity.id ? 'related-match active' : 'related-match'}
+                    >
+                      <strong>{opportunity.id}</strong>
+                      <span>{opportunity.distanceMi.toFixed(2)} mi · {opportunity.timeGapDays.toLocaleString()} day gap</span>
+                      <span aria-hidden="true">→</span>
+                    </button>
+                  ))
+                ) : (
+                  <p>No candidate matches are in the current filters.</p>
+                )}
+              </div>
+            </section>
+          )}
           <div className="map-legend" aria-label="Map legend">
-            <span><i className="legend-dot desc" /> Dominion SC screening point</span>
-            <span><i className="legend-dot gpc" /> Georgia Power screening point</span>
-            <span><i className="legend-dot endpoint" /> Named location</span>
-            <span><i className="legend-line endpoint-join" /> Approximate endpoint join</span>
+            <span className="legend-group-label">POINTS</span>
+            <span><i className="legend-dot desc" /> Dominion project point</span>
+            <span><i className="legend-dot gpc" /> Georgia Power project point</span>
+            <span><i className="legend-dot endpoint" /> Named site</span>
+            <span className="legend-group-label">LINES</span>
+            <span><i className="legend-line endpoint-join" /> Approximate within-project join</span>
             <span><i className="legend-line overlap" /> Cross-utility screening distance</span>
           </div>
           <p className="map-note">
@@ -1035,7 +1152,15 @@ function App() {
               <p className="label">03 · Understand the selected pair</p>
               <h2 id="detail-title">Match details &amp; next steps</h2>
             </div>
-            <span className="selected-id">{selectedOverlap.id} · selected</span>
+            <div className="detail-actions">
+              <span className="selected-id">{selectedOverlap.id} · selected</span>
+              <button type="button" className="export-button" onClick={downloadSelectedMatchCsv}>
+                Download match CSV
+              </button>
+              <button type="button" className="export-button primary" onClick={printSelectedMatch}>
+                Print / Save PDF
+              </button>
+            </div>
           </div>
           <div className="detail-layout">
             <div className="detail-main">
@@ -1058,6 +1183,10 @@ function App() {
                     <div className="project-facts">
                       <span>{project.region}</span>
                       <span>Planned in service <strong>{project.inServiceDate}</strong></span>
+                    </div>
+                    <div className="location-provenance compact">
+                      <strong>{locationProvenance.verificationStatus}</strong>
+                      <span>Source: {locationProvenance.sourceName} · basis: not documented.</span>
                     </div>
                   </article>
                 ))}
@@ -1144,6 +1273,47 @@ function App() {
         <span>GridAlign · Utility project screening</span>
         <span>Distances and route depictions are approximate. Confirm source schedules and geometry independently.</span>
       </footer>
+      {selectedOverlap && (
+        <article className="print-report" aria-hidden="true">
+          <header>
+            <p>GridAlign · Utility project screening</p>
+            <h1>Cross-utility screening brief</h1>
+            <p>{selectedOverlap.id} · Generated {new Date().toLocaleDateString()}</p>
+          </header>
+          <section>
+            <h2>Screening signals</h2>
+            <p><strong>Reported point distance:</strong> {selectedOverlap.distanceMi.toFixed(2)} miles</p>
+            <p><strong>Planned in-service date gap:</strong> {selectedOverlap.timeGapDays.toLocaleString()} days</p>
+            <p><strong>Screening rank:</strong> {selectedOverlap.score} / 100 (a ranking aid, not a probability or savings estimate)</p>
+          </section>
+          <section>
+            <h2>Projects</h2>
+            {[selectedOverlap.projectA, selectedOverlap.projectB].map((project) => (
+              <article key={project.id}>
+                <h3>{utilityStyles[project.utility].label} · {project.id}</h3>
+                <p><strong>{project.projectName}</strong></p>
+                <p>{project.projectType} · {project.region}</p>
+                <p>Planned in service: {project.inServiceDate}</p>
+                <p>Project screening point: {project.lat}, {project.lon}</p>
+                <p>Named locations: {project.sites.map((site) => `${site.name} (${site.lat}, ${site.lon})`).join('; ')}</p>
+                <p>Location source: {locationProvenance.sourceName}; {locationProvenance.verificationStatus}.</p>
+              </article>
+            ))}
+          </section>
+          <section>
+            <h2>Potential coordination questions</h2>
+            <ul>
+              {coordinationOptions[selectedOverlap.id].map((option) => (
+                <li key={option.title}><strong>{option.title}:</strong> {option.descriptor}</li>
+              ))}
+            </ul>
+          </section>
+          <footer>
+            <p><strong>Important limitations:</strong> The reported distance is a screening distance between project points. Coordinates have no project-specific citations attached. No verified transmission route geometry is supplied; straight lines are not surveyed routes or proof of a shared corridor.</p>
+            <p>Planning references supplied with this dataset: Dominion Energy 2024–2028 project descriptions and Georgia Power 2025 IRP Volume 3 Public Disclosure. Verify project details, location, schedules, and all coordination assumptions with current public filings and both utilities.</p>
+          </footer>
+        </article>
+      )}
     </div>
   )
 }
