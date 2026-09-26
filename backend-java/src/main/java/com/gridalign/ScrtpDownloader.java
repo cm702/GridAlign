@@ -12,27 +12,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 public class ScrtpDownloader {
 
     private static final String START_URL =
             "https://www.scrtp.com/";
 
-    private static final String DOMAIN =
-            "www.scrtp.com";
-
-    // Prevent downloading the same URL twice
-    private static final Set<String> visited =
-            new LinkedHashSet<String>();
-
-    private static int htmlNumber = 1;
-    private static int pdfNumber = 1;
-
-    private static long totalWords = 0;
-
-    // Manifest that connects each downloaded file to its original URL
     private static Path manifestFile;
 
 
@@ -46,14 +31,15 @@ public class ScrtpDownloader {
                     "scrtp"
             );
 
-            // Delete the previous complete download
+            // Delete previous SCRTP download
             deleteFolder(folder);
 
-            // Create the new empty folder
+            // Create clean folder
             Files.createDirectories(folder);
 
-            // Create manifest.csv
-            manifestFile = folder.resolve("manifest.csv");
+            // Create manifest
+            manifestFile =
+                    folder.resolve("manifest.csv");
 
             String header =
                     "file,type,url"
@@ -64,13 +50,186 @@ public class ScrtpDownloader {
                     header.getBytes(StandardCharsets.UTF_8)
             );
 
+            System.out.println();
             System.out.println(
-                    "Starting SCRTP crawl crawl..."
+                    "Starting SCRTP download..."
             );
-
             System.out.println();
 
-            crawl(START_URL, folder);
+            // =========================================
+            // DOWNLOAD SCRTP HOME PAGE
+            // =========================================
+
+            Connection.Response homeResponse =
+                    Jsoup.connect(START_URL)
+
+                            .userAgent(
+                                    "Mozilla/5.0 GridAlign Hackathon Project"
+                            )
+
+                            .timeout(15000)
+
+                            .followRedirects(true)
+
+                            .ignoreHttpErrors(false)
+
+                            .execute();
+
+
+            Document page =
+                    homeResponse.parse();
+
+
+            String htmlFilename =
+                    "scrtp_home.html";
+
+            Path htmlFile =
+                    folder.resolve(htmlFilename);
+
+
+            Files.write(
+                    htmlFile,
+                    page.outerHtml()
+                            .getBytes(StandardCharsets.UTF_8)
+            );
+
+
+            addToManifest(
+                    htmlFilename,
+                    "HTML",
+                    START_URL
+            );
+
+
+            System.out.println(
+                    "Saved: " + htmlFilename
+            );
+
+
+            // =========================================
+            // FIND PROJECT DESCRIPTIONS PDF
+            // =========================================
+
+            Elements links =
+                    page.select("a[href]");
+
+
+            String projectPdfUrl =
+                    null;
+
+
+            for (Element link : links) {
+
+                String text =
+                        link.text()
+                                .toLowerCase();
+
+                String url =
+                        link.absUrl("href");
+
+
+                if (url == null
+                        || url.isEmpty()) {
+
+                    continue;
+                }
+
+
+                /*
+                 * We only want the SCRTP PDF containing
+                 * the planned project descriptions.
+                 */
+
+                if (
+                        text.contains(
+                                "project descriptions"
+                        )
+                                && url.toLowerCase()
+                                .contains(".pdf")
+                ) {
+
+                    projectPdfUrl =
+                            url;
+
+                    break;
+                }
+            }
+
+
+            if (projectPdfUrl == null) {
+
+                throw new RuntimeException(
+                        "Could not find the "
+                                + "SCRTP Project Descriptions PDF."
+                );
+            }
+
+
+            System.out.println();
+            System.out.println(
+                    "Project PDF found:"
+            );
+
+            System.out.println(
+                    projectPdfUrl
+            );
+
+
+            // =========================================
+            // DOWNLOAD PROJECT PDF
+            // =========================================
+
+            Connection.Response pdfResponse =
+                    Jsoup.connect(projectPdfUrl)
+
+                            .userAgent(
+                                    "Mozilla/5.0 GridAlign Hackathon Project"
+                            )
+
+                            .timeout(30000)
+
+                            .followRedirects(true)
+
+                            .ignoreHttpErrors(false)
+
+                            .ignoreContentType(true)
+
+                            .maxBodySize(0)
+
+                            .execute();
+
+
+            String pdfFilename =
+                    getFilenameFromUrl(
+                            projectPdfUrl
+                    );
+
+
+            Path pdfFile =
+                    folder.resolve(
+                            pdfFilename
+                    );
+
+
+            Files.write(
+                    pdfFile,
+                    pdfResponse.bodyAsBytes()
+            );
+
+
+            addToManifest(
+                    pdfFilename,
+                    "PDF",
+                    projectPdfUrl
+            );
+
+
+            System.out.println();
+            System.out.println(
+                    "PDF saved: "
+                            + pdfFilename
+            );
+
 
             System.out.println();
             System.out.println(
@@ -78,7 +237,7 @@ public class ScrtpDownloader {
             );
 
             System.out.println(
-                    "CRAWL FINISHED"
+                    "SCRTP DOWNLOAD FINISHED"
             );
 
             System.out.println(
@@ -86,28 +245,11 @@ public class ScrtpDownloader {
             );
 
             System.out.println(
-                    "Unique URLs visited: "
-                            + visited.size()
+                    "HTML pages saved: 1"
             );
 
             System.out.println(
-                    "HTML pages saved: "
-                            + (htmlNumber - 1)
-            );
-
-            System.out.println(
-                    "PDF files saved: "
-                            + (pdfNumber - 1)
-            );
-
-            System.out.println(
-                    "Total HTML words: "
-                            + totalWords
-            );
-
-            System.out.println(
-                    "Estimated LLM tokens: "
-                            + estimateTokens(totalWords)
+                    "PDF files saved: 1"
             );
 
             System.out.println(
@@ -120,6 +262,7 @@ public class ScrtpDownloader {
                             + manifestFile.toAbsolutePath()
             );
 
+
         } catch (Exception e) {
 
             e.printStackTrace();
@@ -127,384 +270,11 @@ public class ScrtpDownloader {
     }
 
 
-    private static void crawl(
-            String url,
-            Path folder) {
-
-        try {
-
-            String cleanUrl =
-                    cleanUrl(url);
-
-            if (cleanUrl == null) {
-                return;
-            }
-
-            // Already visited
-            if (visited.contains(cleanUrl)) {
-                return;
-            }
-
-            URI uri =
-                    URI.create(cleanUrl);
-
-            // Only Georgia Power
-            if (!DOMAIN.equalsIgnoreCase(
-                    uri.getHost())) {
-
-                return;
-            }
-
-            /*
-             * Mark URL as visited before recursion.
-             *
-             * This prevents loops such as:
-             *
-             * A -> B -> A -> B...
-             */
-            visited.add(cleanUrl);
-
-            System.out.println();
-            System.out.println(
-                    "--------------------------------"
-            );
-
-            System.out.println(
-                    "Downloading:"
-            );
-
-            System.out.println(
-                    cleanUrl
-            );
-
-            Connection.Response response;
-
-            try {
-
-                response =
-                        Jsoup.connect(cleanUrl)
-
-                                .userAgent(
-                                        "Mozilla/5.0 GridAlign Hackathon Project"
-                                )
-
-                                .timeout(15000)
-
-                                .followRedirects(true)
-
-                                .ignoreHttpErrors(true)
-
-                                .ignoreContentType(true)
-
-                                // Do not limit page size
-                                .maxBodySize(0)
-
-                                .execute();
-
-            } catch (Exception e) {
-
-                /*
-                 * This page failed.
-                 * Stop THIS branch only.
-                 */
-
-                System.out.println(
-                        "FAILED: "
-                                + e.getMessage()
-                );
-
-                return;
-            }
-
-
-            int status =
-                    response.statusCode();
-
-            if (status < 200
-                    || status >= 300) {
-
-                System.out.println(
-                        "HTTP error: "
-                                + status
-                );
-
-                return;
-            }
-
-
-            String contentType =
-                    response.contentType();
-
-            if (contentType == null) {
-
-                System.out.println(
-                        "Unknown content type."
-                );
-
-                return;
-            }
-
-
-            // =====================================
-            // HTML PAGE
-            // =====================================
-
-            if (contentType.contains(
-                    "text/html")) {
-
-                Document page;
-
-                try {
-
-                    page =
-                            response.parse();
-
-                } catch (Exception e) {
-
-                    System.out.println(
-                            "Could not parse HTML."
-                    );
-
-                    return;
-                }
-
-
-                String filename =
-                        String.format(
-                                "page_%05d.html",
-                                htmlNumber
-                        );
-
-                Path file =
-                        folder.resolve(filename);
-
-
-                try {
-
-                    Files.write(
-                            file,
-
-                            page.outerHtml()
-                                    .getBytes(
-                                            StandardCharsets.UTF_8
-                                    )
-                    );
-
-                } catch (Exception e) {
-
-                    System.out.println(
-                            "Could not save page."
-                    );
-
-                    return;
-                }
-
-
-                // Save URL -> file relationship
-                addToManifest(
-                        filename,
-                        "HTML",
-                        cleanUrl
-                );
-
-
-                htmlNumber++;
-
-
-                int words =
-                        countWords(
-                                page.text()
-                        );
-
-                totalWords +=
-                        words;
-
-
-                System.out.println(
-                        "Saved: "
-                                + filename
-                );
-
-                System.out.println(
-                        "Words: "
-                                + words
-                );
-
-                System.out.println(
-                        "Estimated tokens: "
-                                + estimateTokens(words)
-                );
-
-
-                /*
-                 * Find every link inside
-                 * this page.
-                 */
-
-                Elements links =
-                        page.select(
-                                "a[href]"
-                        );
-
-                System.out.println(
-                        "Links found: "
-                                + links.size()
-                );
-
-
-                /*
-                 * Recursively visit
-                 * every link.
-                 */
-
-                for (Element element : links) {
-
-                    String nextUrl =
-                            element.absUrl(
-                                    "href"
-                            );
-
-                    if (nextUrl == null
-                            || nextUrl.isEmpty()) {
-
-                        continue;
-                    }
-
-                    crawl(
-                            nextUrl,
-                            folder
-                    );
-                }
-            }
-
-
-            // =====================================
-            // PDF
-            // =====================================
-
-            else if (
-                    contentType.contains(
-                            "application/pdf"
-                    )
-            ) {
-
-                String filename =
-                        String.format(
-                                "document_%05d.pdf",
-                                pdfNumber
-                        );
-
-                Path file =
-                        folder.resolve(
-                                filename
-                        );
-
-
-                try {
-
-                    Files.write(
-                            file,
-                            response.bodyAsBytes()
-                    );
-
-                } catch (Exception e) {
-
-                    System.out.println(
-                            "Could not save PDF."
-                    );
-
-                    return;
-                }
-
-
-                // Save URL -> PDF relationship
-                addToManifest(
-                        filename,
-                        "PDF",
-                        cleanUrl
-                );
-
-
-                pdfNumber++;
-
-
-                System.out.println(
-                        "PDF saved: "
-                                + filename
-                );
-
-
-                /*
-                 * Jsoup does not follow links
-                 * inside PDFs.
-                 *
-                 * End this branch here.
-                 */
-
-                return;
-            }
-
-
-            // =====================================
-            // OTHER FILE TYPES
-            // =====================================
-
-            else {
-
-                System.out.println(
-                        "Skipping content type: "
-                                + contentType
-                );
-
-                return;
-            }
-
-
-            /*
-             * Small delay so we do not
-             * hit the server too aggressively.
-             */
-
-            try {
-
-                Thread.sleep(800);
-
-            } catch (
-                    InterruptedException e
-            ) {
-
-                Thread.currentThread()
-                        .interrupt();
-            }
-
-        } catch (Exception e) {
-
-            /*
-             * Unexpected problem:
-             * stop only this branch.
-             */
-
-            System.out.println(
-                    "Branch stopped: "
-                            + e.getMessage()
-            );
-        }
-    }
-
-
     /*
-     * Normalize URLs so:
-     *
-     * https://www.GeorgiaPower.com/page
-     *
-     * and
-     *
-     * https://www.georgiapower.com/page
-     *
-     * become the same URL.
+     * Get the original PDF filename
+     * from its URL.
      */
-
-    private static String cleanUrl(
+    private static String getFilenameFromUrl(
             String url) {
 
         try {
@@ -512,114 +282,46 @@ public class ScrtpDownloader {
             URI uri =
                     URI.create(url);
 
-            String scheme =
-                    uri.getScheme();
-
-            if (scheme == null) {
-                return null;
-            }
-
-            scheme =
-                    scheme.toLowerCase();
-
-            if (!scheme.equals("http")
-                    && !scheme.equals("https")) {
-
-                return null;
-            }
-
-
-            String host =
-                    uri.getHost();
-
-            if (host == null) {
-                return null;
-            }
-
-            host =
-                    host.toLowerCase();
-
-
-            /*
-             * Treat:
-             *
-             * georgiapower.com
-             *
-             * and
-             *
-             * www.georgiapower.com
-             *
-             * as the same domain.
-             */
-
-            if (host.equals(
-                    "scrtp.com")) {
-
-                host =
-                        "www.scrtp.com";
-            }
-
-
             String path =
                     uri.getPath();
 
-            if (path == null
-                    || path.isEmpty()) {
 
-                path = "/";
-            }
+            if (path != null
+                    && !path.isEmpty()) {
+
+                int lastSlash =
+                        path.lastIndexOf('/');
 
 
-            /*
-             * Remove the #fragment.
-             *
-             * Example:
-             *
-             * page.html#faq
-             *
-             * becomes:
-             *
-             * page.html
-             */
+                if (lastSlash >= 0
+                        && lastSlash
+                        < path.length() - 1) {
 
-            URI clean =
-                    new URI(
-                            scheme,
-                            uri.getUserInfo(),
-                            host,
-                            uri.getPort(),
-                            path,
-                            uri.getQuery(),
-                            null
+                    return path.substring(
+                            lastSlash + 1
                     );
-
-
-            return clean.toString();
+                }
+            }
 
         } catch (Exception e) {
 
-            return null;
+            // Fall through to default filename
         }
+
+
+        return "scrtp_project_descriptions.pdf";
     }
 
 
     /*
-     * Add one downloaded file
-     * to manifest.csv.
+     * Save local filename -> original URL.
      */
-
     private static void addToManifest(
             String filename,
             String type,
             String url) {
 
         try {
-
-            /*
-             * CSV format:
-             *
-             * file,type,url
-             */
 
             String line =
                     "\""
@@ -645,6 +347,7 @@ public class ScrtpDownloader {
                     StandardOpenOption.APPEND
             );
 
+
         } catch (Exception e) {
 
             System.out.println(
@@ -656,58 +359,17 @@ public class ScrtpDownloader {
 
 
     /*
-     * Count words from visible
-     * HTML text.
+     * Delete previous SCRTP folder.
      */
-
-    private static int countWords(
-            String text) {
-
-        if (text == null) {
-            return 0;
-        }
-
-        text =
-                text.trim();
-
-        if (text.isEmpty()) {
-            return 0;
-        }
-
-        return text
-                .split("\\s+")
-                .length;
-    }
-
-
-    /*
-     * Rough token estimate.
-     *
-     * English:
-     *
-     * 1 word ≈ 1.3 tokens
-     */
-
-    private static long estimateTokens(
-            long words) {
-
-        return Math.round(
-                words * 1.3
-        );
-    }
-
-
-    /*
-     * Delete previous crawl.
-     */
-
     private static void deleteFolder(
             Path folder)
             throws Exception {
 
         if (!Files.exists(folder)) {
+
             return;
         }
+
 
         Files.walk(folder)
 

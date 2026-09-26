@@ -15,24 +15,44 @@ import java.nio.file.StandardOpenOption;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+
 public class GeorgiaPowerIrpDownloader {
 
     private static final String START_URL =
             "https://www.georgiapower.com/about/company/filings/irp.html";
 
+
+    /*
+     * The main IRP page does not always expose the
+     * complete IRP document through the links that
+     * our crawler can discover.
+     *
+     * Download it explicitly so it is always included
+     * in the raw data.
+     */
+    private static final String FULL_2025_IRP_URL =
+            "https://www.georgiapower.com/content/dam/georgia-power/pdfs/company-pdfs/2025-Integrated-Resource-Plan.pdf";
+
+
     private static final String DOMAIN =
             "www.georgiapower.com";
+
 
     // Prevent downloading the same URL twice
     private static final Set<String> visited =
             new LinkedHashSet<String>();
 
+
     private static int htmlNumber = 1;
+
     private static int pdfNumber = 1;
+
 
     private static long totalWords = 0;
 
-    // Manifest that connects each downloaded file to its original URL
+
+    // Manifest that connects each downloaded file
+    // to its original URL
     private static Path manifestFile;
 
 
@@ -46,19 +66,24 @@ public class GeorgiaPowerIrpDownloader {
                     "georgia-power-irp"
             );
 
+
             // Delete the previous complete download
             deleteFolder(folder);
 
+
             // Create the new empty folder
             Files.createDirectories(folder);
+
 
             // Create manifest.csv
             manifestFile =
                     folder.resolve("manifest.csv");
 
+
             String header =
                     "file,type,url"
                             + System.lineSeparator();
+
 
             Files.write(
                     manifestFile,
@@ -67,16 +92,51 @@ public class GeorgiaPowerIrpDownloader {
                     )
             );
 
+
             System.out.println(
                     "Starting Georgia Power IRP crawl..."
             );
 
             System.out.println();
 
+
+            // =========================================
+            // NORMAL IRP CRAWL
+            // =========================================
+
             crawl(
                     START_URL,
                     folder
             );
+
+
+            // =========================================
+            // FULL 2025 IRP
+            // =========================================
+
+            /*
+             * The full 2025 IRP contains much more
+             * detailed information than the one-page
+             * summary.
+             *
+             * We download it explicitly because the
+             * main Georgia Power IRP page may not expose
+             * this file through a link that the crawler
+             * can discover.
+             */
+
+            System.out.println();
+
+            System.out.println(
+                    "Downloading full 2025 IRP..."
+            );
+
+
+            crawl(
+                    FULL_2025_IRP_URL,
+                    folder
+            );
+
 
             System.out.println();
 
@@ -84,33 +144,40 @@ public class GeorgiaPowerIrpDownloader {
                     "================================"
             );
 
+
             System.out.println(
                     "CRAWL FINISHED"
             );
 
+
             System.out.println(
                     "================================"
             );
+
 
             System.out.println(
                     "Unique URLs visited: "
                             + visited.size()
             );
 
+
             System.out.println(
                     "HTML pages saved: "
                             + (htmlNumber - 1)
             );
+
 
             System.out.println(
                     "PDF files saved: "
                             + (pdfNumber - 1)
             );
 
+
             System.out.println(
                     "Total HTML words: "
                             + totalWords
             );
+
 
             System.out.println(
                     "Estimated LLM tokens: "
@@ -119,15 +186,18 @@ public class GeorgiaPowerIrpDownloader {
                             )
             );
 
+
             System.out.println(
                     "Saved at: "
                             + folder.toAbsolutePath()
             );
 
+
             System.out.println(
                     "Manifest: "
                             + manifestFile.toAbsolutePath()
             );
+
 
         } catch (Exception e) {
 
@@ -145,17 +215,23 @@ public class GeorgiaPowerIrpDownloader {
             String cleanUrl =
                     cleanUrl(url);
 
+
             if (cleanUrl == null) {
+
                 return;
             }
+
 
             // Already visited
             if (visited.contains(cleanUrl)) {
+
                 return;
             }
 
+
             URI uri =
                     URI.create(cleanUrl);
+
 
             // Only Georgia Power
             if (!DOMAIN.equalsIgnoreCase(
@@ -181,9 +257,11 @@ public class GeorgiaPowerIrpDownloader {
                     "--------------------------------"
             );
 
+
             System.out.println(
                     "Downloading:"
             );
+
 
             System.out.println(
                     cleanUrl
@@ -191,6 +269,7 @@ public class GeorgiaPowerIrpDownloader {
 
 
             Connection.Response response;
+
 
             try {
 
@@ -214,6 +293,7 @@ public class GeorgiaPowerIrpDownloader {
 
                                 .execute();
 
+
             } catch (Exception e) {
 
                 /*
@@ -226,12 +306,14 @@ public class GeorgiaPowerIrpDownloader {
                                 + e.getMessage()
                 );
 
+
                 return;
             }
 
 
             int status =
                     response.statusCode();
+
 
             if (status < 200
                     || status >= 300) {
@@ -241,6 +323,7 @@ public class GeorgiaPowerIrpDownloader {
                                 + status
                 );
 
+
                 return;
             }
 
@@ -248,11 +331,13 @@ public class GeorgiaPowerIrpDownloader {
             String contentType =
                     response.contentType();
 
+
             if (contentType == null) {
 
                 System.out.println(
                         "Unknown content type."
                 );
+
 
                 return;
             }
@@ -265,18 +350,22 @@ public class GeorgiaPowerIrpDownloader {
             if (contentType.contains(
                     "text/html")) {
 
+
                 Document page;
+
 
                 try {
 
                     page =
                             response.parse();
 
+
                 } catch (Exception e) {
 
                     System.out.println(
                             "Could not parse HTML."
                     );
+
 
                     return;
                 }
@@ -287,6 +376,7 @@ public class GeorgiaPowerIrpDownloader {
                                 "page_%05d.html",
                                 htmlNumber
                         );
+
 
                 Path file =
                         folder.resolve(
@@ -305,11 +395,13 @@ public class GeorgiaPowerIrpDownloader {
                                     )
                     );
 
+
                 } catch (Exception e) {
 
                     System.out.println(
                             "Could not save page."
                     );
+
 
                     return;
                 }
@@ -331,6 +423,7 @@ public class GeorgiaPowerIrpDownloader {
                                 page.text()
                         );
 
+
                 totalWords +=
                         words;
 
@@ -340,10 +433,12 @@ public class GeorgiaPowerIrpDownloader {
                                 + filename
                 );
 
+
                 System.out.println(
                         "Words: "
                                 + words
                 );
+
 
                 System.out.println(
                         "Estimated tokens: "
@@ -357,6 +452,7 @@ public class GeorgiaPowerIrpDownloader {
                  * Find every link inside
                  * this page.
                  */
+
                 Elements links =
                         page.select(
                                 "a[href]"
@@ -373,12 +469,14 @@ public class GeorgiaPowerIrpDownloader {
                  * Follow only links that
                  * appear related to IRP.
                  */
+
                 for (Element element : links) {
 
                     String nextUrl =
                             element.absUrl(
                                     "href"
                             );
+
 
                     if (nextUrl == null
                             || nextUrl.isEmpty()) {
@@ -404,12 +502,14 @@ public class GeorgiaPowerIrpDownloader {
 
                         Thread.sleep(800);
 
+
                     } catch (
                             InterruptedException e
                     ) {
 
                         Thread.currentThread()
                                 .interrupt();
+
 
                         return;
                     }
@@ -433,11 +533,13 @@ public class GeorgiaPowerIrpDownloader {
                     )
             ) {
 
+
                 String filename =
                         String.format(
                                 "document_%05d.pdf",
                                 pdfNumber
                         );
+
 
                 Path file =
                         folder.resolve(
@@ -452,11 +554,13 @@ public class GeorgiaPowerIrpDownloader {
                             response.bodyAsBytes()
                     );
 
+
                 } catch (Exception e) {
 
                     System.out.println(
                             "Could not save PDF."
                     );
+
 
                     return;
                 }
@@ -483,6 +587,7 @@ public class GeorgiaPowerIrpDownloader {
                  * Jsoup does not follow links
                  * inside PDFs.
                  */
+
                 return;
             }
 
@@ -497,6 +602,7 @@ public class GeorgiaPowerIrpDownloader {
                         "Skipping content type: "
                                 + contentType
                 );
+
 
                 return;
             }
@@ -535,7 +641,9 @@ public class GeorgiaPowerIrpDownloader {
             String normalizedUrl =
                     cleanUrl(nextUrl);
 
+
             if (normalizedUrl == null) {
+
                 return false;
             }
 
@@ -557,7 +665,9 @@ public class GeorgiaPowerIrpDownloader {
             String path =
                     uri.getPath();
 
+
             if (path == null) {
+
                 return false;
             }
 
@@ -565,13 +675,16 @@ public class GeorgiaPowerIrpDownloader {
             String lowerPath =
                     path.toLowerCase();
 
+
             String linkText =
                     element.text()
                             .toLowerCase();
 
+
             String lowerUrl =
                     normalizedUrl
                             .toLowerCase();
+
 
             String currentLower =
                     currentUrl
@@ -582,15 +695,17 @@ public class GeorgiaPowerIrpDownloader {
              * Always allow the main
              * IRP page.
              */
+
             String normalizedStart =
                     cleanUrl(
                             START_URL
                     );
 
+
             if (normalizedStart != null
                     && normalizedUrl.equals(
-                            normalizedStart
-                    )) {
+                    normalizedStart
+            )) {
 
                 return true;
             }
@@ -600,13 +715,16 @@ public class GeorgiaPowerIrpDownloader {
              * Allow URLs that clearly
              * identify IRP content.
              */
+
             if (lowerUrl.contains("irp")
+
                     || lowerUrl.contains(
-                            "integrated-resource-plan"
-                    )
+                    "integrated-resource-plan"
+            )
+
                     || lowerUrl.contains(
-                            "integrated_resource_plan"
-                    )) {
+                    "integrated_resource_plan"
+            )) {
 
                 return true;
             }
@@ -617,10 +735,12 @@ public class GeorgiaPowerIrpDownloader {
              * text clearly identifies
              * IRP content.
              */
+
             if (linkText.contains("irp")
+
                     || linkText.contains(
-                            "integrated resource plan"
-                    )) {
+                    "integrated resource plan"
+            )) {
 
                 return true;
             }
@@ -630,20 +750,24 @@ public class GeorgiaPowerIrpDownloader {
              * Determine whether the current
              * page is already an IRP page.
              */
+
             boolean currentPageIsIrp =
                     currentLower.contains("irp")
+
                             || currentLower.contains(
-                                    "integrated-resource-plan"
-                            )
+                            "integrated-resource-plan"
+                    )
+
                             || currentLower.contains(
-                                    "integrated_resource_plan"
-                            );
+                            "integrated_resource_plan"
+                    );
 
 
             /*
              * PDFs directly linked from an
              * IRP page are useful raw data.
              */
+
             if (lowerPath.endsWith(".pdf")
                     && currentPageIsIrp) {
 
@@ -656,13 +780,16 @@ public class GeorgiaPowerIrpDownloader {
              * uses generic "Read More"
              * links for previous IRP plans.
              */
+
             if (normalizedStart != null
+
                     && currentUrl.equals(
-                            normalizedStart
-                    )
+                    normalizedStart
+            )
+
                     && linkText.startsWith(
-                            "read more"
-                    )) {
+                    "read more"
+            )) {
 
                 return true;
             }
@@ -673,16 +800,19 @@ public class GeorgiaPowerIrpDownloader {
              * continue through another
              * generic "Read More" link.
              */
+
             if (currentPageIsIrp
+
                     && linkText.startsWith(
-                            "read more"
-                    )) {
+                    "read more"
+            )) {
 
                 return true;
             }
 
 
             return false;
+
 
         } catch (Exception e) {
 
@@ -714,7 +844,9 @@ public class GeorgiaPowerIrpDownloader {
             String scheme =
                     uri.getScheme();
 
+
             if (scheme == null) {
+
                 return null;
             }
 
@@ -733,7 +865,9 @@ public class GeorgiaPowerIrpDownloader {
             String host =
                     uri.getHost();
 
+
             if (host == null) {
+
                 return null;
             }
 
@@ -753,6 +887,7 @@ public class GeorgiaPowerIrpDownloader {
              *
              * as the same domain.
              */
+
             if (host.equals(
                     "georgiapower.com")) {
 
@@ -763,6 +898,7 @@ public class GeorgiaPowerIrpDownloader {
 
             String path =
                     uri.getPath();
+
 
             if (path == null
                     || path.isEmpty()) {
@@ -782,6 +918,7 @@ public class GeorgiaPowerIrpDownloader {
              *
              * page.html
              */
+
             URI clean =
                     new URI(
                             scheme,
@@ -795,6 +932,7 @@ public class GeorgiaPowerIrpDownloader {
 
 
             return clean.toString();
+
 
         } catch (Exception e) {
 
@@ -819,6 +957,7 @@ public class GeorgiaPowerIrpDownloader {
              *
              * file,type,url
              */
+
             String line =
                     "\""
                             + filename
@@ -826,9 +965,9 @@ public class GeorgiaPowerIrpDownloader {
                             + type
                             + "\",\""
                             + url.replace(
-                                    "\"",
-                                    "\"\""
-                            )
+                            "\"",
+                            "\"\""
+                    )
                             + "\""
                             + System.lineSeparator();
 
@@ -842,6 +981,7 @@ public class GeorgiaPowerIrpDownloader {
 
                     StandardOpenOption.APPEND
             );
+
 
         } catch (Exception e) {
 
@@ -861,6 +1001,7 @@ public class GeorgiaPowerIrpDownloader {
             String text) {
 
         if (text == null) {
+
             return 0;
         }
 
@@ -870,6 +1011,7 @@ public class GeorgiaPowerIrpDownloader {
 
 
         if (text.isEmpty()) {
+
             return 0;
         }
 
@@ -904,6 +1046,7 @@ public class GeorgiaPowerIrpDownloader {
             throws Exception {
 
         if (!Files.exists(folder)) {
+
             return;
         }
 
@@ -920,6 +1063,7 @@ public class GeorgiaPowerIrpDownloader {
                     try {
 
                         Files.delete(path);
+
 
                     } catch (Exception e) {
 
