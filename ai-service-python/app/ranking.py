@@ -10,11 +10,12 @@ from pathlib import Path
 
 
 RANKING_METHOD = (
-    "Equal-weight average of geographic proximity and schedule compatibility. "
-    "Distance scores are 100 below 1.6 km, 75 below 8 km, 50 through 40 km, "
-    "and 0 above 40 km. Schedule scores are 100 for overlap, 0 for no "
-    "overlap, and a neutral 50 when unknown. Ties use company/project names "
-    "and then the original match id."
+    "Weighted average favoring geographic proximity (70%) over schedule compatibility (30%). "
+    "Geographic scores interpolate between the challenge distance bands "
+    "(0 km: 100, 1.6 km: 90, 8 km: 75, 40 km: 35; beyond 40 km: 0). "
+    "Timeline scores are the share of the shorter schedule window that "
+    "overlaps (0-100), and a neutral 50 when dates are unknown. Ties use "
+    "company/project names and then the original match id."
 )
 
 _COST_SECTION = "COST-SAVING OPPORTUNITIES"
@@ -138,10 +139,24 @@ def timeline_compatibility(match):
         and project_b[0] <= project_a[1]
     )
     if overlaps:
+        overlap_start = max(project_a[0], project_b[0])
+        overlap_end = min(project_a[1], project_b[1])
+        overlap_days = (overlap_end - overlap_start).days + 1
+        shorter_window_days = min(
+            (project_a[1] - project_a[0]).days + 1,
+            (project_b[1] - project_b[0]).days + 1,
+        )
+        overlap_score = round(
+            overlap_days / shorter_window_days * 100,
+            1,
+        )
         return {
-            "score": 100,
+            "score": overlap_score,
             "status": "overlap",
-            "reason": "The supplied project date windows overlap.",
+            "reason": (
+                f"The supplied schedule windows overlap by "
+                f"{overlap_score:g}% of the shorter project window."
+            ),
         }
 
     return {
@@ -161,13 +176,39 @@ def _geographic_score(distance):
         raise ValueError(
             f"Match distance must be finite and nonnegative: {distance!r}"
         )
+    anchors = (
+        (0.0, 100.0),
+        (1.6, 90.0),
+        (8.0, 75.0),
+        (40.0, 35.0),
+    )
+    if distance_km > 40:
+        return 0, "outside_40_km"
+
+    for (lower_distance, lower_score), (upper_distance, upper_score) in zip(
+        anchors,
+        anchors[1:],
+    ):
+        if distance_km <= upper_distance:
+            progress = (
+                (distance_km - lower_distance)
+                / (upper_distance - lower_distance)
+            )
+            score = round(
+                lower_score + progress * (upper_score - lower_score),
+                1,
+            )
+            break
+    else:
+        score = anchors[-1][1]
+
     if distance_km < 1.6:
-        return 100, "under_1_6_km"
-    if distance_km < 8:
-        return 75, "under_8_km"
-    if distance_km <= 40:
-        return 50, "within_40_km"
-    return 0, "outside_40_km"
+        tier = "under_1_6_km"
+    elif distance_km < 8:
+        tier = "under_8_km"
+    else:
+        tier = "within_40_km"
+    return score, tier
 
 
 def _ranked_copy(match):
@@ -185,7 +226,7 @@ def rank_matches(matches):
             item.get("distance_km")
         )
         timeline = timeline_compatibility(item)
-        score = round((geographic_score + timeline["score"]) / 2, 1)
+        score = round(0.70 * geographic_score + 0.30 * timeline["score"], 1)
         item["ranking"] = {
             "score": score,
             "geographic_score": geographic_score,

@@ -345,6 +345,23 @@
 .ranked-opportunity-list {
     display: grid;
     gap: 12px;
+    max-height: 560px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding-right: 8px;
+}
+
+.ranked-opportunity-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.ranked-opportunity-list::-webkit-scrollbar-track {
+    background: #0b1220;
+}
+
+.ranked-opportunity-list::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background: #334155;
 }
 
 .ranked-opportunity-card {

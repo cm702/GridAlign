@@ -139,8 +139,8 @@ After the geographic filter, Java analyzes additional information such as:
 - Project status
 - Available project information
 
-The dashboard's deterministic priority ranking gives geographic proximity
-and schedule compatibility equal weight. The geographic filter still limits
+The dashboard's deterministic priority ranking weights geographic proximity (70%)
+more heavily than schedule compatibility (30%). The geographic filter still limits
 candidate pairs to less than 40 km; the ranking then uses the challenge's
 distance bands and compares available project date windows. Missing dates
 are shown as unknown and receive a neutral timeline score.
@@ -323,7 +323,7 @@ GridAlign follows a hybrid architecture:
 - Utility document processing
 - Gemini integration
 - Structured data extraction
-- Equal-weight geography and timeline ranking
+- Weighted geography (70%) and timeline (30%) ranking
 - AI coordination analysis
 - Filing-supported cost-saving information
 - Report generation

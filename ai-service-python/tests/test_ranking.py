@@ -66,8 +66,33 @@ class RankingTests(unittest.TestCase):
         )
         self.assertEqual(ranked[0]["rank"], 1)
         self.assertEqual(ranked[1]["rank"], 2)
-        self.assertEqual(ranked[0]["ranking"]["score"], 75.0)
-        self.assertEqual(ranked[1]["ranking"]["score"], 50.0)
+        self.assertEqual(ranked[0]["ranking"]["score"], 80.8)
+        self.assertEqual(ranked[1]["ranking"]["score"], 65.7)
+
+    def test_geographic_score_varies_smoothly_between_challenge_bands(self):
+        ranked = rank_matches([
+            make_match(distance, None, None, None, None, str(distance))
+            for distance in (0, 1.6, 4.8, 8, 24, 40)
+        ])
+        by_name = {
+            item["project_a"]["project_name"]: item["ranking"]["geographic_score"]
+            for item in ranked
+        }
+
+        self.assertEqual(by_name["0"], 100)
+        self.assertEqual(by_name["1.6"], 90)
+        self.assertEqual(by_name["4.8"], 82.5)
+        self.assertEqual(by_name["8"], 75)
+        self.assertEqual(by_name["24"], 55)
+        self.assertEqual(by_name["40"], 35)
+
+    def test_partial_timeline_overlap_gets_proportional_score(self):
+        result = timeline_compatibility(
+            make_match(5, "2027", "2028", "2028", "2029")
+        )
+
+        self.assertEqual(result["status"], "overlap")
+        self.assertEqual(result["score"], 50.1)
 
     def test_unknown_timeline_uses_neutral_component(self):
         ranked = rank_matches([
@@ -76,7 +101,7 @@ class RankingTests(unittest.TestCase):
 
         self.assertEqual(ranked[0]["ranking"]["timeline_status"], "unknown")
         self.assertEqual(ranked[0]["ranking"]["timeline_score"], 50)
-        self.assertEqual(ranked[0]["ranking"]["score"], 62.5)
+        self.assertEqual(ranked[0]["ranking"]["score"], 72.4)
 
     def test_distance_scores_follow_challenge_bands(self):
         ranked = rank_matches([
@@ -89,9 +114,9 @@ class RankingTests(unittest.TestCase):
         }
 
         self.assertEqual(by_name["0"]["geographic_score"], 100)
-        self.assertEqual(by_name["1.6"]["geographic_score"], 75)
-        self.assertEqual(by_name["8"]["geographic_score"], 50)
-        self.assertEqual(by_name["40"]["geographic_score"], 50)
+        self.assertEqual(by_name["1.6"]["geographic_score"], 90)
+        self.assertEqual(by_name["8"]["geographic_score"], 75)
+        self.assertEqual(by_name["40"]["geographic_score"], 35)
         self.assertEqual(by_name["40.1"]["geographic_score"], 0)
 
     def test_cost_savings_section_is_extracted_without_markdown(self):

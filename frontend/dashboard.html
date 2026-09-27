@@ -24,7 +24,7 @@
 
     <link
         rel="stylesheet"
-        href="/css/dashboard.css?v=5"
+        href="/css/dashboard.css?v=6"
     >
 
 
@@ -255,32 +255,6 @@
             <section class="dashboard-content">
 
 
-                <section class="rankings-section">
-
-                    <div class="section-header">
-
-                        <div>
-
-                            <h2>
-                                Ranked Coordination Opportunities
-                            </h2>
-
-                            <p>
-                                Priority balances geographic proximity and schedule compatibility equally.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                    <div
-                        class="ranked-opportunity-list"
-                        id="ranked-opportunities"
-                        aria-live="polite"
-                    ></div>
-
-                </section>
-
                 <section class="map-section">
 
                     <div class="section-header">
@@ -301,6 +275,32 @@
                     </div>
 
                     <div id="map"></div>
+
+                </section>
+
+                <section class="rankings-section">
+
+                    <div class="section-header">
+
+                        <div>
+
+                            <h2>
+                                Ranked Coordination Opportunities
+                            </h2>
+
+                            <p>
+                                Priority calculated with 70% weight on distance proximity and 30% weight on schedule compatibility.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div
+                        class="ranked-opportunity-list"
+                        id="ranked-opportunities"
+                        aria-live="polite"
+                    ></div>
 
                 </section>
 
@@ -329,7 +329,7 @@
 
     <script src="/js/map.js?v=4"></script>
 
-    <script src="/js/dashboard.js?v=5"></script>
+    <script src="/js/dashboard.js?v=6"></script>
 
 
 </body>
