@@ -66,6 +66,17 @@ BACKEND_JAVA_DIR = (
     / "backend-java"
 )
 
+REQUIRED_PROJECT_DATA_FILES = (
+    PROJECT_ROOT
+    / "data"
+    / "processed"
+    / "georgia_power.json",
+    PROJECT_ROOT
+    / "data"
+    / "processed"
+    / "dominion_energy_south_carolina.json",
+)
+
 
 # =========================
 # ENVIRONMENT VARIABLES
@@ -736,6 +747,23 @@ def run_java_matcher():
             matcher_status,
             "Compiling and running ProjectMatcher..."
         )
+
+        missing_project_data = [
+            path
+            for path in REQUIRED_PROJECT_DATA_FILES
+            if not path.is_file()
+        ]
+
+        if missing_project_data:
+            missing_names = ", ".join(
+                path.name
+                for path in missing_project_data
+            )
+            raise RuntimeError(
+                "Processed project data is missing: "
+                f"{missing_names}. Click 'Refresh Project Data' first; "
+                "it requires GEMINI_API_KEY in the repository .env file."
+            )
 
 
         # Remove old matches file so we know

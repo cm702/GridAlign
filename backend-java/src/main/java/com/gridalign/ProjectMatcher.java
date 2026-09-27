@@ -228,13 +228,29 @@ public class ProjectMatcher {
                     matches
             );
 
+            File matchesFile =
+                    new File(
+                            "data/processed/matches.json"
+                    );
+
+            File outputDirectory =
+                    matchesFile.getParentFile();
+
+            if (
+                    outputDirectory != null
+                    && !outputDirectory.exists()
+                    && !outputDirectory.mkdirs()
+            ) {
+                throw new IllegalStateException(
+                        "Could not create output directory: "
+                        + outputDirectory.getAbsolutePath()
+                );
+            }
 
             mapper
                     .writerWithDefaultPrettyPrinter()
                     .writeValue(
-                            new File(
-                                    "data/processed/matches.json"
-                            ),
+                            matchesFile,
                             output
                     );
 
@@ -255,6 +271,10 @@ public class ProjectMatcher {
         } catch (Exception e) {
 
             e.printStackTrace();
+            throw new RuntimeException(
+                    "ProjectMatcher failed: " + e.getMessage(),
+                    e
+            );
         }
     }
 
