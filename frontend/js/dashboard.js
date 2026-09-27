@@ -773,6 +773,8 @@ async function loadOverview() {
                 "0"
             );
 
+            renderRankings([]);
+
             return;
         }
 
@@ -783,6 +785,8 @@ async function loadOverview() {
 
         const matches =
             data.matches || [];
+
+        renderRankings(matches);
 
 
         // =========================
@@ -897,7 +901,222 @@ async function loadOverview() {
             "Overview error:",
             error
         );
+
+        const rankingsElement =
+            document.getElementById(
+                "ranked-opportunities"
+            );
+
+        if (rankingsElement) {
+            rankingsElement.textContent =
+                "Ranked opportunities could not be loaded.";
+        }
     }
+}
+
+
+// =========================
+// RANKED OPPORTUNITIES
+// =========================
+
+function renderRankings(matches) {
+
+    const container =
+        document.getElementById(
+            "ranked-opportunities"
+        );
+
+    if (!container) {
+        return;
+    }
+
+    container.replaceChildren();
+
+    if (!Array.isArray(matches) || matches.length === 0) {
+        const emptyMessage =
+            document.createElement("p");
+
+        emptyMessage.className =
+            "ranked-opportunity-empty";
+
+        emptyMessage.textContent =
+            "No coordination matches are available yet. Run the project matcher to identify opportunities.";
+
+        container.appendChild(emptyMessage);
+        return;
+    }
+
+    matches.forEach(function (match) {
+
+        const projectA =
+            match.project_a || {};
+
+        const projectB =
+            match.project_b || {};
+
+        const ranking =
+            match.ranking || {};
+
+        const costSavings =
+            match.cost_savings || {};
+
+        const card =
+            document.createElement("article");
+
+        card.className =
+            "ranked-opportunity-card";
+
+        const topline =
+            document.createElement("div");
+
+        topline.className =
+            "ranked-opportunity-topline";
+
+        const rank =
+            document.createElement("span");
+
+        rank.className =
+            "ranked-opportunity-rank";
+
+        rank.textContent =
+            `Priority ${match.rank || "--"}`;
+
+        const score =
+            document.createElement("span");
+
+        score.className =
+            "ranked-opportunity-score";
+
+        score.textContent =
+            `Balanced score ${Number(ranking.score || 0).toFixed(1)} / 100`;
+
+        topline.append(rank, score);
+        card.appendChild(topline);
+
+        const title =
+            document.createElement("h3");
+
+        title.textContent =
+            `${projectA.project_name || "Project A"} ↔ ${projectB.project_name || "Project B"}`;
+
+        card.appendChild(title);
+
+        const companies =
+            document.createElement("p");
+
+        companies.className =
+            "ranked-opportunity-companies";
+
+        companies.textContent =
+            `${match.company_a || "Utility A"} ↔ ${match.company_b || "Utility B"}`;
+
+        card.appendChild(companies);
+
+        const timelineLabels = {
+            overlap: "Schedule windows overlap",
+            no_overlap: "No schedule overlap found",
+            unknown: "Schedule compatibility unknown"
+        };
+
+        const distance =
+            Number(match.distance_km);
+
+        const meta =
+            document.createElement("p");
+
+        meta.className =
+            "ranked-opportunity-meta";
+
+        meta.textContent =
+            `Distance: ${Number.isFinite(distance) ? `${distance.toFixed(2)} km` : "Not available"} · Geography: ${ranking.geographic_score ?? "N/A"}/100 · Timeline: ${timelineLabels[ranking.timeline_status] || "Not available"} (${ranking.timeline_score ?? "N/A"}/100)`;
+
+        card.appendChild(meta);
+
+        const costSection =
+            document.createElement("section");
+
+        costSection.className =
+            "ranked-opportunity-costs";
+
+        const costHeading =
+            document.createElement("h4");
+
+        costHeading.textContent =
+            "Cost-saving opportunities";
+
+        costSection.appendChild(costHeading);
+
+        const costList =
+            document.createElement("ul");
+
+        const costItems =
+            Array.isArray(costSavings.items)
+                ? costSavings.items
+                : [];
+
+        if (costItems.length === 0) {
+            const unavailableItem =
+                document.createElement("li");
+
+            unavailableItem.textContent =
+                costSavings.status === "unavailable"
+                    ? "No filing-supported cost-saving information is available."
+                    : "Cost-saving information is not available yet.";
+
+            costList.appendChild(unavailableItem);
+        } else {
+            costItems.forEach(function (item) {
+                const listItem =
+                    document.createElement("li");
+
+                listItem.textContent =
+                    item;
+
+                costList.appendChild(listItem);
+            });
+        }
+
+        costSection.appendChild(costList);
+        card.appendChild(costSection);
+
+        if (Array.isArray(ranking.reasons)) {
+            const reason =
+                document.createElement("p");
+
+            reason.className =
+                "ranked-opportunity-reason";
+
+            reason.textContent =
+                ranking.reasons.join(" ");
+
+            card.appendChild(reason);
+        }
+
+        if (match.report_available) {
+            const actions =
+                document.createElement("div");
+
+            actions.className =
+                "ranked-opportunity-actions";
+
+            const reportLink =
+                document.createElement("a");
+
+            reportLink.className =
+                "ranked-opportunity-report";
+
+            reportLink.href =
+                `/api/reports/${match.match_id}`;
+
+            reportLink.textContent =
+                "Download AI Report";
+
+            actions.appendChild(reportLink);
+            card.appendChild(actions);
+        }
+
+        container.appendChild(card);
+    });
 }
 
 

@@ -18,6 +18,7 @@ from reportlab.platypus import (
 
 from .gemini_client import GeminiClient
 from .report_prompt import build_report_prompt
+from .ranking import update_cost_savings, write_rankings
     
 
 # GridAlign repository root
@@ -33,6 +34,13 @@ MATCHES_FILE = (
 REPORTS_DIR = (
     PROJECT_ROOT
     / "reports"
+)
+
+RANKINGS_FILE = (
+    PROJECT_ROOT
+    / "data"
+    / "rankings"
+    / "priority_rankings.json"
 )
 
 
@@ -284,6 +292,7 @@ def create_pdf(
         "TIMELINE ANALYSIS",
         "COORDINATION OPPORTUNITIES",
         "POTENTIAL BENEFITS",
+        "COST-SAVING OPPORTUNITIES",
         "RISKS AND LIMITATIONS",
         "FINAL ASSESSMENT",
         "RECOMMENDED NEXT STEP",
@@ -391,6 +400,18 @@ def generate_reports():
         )
         return
 
+    matches_with_ids = [
+        {
+            **match,
+            "match_id": index,
+        }
+        for index, match in enumerate(matches, start=1)
+    ]
+    write_rankings(
+        matches_with_ids,
+        RANKINGS_FILE,
+    )
+
     # Always start with a fresh reports folder
     reset_reports_folder()
 
@@ -451,6 +472,12 @@ def generate_reports():
             gemini.generate_report(
                 prompt
             )
+        )
+
+        update_cost_savings(
+            index,
+            report_text,
+            RANKINGS_FILE,
         )
 
         output_file = (

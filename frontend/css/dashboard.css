@@ -334,6 +334,110 @@
     margin-bottom: 28px;
 }
 
+/* =========================
+   RANKED OPPORTUNITIES
+========================= */
+
+.rankings-section {
+    margin-bottom: 28px;
+}
+
+.ranked-opportunity-list {
+    display: grid;
+    gap: 12px;
+}
+
+.ranked-opportunity-card {
+    padding: 16px;
+    border: 1px solid #1e293b;
+    border-radius: 10px;
+    background: #0f172a;
+}
+
+.ranked-opportunity-topline {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 8px;
+}
+
+.ranked-opportunity-rank {
+    color: #93c5fd;
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.ranked-opportunity-score {
+    color: #94a3b8;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.ranked-opportunity-card h3 {
+    margin: 0 0 6px;
+    color: #f8fafc;
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+.ranked-opportunity-companies,
+.ranked-opportunity-meta,
+.ranked-opportunity-reason {
+    margin: 0 0 8px;
+    color: #94a3b8;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.ranked-opportunity-costs {
+    margin-top: 12px;
+    padding-top: 11px;
+    border-top: 1px solid #1e293b;
+}
+
+.ranked-opportunity-costs h4 {
+    margin: 0 0 6px;
+    color: #cbd5e1;
+    font-size: 12px;
+}
+
+.ranked-opportunity-costs ul {
+    margin: 0;
+    padding-left: 18px;
+    color: #94a3b8;
+    font-size: 12px;
+    line-height: 1.55;
+}
+
+.ranked-opportunity-actions {
+    margin-top: 12px;
+}
+
+.ranked-opportunity-report {
+    display: inline-block;
+    padding: 8px 11px;
+    border-radius: 6px;
+    background: #1d4ed8;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.ranked-opportunity-report:hover {
+    background: #2563eb;
+}
+
+.ranked-opportunity-empty {
+    padding: 18px;
+    border: 1px solid #1e293b;
+    border-radius: 10px;
+    color: #94a3b8;
+    font-size: 13px;
+}
+
 
 #map {
     width: 100%;

@@ -198,6 +198,20 @@ even if they are different project types.
 POTENTIAL BENEFITS
 Briefly explain the practical benefits of coordination.
 
+COST-SAVING OPPORTUNITIES
+Use cost and project information actually present in the supplied
+project records and their filing sources. Identify the supported
+coordination opportunity and cite the source filename and page when
+provided. Distinguish a project's estimated construction cost from
+an estimate of savings: a project cost is not evidence of savings.
+Only give a dollar savings amount when the supplied filing explicitly
+supports that savings amount. Otherwise say that savings cannot be
+quantified from the available filing data. If no filing-supported
+cost-saving information is available, include this exact sentence:
+"No filing-supported cost-saving information is available."
+Do not invent costs, percentages, savings, cost-sharing agreements,
+or source citations.
+
 RISKS AND LIMITATIONS
 Explain incompatible work, timing issues, missing information,
 or other limitations.
@@ -228,6 +242,9 @@ Use language such as:
 - "if the construction schedules overlap"
 
 Never state an inferred construction requirement as a known fact.
+Keep filing facts distinct from inferred qualitative cost-saving
+possibilities, and state when the filing does not substantiate a
+financial amount.
 
 Do not use Markdown formatting.
 

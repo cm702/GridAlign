@@ -28,6 +28,8 @@ from fastapi.responses import (
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
+from .ranking import RANKING_METHOD, write_rankings
+
 
 # =========================
 # PATHS
@@ -50,6 +52,13 @@ MATCHES_FILE = (
 REPORTS_DIR = (
     PROJECT_ROOT
     / "reports"
+)
+
+RANKINGS_FILE = (
+    PROJECT_ROOT
+    / "data"
+    / "rankings"
+    / "priority_rankings.json"
 )
 
 BACKEND_JAVA_DIR = (
@@ -498,12 +507,21 @@ def get_matches(
         )
 
 
-        for index, match in enumerate(
-            matches,
-            start=1
-        ):
+        matches_with_ids = [
+            {
+                **match,
+                "match_id": index,
+            }
+            for index, match in enumerate(matches, start=1)
+        ]
 
-            match["match_id"] = index
+        ranking_artifact = write_rankings(
+            matches_with_ids,
+            RANKINGS_FILE,
+        )
+
+        for match in ranking_artifact["matches"]:
+            index = match["match_id"]
 
             report_file = (
                 REPORTS_DIR
@@ -513,6 +531,24 @@ def get_matches(
             match["report_available"] = (
                 report_file.exists()
             )
+
+            if not match["report_available"]:
+                match["cost_savings"] = {
+                    "status": "pending_report",
+                    "items": [
+                        "Generate the AI report to assess filing-supported cost-saving information."
+                    ],
+                }
+            elif "cost_savings" not in match:
+                match["cost_savings"] = {
+                    "status": "missing_section",
+                    "items": [
+                        "This report does not contain saved cost-saving details. Regenerate reports to assess the filing information."
+                    ],
+                }
+
+        data["matches"] = ranking_artifact["matches"]
+        data["ranking_method"] = RANKING_METHOD
 
 
         return data

@@ -41,6 +41,7 @@ After authentication, users can:
 - View ranked coordination opportunities
 - Open AI-generated coordination reports
 - Review possible shared resources, benefits, and risks
+- Review filing-supported cost-saving opportunities or see when filing information is unavailable
 
 The map focuses on projects that have already been detected as possible matches.
 
@@ -117,7 +118,7 @@ Java is responsible for:
 - Comparing construction timelines
 - Detecting timeline overlap
 - Calculating match information
-- Ranking coordination opportunities
+- Producing geographically eligible match candidates
 - Sending matched projects to the Python AI report service
 
 Geographic calculations are performed directly in Java.
@@ -138,9 +139,11 @@ After the geographic filter, Java analyzes additional information such as:
 - Project status
 - Available project information
 
-Geographic proximity is the primary signal.
-
-Timeline overlap is a strong secondary signal.
+The dashboard's deterministic priority ranking gives geographic proximity
+and schedule compatibility equal weight. The geographic filter still limits
+candidate pairs to less than 40 km; the ranking then uses the challenge's
+distance bands and compares available project date windows. Missing dates
+are shown as unknown and receive a neutral timeline score.
 
 Projects do not need to be the same type of construction to create a coordination opportunity.
 
@@ -164,7 +167,11 @@ Timeline Analysis
 ↓  
 Matched Projects  
 ↓  
-Coordination Opportunity Ranking
+Python Balanced Opportunity Ranking
+
+↓
+
+Dashboard Priority List
 
 ---
 
@@ -188,6 +195,13 @@ Gemini can identify possible:
 - Outage coordination
 - Construction scheduling opportunities
 - Risks or limitations
+
+The report prompt also requests filing-supported cost-saving opportunities.
+It does not treat a project's estimated construction cost as a savings
+estimate, and reports explicitly state when filing-supported cost-saving
+information is unavailable. Ranked results and report-derived cost details
+are saved separately under `data/rankings/`; existing source project data,
+match data, and PDF report names remain unchanged.
 
 The AI must use only the information provided by GridAlign.
 
@@ -309,7 +323,9 @@ GridAlign follows a hybrid architecture:
 - Utility document processing
 - Gemini integration
 - Structured data extraction
+- Equal-weight geography and timeline ranking
 - AI coordination analysis
+- Filing-supported cost-saving information
 - Report generation
 
 **Gemini**
