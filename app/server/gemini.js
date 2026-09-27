@@ -271,7 +271,10 @@ export async function handleGeminiChat(
   }
 
   const env = dependencies.env ?? process.env
-  const apiKey = dependencies.apiKey ?? env.gemini_api_key
+  const apiKey =
+    dependencies.apiKey ??
+    env.GEMINI_API_KEY ??
+    env.gemini_api_key
 
   if (!apiKey) {
     sendJson(response, 503, {

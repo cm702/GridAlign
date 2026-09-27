@@ -1,12 +1,14 @@
 FROM node:22-alpine
 
-WORKDIR /app
+WORKDIR /workspace/app
 
 COPY app/package.json app/package-lock.json ./
 
 RUN npm ci
 
-COPY app/ .
+COPY app/ ./
+
+COPY new_data/ ../new_data/
 
 RUN npm run build
 
