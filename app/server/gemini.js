@@ -26,11 +26,15 @@ function isRateLimited(request) {
 
   bucket.count += 1
   requestCount += 1
+
   if (requestCount % 256 === 0) {
     for (const [address, entry] of requestBuckets) {
-      if (now - entry.startedAt >= RATE_LIMIT_WINDOW_MS) requestBuckets.delete(address)
+      if (now - entry.startedAt >= RATE_LIMIT_WINDOW_MS) {
+        requestBuckets.delete(address)
+      }
     }
   }
+
   return bucket.count > MAX_REQUESTS_PER_WINDOW
 }
 
@@ -40,11 +44,13 @@ async function readJsonBody(request) {
 
   for await (const chunk of request) {
     bytes += chunk.length
+
     if (bytes > MAX_REQUEST_BYTES) {
       const error = new Error('The chat request is too large.')
       error.statusCode = 413
       throw error
     }
+
     chunks.push(chunk)
   }
 
@@ -67,6 +73,7 @@ function validateMessages(messages) {
   }
 
   const sanitized = []
+
   for (const message of messages) {
     if (
       !message ||
@@ -77,36 +84,68 @@ function validateMessages(messages) {
     ) {
       return null
     }
-    if (sanitized.length && sanitized.at(-1).role === message.role) return null
-    sanitized.push({ role: message.role, parts: [{ text: message.text.trim() }] })
+
+    if (sanitized.length && sanitized.at(-1).role === message.role) {
+      return null
+    }
+
+    sanitized.push({
+      role: message.role,
+      parts: [{ text: message.text.trim() }],
+    })
   }
 
-  if (sanitized[0].role !== 'user' || sanitized[sanitized.length - 1].role !== 'user') {
+  if (
+    sanitized[0].role !== 'user' ||
+    sanitized[sanitized.length - 1].role !== 'user'
+  ) {
     return null
   }
+
   return sanitized
 }
 
 function cleanProject(project) {
-  if (!project || typeof project !== 'object') return null
+  if (!project || typeof project !== 'object') {
+    return null
+  }
+
   const fields = ['utility', 'projectName', 'region', 'projectType']
   const cleaned = {}
 
   for (const field of fields) {
     const value = project[field]
-    if (typeof value !== 'string' || value.trim().length === 0 || value.length > 220) {
+
+    if (
+      typeof value !== 'string' ||
+      value.trim().length === 0 ||
+      value.length > 220
+    ) {
       return null
     }
+
     cleaned[field] = value
   }
 
   const inServiceDate = project.inServiceDate
-  if (inServiceDate !== null && inServiceDate !== undefined && typeof inServiceDate !== 'string') {
+
+  if (
+    inServiceDate !== null &&
+    inServiceDate !== undefined &&
+    typeof inServiceDate !== 'string'
+  ) {
     return null
   }
-  if (typeof inServiceDate === 'string' && inServiceDate.length > 120) return null
+
+  if (
+    typeof inServiceDate === 'string' &&
+    inServiceDate.length > 120
+  ) {
+    return null
+  }
 
   const estimatedCostUsd = project.estimatedCostUsd
+
   if (
     estimatedCostUsd !== null &&
     estimatedCostUsd !== undefined &&
@@ -120,14 +159,18 @@ function cleanProject(project) {
     inServiceDate: inServiceDate || 'Not supplied',
     estimatedCostUsd: estimatedCostUsd ?? null,
     costSource:
-      typeof project.costSource === 'string' && project.costSource.length <= 220
+      typeof project.costSource === 'string' &&
+      project.costSource.length <= 220
         ? project.costSource
         : 'Not supplied',
   }
 }
 
 function cleanOpportunity(opportunity) {
-  if (!opportunity || typeof opportunity !== 'object') return null
+  if (!opportunity || typeof opportunity !== 'object') {
+    return null
+  }
+
   const projectA = cleanProject(opportunity.projectA)
   const projectB = cleanProject(opportunity.projectB)
   const screeningScore = opportunity.screeningScore
@@ -137,16 +180,21 @@ function cleanOpportunity(opportunity) {
 
   if (
     screeningScore !== undefined &&
-    (!Number.isInteger(screeningScore) || screeningScore < 0 || screeningScore > 100)
+    (!Number.isInteger(screeningScore) ||
+      screeningScore < 0 ||
+      screeningScore > 100)
   ) {
     return null
   }
+
   if (
     scoreExplanation !== undefined &&
-    (typeof scoreExplanation !== 'string' || scoreExplanation.length > 600)
+    (typeof scoreExplanation !== 'string' ||
+      scoreExplanation.length > 600)
   ) {
     return null
   }
+
   if (
     coordinationIdeas !== undefined &&
     (!Array.isArray(coordinationIdeas) ||
@@ -159,7 +207,7 @@ function cleanOpportunity(opportunity) {
           typeof idea.type !== 'string' ||
           idea.type.length > 120 ||
           typeof idea.descriptor !== 'string' ||
-          idea.descriptor.length > 800,
+          idea.descriptor.length > 800
       ))
   ) {
     return null
@@ -175,7 +223,9 @@ function cleanOpportunity(opportunity) {
     opportunity.distanceKm < 0 ||
     (timeGapDays !== null &&
       timeGapDays !== undefined &&
-      (typeof timeGapDays !== 'number' || !Number.isFinite(timeGapDays) || timeGapDays < 0))
+      (typeof timeGapDays !== 'number' ||
+        !Number.isFinite(timeGapDays) ||
+        timeGapDays < 0))
   ) {
     return null
   }
@@ -205,19 +255,30 @@ function makeSystemInstruction(opportunity) {
   ].join(' ')
 }
 
-export async function handleGeminiChat(request, response, dependencies = {}) {
+export async function handleGeminiChat(
+  request,
+  response,
+  dependencies = {}
+) {
   if (request.method !== 'POST') {
     response.setHeader('Allow', 'POST')
-    sendJson(response, 405, { error: 'Use POST to send a chat message.' })
+
+    sendJson(response, 405, {
+      error: 'Use POST to send a chat message.',
+    })
+
     return
   }
 
   const env = dependencies.env ?? process.env
   const apiKey = dependencies.apiKey ?? env.gemini_api_key
+
   if (!apiKey) {
     sendJson(response, 503, {
-      error: 'Gemini is not configured. Set gemini_api_key in the server .env file.',
+      error:
+        'Gemini is not configured. Set gemini_api_key in the server .env file.',
     })
+
     return
   }
 
@@ -225,41 +286,64 @@ export async function handleGeminiChat(request, response, dependencies = {}) {
     dependencies.model ??
     env.gemini_model ??
     DEFAULT_GEMINI_MODEL
+
   const fallbackModel =
     dependencies.fallbackModel ??
     env.gemini_fallback_model ??
     primaryModel
+
   const models = [...new Set([primaryModel, fallbackModel])]
 
-  if (models.some((model) => typeof model !== 'string' || !/^[A-Za-z0-9._-]+$/.test(model))) {
+  if (
+    models.some(
+      (model) =>
+        typeof model !== 'string' ||
+        !/^[A-Za-z0-9._-]+$/.test(model)
+    )
+  ) {
     sendJson(response, 503, {
-      error: 'Gemini model configuration is invalid. Check gemini_model and gemini_fallback_model.',
+      error:
+        'Gemini model configuration is invalid. Check gemini_model and gemini_fallback_model.',
     })
+
     return
   }
 
   if (isRateLimited(request)) {
-    response.setHeader('Retry-After', String(RATE_LIMIT_WINDOW_MS / 1_000))
+    response.setHeader(
+      'Retry-After',
+      String(RATE_LIMIT_WINDOW_MS / 1_000)
+    )
+
     sendJson(response, 429, {
-      error: 'Too many assistant requests from this connection. Wait a minute, then try again.',
+      error:
+        'Too many assistant requests from this connection. Wait a minute, then try again.',
     })
+
     return
   }
 
   let body
+
   try {
     body = await readJsonBody(request)
   } catch (error) {
-    sendJson(response, error.statusCode ?? 400, { error: error.message })
+    sendJson(response, error.statusCode ?? 400, {
+      error: error.message,
+    })
+
     return
   }
 
   const contents = validateMessages(body.messages)
   const opportunity = cleanOpportunity(body.opportunity)
+
   if (!contents || !opportunity) {
     sendJson(response, 400, {
-      error: 'Provide a valid conversation and a selected opportunity with both project details.',
+      error:
+        'Provide a valid conversation and a selected opportunity with both project details.',
     })
+
     return
   }
 
@@ -268,59 +352,118 @@ export async function handleGeminiChat(request, response, dependencies = {}) {
 
   for (const model of models) {
     const endpoint = new URL(
-      `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`,
+      `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(
+        model
+      )}:generateContent`
     )
+
     let providerResponse
 
     try {
       providerResponse = await fetchImpl(endpoint, {
         method: 'POST',
+
         headers: {
           'Content-Type': 'application/json',
           'x-goog-api-key': apiKey,
         },
+
         body: JSON.stringify({
-          systemInstruction: { parts: [{ text: makeSystemInstruction(opportunity) }] },
+          systemInstruction: {
+            parts: [
+              {
+                text: makeSystemInstruction(opportunity),
+              },
+            ],
+          },
+
           contents,
-          generationConfig: { temperature: 0.35, maxOutputTokens: 700 },
+
+          generationConfig: {
+            temperature: 0.35,
+            maxOutputTokens: 700,
+          },
         }),
+
         signal: AbortSignal.timeout(30_000),
       })
     } catch (error) {
       lastError =
         error.name === 'TimeoutError'
           ? 'Gemini took too long to respond.'
-          : 'Could not reach Gemini. Check the server connection.'
+          : `Could not reach Gemini: ${error.message}`
+
       continue
     }
 
     if (!providerResponse.ok) {
-      lastError = `Gemini returned HTTP ${providerResponse.status}.`
-      if (providerResponse.status === 401 || providerResponse.status === 403) break
+      let errorMessage
+
+      try {
+        const errorData = await providerResponse.json()
+
+        errorMessage =
+          errorData?.error?.message ||
+          JSON.stringify(errorData)
+      } catch {
+        try {
+          errorMessage = await providerResponse.text()
+        } catch {
+          errorMessage = 'Unable to read Gemini error response.'
+        }
+      }
+
+      lastError =
+        `Gemini returned HTTP ${providerResponse.status}: ${errorMessage}`
+
+      if (providerResponse.status === 401 || providerResponse.status === 403) {
+        break
+      }
+
       continue
     }
 
     let result
+
     try {
       result = await providerResponse.json()
     } catch {
-      lastError = 'Gemini returned a response that could not be read.'
+      lastError =
+        'Gemini returned a response that could not be read.'
+
       continue
     }
 
     const text = result.candidates?.[0]?.content?.parts
-      ?.map((part) => (typeof part.text === 'string' ? part.text : ''))
+      ?.map((part) =>
+        typeof part.text === 'string' ? part.text : ''
+      )
       .join('')
       .trim()
 
     if (text) {
-      sendJson(response, 200, { text })
+      sendJson(response, 200, {
+        text,
+      })
+
       return
     }
-    lastError = 'Gemini returned no text.'
+
+    lastError =
+      'Gemini returned no text.'
+
+    // Include the actual response if Gemini returned
+    // something unexpected without usable text.
+    if (result) {
+      lastError += ` Response: ${JSON.stringify(result)}`
+    }
   }
 
+  // Return the ACTUAL error instead of hiding it behind
+  // "Check the configured model names, API key, and quota."
   sendJson(response, 502, {
-    error: `${lastError || 'Gemini could not complete the request.'} Check the configured model names, API key, and quota.`,
+    error:
+      lastError ||
+      'Gemini could not complete the request.',
   })
 }
