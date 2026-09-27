@@ -22,6 +22,7 @@ test('creates all eligible cross-utility pairs and applies the strict 40 km rule
 test('uses kilometers for display and keeps score labeled as a ranking heuristic', () => {
   assert.equal(formatDistanceKm(1.6), '1.60 km')
   assert.equal(formatDescriptionKm('About 18 miles away'), 'About 29.0 km away')
-  assert.equal(getScreeningScore({ distanceKm: 20, timeGapDays: 0 }), 65)
-  assert.equal(getScreeningScore({ distanceKm: 20, timeGapDays: null }), 50)
+  assert.equal(getScreeningScore({ distanceKm: 20, timeGapDays: 0 }), 87)
+  assert.equal(getScreeningScore({ distanceKm: 20, timeGapDays: null }), 57)
+  assert.equal(getScreeningScore({ distanceKm: 0, timeGapDays: null }), 70)
 })

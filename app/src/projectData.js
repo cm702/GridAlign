@@ -255,12 +255,16 @@ export function getCoordinationOptions(opportunity) {
 
 export function getScreeningScore(opportunity) {
   if (opportunity.distanceKm >= SCREENING_DISTANCE_KM) return 0
-  const proximity = Math.max(0, 1 - opportunity.distanceKm / SCREENING_DISTANCE_KM)
+  const proximity = Math.max(
+    0,
+    Math.log(SCREENING_DISTANCE_KM + 1 - opportunity.distanceKm) /
+      Math.log(SCREENING_DISTANCE_KM + 1),
+  )
   const schedule =
     opportunity.timeGapDays === null
-      ? null
+      ? 0
       : Math.max(0, 1 - opportunity.timeGapDays / 365)
-  return Math.round(100 * (schedule === null ? proximity : proximity * 0.7 + schedule * 0.3))
+  return Math.round(proximity * 70 + schedule * 30)
 }
 
 export function getScreeningScoreExplanation(opportunity) {
@@ -268,9 +272,9 @@ export function getScreeningScoreExplanation(opportunity) {
     return 'Not flagged: the nearest supplied points are 40 km or farther apart, outside the challenge geographic screen.'
   }
   if (opportunity.timeGapDays === null) {
-    return 'Ranking heuristic: proximity only, normalized to the 40 km screen; schedule data is unavailable.'
+    return 'Ranking heuristic: up to 70 points from proximity within the 40 km screen; schedule data (30 points) is unavailable.'
   }
-  return 'Ranking heuristic: 70% proximity within the 40 km screen and 30% schedule alignment; these weights are app-defined, not challenge-prescribed.'
+  return 'Ranking heuristic: up to 70 points from proximity decay within the 40 km screen and up to 30 points from schedule alignment.'
 }
 
 export function formatDistanceKm(distance) {
